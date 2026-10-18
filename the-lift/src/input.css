@@ -41,7 +41,8 @@
 
   /* Section edge that bends like the track. Sections never overlap content: the area outside the curve is
      filled with the previous section's colour (--prev) by an upward shadow that the earlier section covers. */
-  .bend { @apply relative; padding-top: calc(var(--track) * .55 + 4.5rem); box-shadow: 0 calc(var(--track) * -1) 0 0 var(--prev, #fff); }
+  .bend { @apply relative; padding-top: calc(var(--track) * .3 + 2.5rem); box-shadow: 0 calc(var(--track) * -1) 0 0 var(--prev, #fff); }
+  @media (min-width: 1024px) { .bend { padding-top: calc(var(--track) * .2 + 2rem); } }
   .bend-l { border-top-left-radius: var(--track); }
   .bend-r { border-top-right-radius: var(--track); }
 
@@ -158,11 +159,6 @@
   .symptom:hover .sym-chev { @apply text-brand-midnight; }
   .result-swap { animation: swap .5s cubic-bezier(.22,1,.36,1); }
   @keyframes swap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-  /* Before / after slider */
-  .ba { --pos: 50%; }
-  .ba .ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
-  .ba .ba-handle { left: var(--pos); }
 
   /* Steps track */
   .steps-line { stroke-dasharray: var(--len); stroke-dashoffset: calc(var(--len) * (1 - var(--p, 0))); }

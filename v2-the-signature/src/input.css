@@ -81,7 +81,7 @@
   @media (prefers-reduced-motion: reduce) { .city.active .halo { animation: none; opacity: .14; r: calc(18px * var(--k)); } .dim { transition: none; } }
 
   /* Problem rows (radiogroup) */
-  .prob { @apply flex min-h-[3.5rem] w-full items-center gap-4 rounded-xl border border-brand-grey-200 bg-white px-4 py-3 text-left font-heading text-[0.97rem] text-brand-midnight transition duration-200 hover:border-brand-grey-400; }
+  .prob { @apply flex min-h-[3.5rem] w-full items-center gap-4 rounded-xl border border-brand-grey-200 bg-white px-4 py-3 lg:min-h-[3rem] lg:py-2 text-left font-heading text-[0.97rem] text-brand-midnight transition duration-200 hover:border-brand-grey-400; }
   .prob .dot { @apply grid h-5 w-5 shrink-0 place-items-center rounded-full border border-brand-grey-400 transition; }
   .prob .dot::after { content: ''; @apply h-2.5 w-2.5 scale-0 rounded-full bg-brand-red transition duration-200; }
   .prob .pic { @apply grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-grey-50 text-brand-grey-700 transition; }
