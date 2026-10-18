@@ -22,10 +22,10 @@
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-wrap px-4 sm:px-6 lg:px-10; }
-  .eyebrow { @apply mb-3 inline-flex items-center gap-2 text-sm font-heading text-brand-red; }
+  .eyebrow { @apply mb-4 inline-flex items-center gap-2 text-sm font-heading text-brand-red; }
   .eyebrow-light { @apply text-white; }
   .h2 { @apply text-[clamp(1.85rem,3.4vw,2.75rem)] font-title; letter-spacing: -0.025em; line-height: 1.1; }
-  .lead { @apply text-base leading-relaxed text-brand-grey-700 sm:text-lg; }
+  .lead { @apply max-w-[60ch] text-base leading-relaxed text-brand-grey-700 sm:text-lg; }
 
   /* Buttons: 10px radius (V1 uses full pills), never wrapping */
   .btn { @apply inline-flex min-h-[3rem] items-center justify-center gap-2 whitespace-nowrap rounded-[10px] px-5 text-[0.95rem] font-heading transition duration-200; }
@@ -176,6 +176,43 @@
   .js .draw { transform: scaleX(0); transform-origin: left center; transition: transform 1.2s cubic-bezier(.22,1,.36,1) .25s; }
   .js .draw.in { transform: none; }
 
+  /* ---------- Distance radar (service areas) ---------- */
+  .radar { @apply relative overflow-hidden rounded-3xl bg-white ring-1 ring-brand-grey-200; --k: 1; }
+  .rd-ring-lbl { font: 600 calc(11px * var(--k)) Poppins, sans-serif; fill: #7F8188; paint-order: stroke; stroke: #FFFFFF; stroke-width: calc(4px * var(--k)); }
+  .rd-lbl { font: 600 calc(12px * var(--k)) Poppins, sans-serif; fill: #2F2D2E; paint-order: stroke; stroke: #FFFFFF; stroke-width: calc(4px * var(--k)); transition: opacity .4s ease; }
+  .rd-lbl.out { opacity: .45; }
+  /* the base group is already scaled with the map, so its label uses fixed units */
+  .rd-base-lbl { font: 700 15px Poppins, sans-serif; fill: #2F2D2E; paint-order: stroke; stroke: #FFFFFF; stroke-width: 5px; }
+  .rd-dot { fill: #949596; fill-opacity: .55; stroke: transparent; stroke-width: 14; cursor: pointer; transition: fill .35s ease, fill-opacity .35s ease; }
+  .rd-dot.in { fill: #3C3F49; fill-opacity: .9; }
+  .rd-dot.ping { animation: rdBright .9s ease-out 1; }
+  @keyframes rdBright { 0% { fill: #DB0000; fill-opacity: 1; } 100% { } }
+  .rd-ping { fill: none; stroke: #DB0000; stroke-width: calc(1.6px * var(--k)); opacity: 0; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+  .rd-ping.on { animation: rdPing .9s ease-out 1; }
+  @keyframes rdPing { 0% { opacity: .85; transform: scale(.35); } 100% { opacity: 0; transform: scale(1.5); } }
+  .rd-beam { transition: opacity .35s ease; pointer-events: none; }
+  .rd-drop-in.on { animation: rdDrop .45s cubic-bezier(.22,1,.36,1) 1; }
+  @keyframes rdDrop { from { transform: translateY(-14px); opacity: 0; } }
+  svg .rd-drop { pointer-events: none; }
+  @media (max-width: 430px) { .rd-lbl.minor, .rd-ring-lbl.minor { display: none; } }
+  .rd-dot.sel { fill: #DB0000; fill-opacity: 1; transform: scale(1.5); transform-box: fill-box; transform-origin: center; stroke: #FFFFFF; stroke-width: 2.5; }
+  .rd-reach { transition: r .5s cubic-bezier(.22,1,.36,1); }
+  .rd-pulse { fill: none; stroke: #DB0000; stroke-width: 2.5; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .rd-pulse.on { animation: rdPulse 1.1s ease-out 3; }
+  @keyframes rdPulse { 0% { opacity: .9; transform: scale(.6); } 100% { opacity: 0; transform: scale(2.6); } }
+  
+  @keyframes rdSweep { 0% { opacity: 1; transform: rotate(0deg); } 85% { opacity: 1; } 100% { opacity: 0; transform: rotate(360deg); } }
+  .radar-tip { @apply pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[calc(100%+10px)] whitespace-nowrap rounded-lg bg-brand-midnight px-2.5 py-1 text-xs font-heading text-white shadow-lg; }
+  /* Slider: 6px track that fills to the value, 44px thumb */
+  .range { --p: 23%; -webkit-appearance: none; appearance: none; height: 44px; background: transparent; cursor: pointer; }
+  .range::-webkit-slider-runnable-track { height: 6px; border-radius: 999px; background: linear-gradient(to right, #DB0000 var(--p), #E1E2E5 var(--p)); }
+  .range::-moz-range-track { height: 6px; border-radius: 999px; background: #E1E2E5; }
+  .range::-moz-range-progress { height: 6px; border-radius: 999px; background: #DB0000; }
+  .range::-webkit-slider-thumb { -webkit-appearance: none; width: 44px; height: 44px; margin-top: -19px; border-radius: 50%; background: radial-gradient(circle, #DB0000 0 7px, #FFFFFF 8px); box-shadow: 0 0 0 1px #E1E2E5, 0 6px 16px -6px rgba(28,31,42,.45); }
+  .range::-moz-range-thumb { width: 44px; height: 44px; border: 0; border-radius: 50%; background: radial-gradient(circle, #DB0000 0 7px, #FFFFFF 8px); box-shadow: 0 0 0 1px #E1E2E5, 0 6px 16px -6px rgba(28,31,42,.45); }
+  .range:focus-visible { outline: none; }
+  .range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px #DB0000, 0 6px 16px -6px rgba(28,31,42,.45); }
+
   .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); transition-delay: var(--d, 0ms); }
   .js .reveal.in { opacity: 1; transform: none; }
 
@@ -188,5 +225,7 @@
     .lift:hover { translate: none; }
     .sym:hover { transform: none; }
     .door-ill[data-state='reverse'] .beam { opacity: 1; }
+    .rd-beam { display: none; }
+    .rd-pulse.on { opacity: 1; transform: scale(1.6); }
   }
 }

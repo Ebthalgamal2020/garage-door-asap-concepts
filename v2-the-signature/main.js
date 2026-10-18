@@ -27,18 +27,6 @@
     : null;
   $$('.reveal').forEach((el) => (io ? io.observe(el) : el.classList.add('in')));
 
-  /* ---------- Counters count up once (final values are in the markup) ---------- */
-  if (io) {
-    const cio = new IntersectionObserver((es) => es.forEach((e) => {
-      if (!e.isIntersecting) return;
-      cio.unobserve(e.target);
-      const el = e.target, end = parseFloat(el.dataset.count), dec = (el.dataset.count.split('.')[1] || '').length, t0 = performance.now();
-      const step = (now) => { const t = Math.min(1, (now - t0) / 1300); el.textContent = (end * (1 - Math.pow(1 - t, 3))).toFixed(dec); if (t < 1) requestAnimationFrame(step); };
-      requestAnimationFrame(step);
-    }), { threshold: 0.6 });
-    $$('[data-count]').forEach((c) => cio.observe(c));
-  }
-
   /* ---------- Quote form: two steps (step 2 is first in the source; CSS order shows step 1 first) ---------- */
   const form = $('[data-form]');
   const step1 = $('[data-step="1"]', form);
@@ -123,7 +111,7 @@
     b.setAttribute('aria-checked', 'false');
     b.tabIndex = i === 0 ? 0 : -1;
     b.dataset.problem = p.id;
-    b.innerHTML = `<span class="dot" aria-hidden="true"></span><span class="pic" aria-hidden="true"><svg><use href="#i-${p.icon}"/></svg></span><span class="flex-1" data-l></span>${p.urgent ? '<span class="tag tag-urgent hidden sm:inline-flex" aria-hidden="true">Urgent</span>' : ''}`;
+    b.innerHTML = `<span class="dot" aria-hidden="true"></span><span class="pic" aria-hidden="true"><svg><use href="#i-${p.icon}"/></svg></span><span class="flex-1" data-l></span>`;
     $('[data-l]', b).textContent = p.label;
     group.append(b);
   });
@@ -133,10 +121,10 @@
     fix.classList.remove('fix-swap'); void fix.offsetWidth; if (!reduced) fix.classList.add('fix-swap');
     fix.innerHTML = `
       <div class="flex flex-wrap items-center justify-between gap-3">
-        <p class="text-xs font-title uppercase tracking-[0.16em] text-brand-red-deep">The fix</p>
-        <span class="sticker ${p.urgent ? 'sticker-deep' : 'sticker-dark'} rot !border-2 !py-1.5 text-xs" style="--r:${p.urgent ? '-3deg' : '2deg'}">${p.urgent ? 'Urgent · call now' : 'Book a visit'}</span>
+        <p class="text-sm font-heading text-brand-grey-700">The likely fix</p>
+        <span class="label ${p.urgent ? 'label-urgent' : ''}">${p.urgent ? 'Urgent: call now' : 'Book a visit'}</span>
       </div>
-      <h3 class="mt-2 text-2xl font-display sm:text-3xl" data-fix-title></h3>
+      <h3 class="mt-1 text-2xl font-heading" data-fix-title></h3>
       <div class="mt-5 grid gap-5 sm:grid-cols-[1fr_1.1fr] sm:items-start">
         ${p.img
           ? `<div class="fix-photo"><img loading="lazy" decoding="async" data-fix-img></div>`
@@ -144,13 +132,13 @@
         <div>
           <p class="leading-relaxed text-brand-grey-700" data-fix-text></p>
           <div class="mt-4 flex items-start gap-3">
-            <img src="../assets/brand/brand-mr-asap-mark.png" alt="" width="160" height="160" class="h-12 w-12 shrink-0 rounded-full bg-brand-red-tint ring-2 ring-brand-red">
-            <p class="relative rounded-2xl rounded-tl-sm bg-brand-red-tint px-4 py-3 text-sm leading-snug text-brand-ink"><strong class="block font-title text-brand-red-deep">Mr. ASAP says:</strong><span data-fix-tip></span></p>
+            <img src="../assets/brand/brand-mr-asap-mark.png" alt="" width="160" height="160" class="h-10 w-10 shrink-0 rounded-full bg-brand-grey-100 ring-1 ring-brand-grey-200">
+            <p class="text-sm leading-snug text-brand-ink"><strong class="block font-heading text-brand-midnight">Safety tip</strong><span data-fix-tip></span></p>
           </div>
         </div>
       </div>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#quote" class="btn btn-red" data-book-fix>Book this fix<svg class="nudge"><use href="#i-arrow"/></svg></a>
+        <a href="#quote" class="btn btn-red" data-book-fix>Book this fix</a>
         <a href="tel:+18777877121" class="btn btn-ghost"><svg><use href="#i-phone"/></svg><span class="tnum">Call (877) 787-7121</span></a>
       </div>`;
     $('[data-fix-title]', fix).textContent = p.service;
@@ -180,9 +168,17 @@
   });
   selectProblem(0);
 
-  /* ---------- Before / after ---------- */
-  const ba = $('[data-ba]');
-  $('[data-ba-range]').addEventListener('input', (e) => ba.style.setProperty('--pos', e.target.value + '%'));
+  /* ---------- FAQ: four first, the rest on request ---------- */
+  const moreFaq = $('[data-more-faq]');
+  const extraFaq = $$('[data-more]');
+  extraFaq.forEach((d) => { d.hidden = true; });
+  moreFaq.addEventListener('click', () => {
+    const open = moreFaq.getAttribute('aria-expanded') !== 'true';
+    extraFaq.forEach((d) => { d.hidden = !open; });
+    moreFaq.setAttribute('aria-expanded', String(open));
+    moreFaq.textContent = open ? 'Fewer questions' : 'More questions';
+    if (open) extraFaq[0].querySelector('summary').focus();
+  });
 
   /* ---------- Mr. ASAP safety tips (manual) ---------- */
   const TIPS = [
@@ -222,7 +218,7 @@
   });
 
   /* ---------- 29-point tune-up ---------- */
-  const PREVIEW = 8;
+  const PREVIEW = 6;
   const tabs = $$('[data-tab]');
   const lists = $$('[data-list]');
   const showAllBtn = $('[data-show-all]');
@@ -247,41 +243,152 @@
   showAllBtn.addEventListener('click', () => { showAll = !showAll; paintList(); });
   paintList();
 
-  /* ---------- Service areas (73 cities listed on garagedoorasapservice.com) ---------- */
-  const CITIES = ['Orlando', 'Kissimmee', 'The Villages', 'Clermont', 'Apopka', 'Winter Garden', 'Winter Park', 'Sanford', 'Casselberry',
-    'Oviedo', 'Lake Mary', 'Altamonte Springs', 'Longwood', 'Windermere', 'Leesburg', 'Ocoee', 'Pine Hills', 'Groveland', 'Eustis',
-    'Maitland', 'Wildwood', 'Minneola', 'Mount Dora', 'Tavares', 'Lockhart', 'Saint Cloud', 'Winter Springs', 'Coleman', 'Umatilla',
-    'Fruitland Park', 'Lady Lake', 'Bushnell', 'Mascotte', 'Grand Island', 'Webster', 'Montverde', 'Astatula', 'Fairview Shores',
-    'Center Hill', 'Oakland', 'Gotha', 'Davenport', 'Doctor Phillips', 'Deltona', 'DeBary', 'Sorrento', 'Hunters Creek',
-    'Howey-in-the-Hills', 'Heathrow', 'Buena Ventura Lakes', 'Belle Isle', 'Meadow Woods', 'Azalea Park', 'Poinciana', 'Oak Ridge',
-    'Union Park', 'Ormond Beach', 'Ormond-by-the-Sea', 'Daytona Beach', 'Holly Hill', 'Port Orange', 'Edgewater', 'New Smyrna Beach',
-    'Orange City', 'Palm Coast', 'South Daytona', 'DeLand', 'Ponce Inlet', 'Lake Helen', 'Melbourne', 'Rockledge', 'Titusville',
-    'Flagler Beach'];
-  const POPULAR = 14;
-  const norm = (s) => s.toLowerCase().replace(/^st\.?\s/, 'saint ').replace(/[^a-z]/g, '');
+  /* ---------- Service areas: minimal drawn map ----------
+     Data: ../assets/data/service-area.js (73 cities from garagedoorasapservice.com; miles = straight line from the Clermont base).
+     Florida outline drawn from Natural Earth (public domain). No third-party requests. */
+  const AREA = window.GDA_AREA || { base: { x: 291.6, y: 709.9 }, cities: [], florida: '' };
+  const CITIES = AREA.cities;
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const norm = (str) => str.toLowerCase().replace(/^st\.?\s/, 'saint ').replace(/[^a-z]/g, '');
+  const svg = $('[data-svgmap]');
+  const REST = [60, 60, 860, 940];
+  const LABELLED = ['Orlando', 'Clermont', 'The Villages', 'Daytona Beach', 'Kissimmee', 'Melbourne'];
+  const el = (tag, attrs) => { const n = document.createElementNS(SVGNS, tag); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v)); return n; };
+  $('[data-land]', svg).setAttribute('d', AREA.florida);
+
+  // Base pin: the Mr. ASAP mark in a white ring, with its label
+  const bx = AREA.base.x, by = AREA.base.y;
+  const basePin = $('[data-base]', svg);
+  basePin.append(
+    el('circle', { cx: bx, cy: by, r: 21, fill: '#FFFFFF', stroke: '#2F2D2E', 'stroke-width': 1.5 }),
+    el('clipPath', { id: 'base-clip' }),
+    el('image', { href: '../assets/brand/brand-mr-asap-mark.png', x: bx - 18, y: by - 18, width: 36, height: 36, 'clip-path': 'url(#base-clip)' })
+  );
+  $('#base-clip', basePin).append(el('circle', { cx: bx, cy: by, r: 18 }));
+  const baseLabel = el('text', { x: bx, y: by - 30, 'text-anchor': 'middle', class: 'map-label map-label-base' });
+  baseLabel.textContent = 'Our base · Clermont';
+  basePin.append(baseLabel);
+
+  // Dots and labels
+  const dotsG = $('[data-dots]', svg), labelsG = $('[data-labels]', svg);
+  const byName = new Map();
   const areaList = $('[data-area-list]');
+  const card = $('[data-area-card]');
+  const PREVIEW_CITIES = 8;
   $('[data-area-count]').textContent = CITIES.length;
   const dl = $('[data-city-datalist]');
   CITIES.forEach((c, i) => {
+    const g = el('g', { class: 'city', 'data-city': c.name });
+    const halo = el('circle', { cx: c.x, cy: c.y, r: 6, class: 'halo' });
+    const dot = el('circle', { cx: c.x, cy: c.y, r: 4.5, class: 'dot' });
+    const hit = el('circle', { cx: c.x, cy: c.y, r: 12, class: 'hit' });
+    g.append(halo, dot, hit);
+    dotsG.append(g);
+    $('[data-coverage]', svg).append(el('circle', { cx: c.x, cy: c.y, r: 30 }));
+    const east = c.x > 780;
+    const label = el('text', { x: east ? c.x - 9 : c.x + 9, y: c.y + 4, 'text-anchor': east ? 'end' : 'start', class: 'map-label' + (LABELLED.includes(c.name) && c.name !== 'Clermont' ? '' : ' map-label-hidden') + (/^(The Villages|Kissimmee)$/.test(c.name) ? ' map-label-minor' : '') });
+    label.textContent = c.name;
+    labelsG.append(label);
+    hit.addEventListener('click', () => selectCity(c, { zoom: true }));
+
     const li = document.createElement('li');
-    li.className = 'rounded-full bg-brand-grey-50 px-3.5 py-1.5 text-sm font-heading text-brand-midnight ring-1 ring-brand-grey-200';
-    li.textContent = c;
-    if (i >= POPULAR) li.hidden = true;
+    li.innerHTML = '<button type="button" class="city-row" aria-pressed="false"><span data-n></span><span class="tnum text-xs text-brand-grey-700" data-m></span></button>';
+    $('[data-n]', li).textContent = c.name;
+    $('[data-m]', li).textContent = `${c.miles} mi`;
+    if (i >= PREVIEW_CITIES) li.hidden = true;
+    const btn = $('button', li);
+    btn.addEventListener('click', () => selectCity(c, { zoom: true }));
     areaList.append(li);
-    const o = document.createElement('option'); o.value = c; dl.append(o);
+    byName.set(norm(c.name), { city: c, btn, g, label, li });
+    const o = document.createElement('option'); o.value = c.name; dl.append(o);
   });
   const areaToggle = $('[data-area-toggle]');
   areaToggle.addEventListener('click', () => {
     const open = areaToggle.getAttribute('aria-expanded') !== 'true';
-    $$('li', areaList).forEach((li, i) => { if (i >= POPULAR) li.hidden = !open; });
+    $$('li', areaList).forEach((li, i) => { if (i >= PREVIEW_CITIES) li.hidden = !open && li.querySelector('[aria-pressed="true"]') === null; });
     areaToggle.setAttribute('aria-expanded', String(open));
     areaToggle.textContent = open ? 'Show fewer cities' : `Show all ${CITIES.length} cities`;
   });
 
+  // Gentle viewBox animation (instant under reduced motion)
+  let vb = REST.slice(), anim = 0;
+  const setVB = (v) => { vb = v; svg.setAttribute('viewBox', v.map((n) => +n.toFixed(1)).join(' ')); const k = v[2] / REST[2]; svg.style.setProperty('--k', k.toFixed(3)); basePin.setAttribute('transform', `translate(${bx} ${by}) scale(${k.toFixed(3)}) translate(${-bx} ${-by})`); };
+  setVB(REST);
+  const spot = $('[data-spot]', svg), dim = $('[data-dim]', svg);
+  let spotXY = [bx, by];
+  const setSpot = ([x, y]) => { spotXY = [x, y]; spot.setAttribute('cx', x.toFixed(1)); spot.setAttribute('cy', y.toFixed(1)); };
+  setSpot(spotXY);
+  function zoomTo(target, spotTo) {
+    cancelAnimationFrame(anim);
+    if (reduced) { setVB(target); if (spotTo) setSpot(spotTo); return; }
+    const from = vb.slice(), sFrom = spotXY.slice(), t0 = performance.now(), ease = (t) => 1 - Math.pow(1 - t, 3);
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / 600), e = ease(t);
+      setVB(from.map((f, i) => f + (target[i] - f) * e));
+      if (spotTo) setSpot([sFrom[0] + (spotTo[0] - sFrom[0]) * e, sFrom[1] + (spotTo[1] - sFrom[1]) * e]);
+      if (t < 1) anim = requestAnimationFrame(step);
+    };
+    anim = requestAnimationFrame(step);
+  }
+  const resetBtn = $('[data-map-reset]');
+  function clearActive() {
+    byName.forEach(({ btn, g, label, city }) => {
+      btn.setAttribute('aria-pressed', 'false');
+      g.classList.remove('active');
+      label.classList.toggle('map-label-hidden', !(LABELLED.includes(city.name) && city.name !== 'Clermont'));
+      label.classList.remove('map-label-active');
+    });
+  }
+  resetBtn.addEventListener('click', () => { clearActive(); svg.classList.remove('spotlit'); card.hidden = true; zoomTo(REST); resetBtn.hidden = true; });
+
+  function selectCity(c, { zoom = false } = {}) {
+    const entry = byName.get(norm(c.name));
+    clearActive();
+    entry.btn.setAttribute('aria-pressed', 'true');
+    entry.li.hidden = false;
+    entry.g.classList.remove('active'); void entry.g.getBBox(); entry.g.classList.add('active');
+    entry.label.classList.remove('map-label-hidden'); entry.label.classList.add('map-label-active');
+    dotsG.append(entry.g);
+    card.innerHTML = `<p class="flex items-center gap-2 font-heading text-brand-midnight"><svg class="h-5 w-5 shrink-0 text-brand-red" aria-hidden="true"><use href="#i-check"/></svg>Yes, we serve <span data-c></span></p>
+      <p class="mt-1 text-sm text-brand-grey-700">About <span class="tnum" data-mi></span> miles from our Clermont base (straight line).</p>
+      <div class="mt-4 flex flex-wrap gap-2"><a href="tel:+18777877121" class="btn btn-red btn-sm"><svg><use href="#i-phone"/></svg>Call</a><a href="#quote" class="btn btn-ghost btn-sm" data-area-quote>Get a quote</a></div>`;
+    $('[data-c]', card).textContent = c.name;
+    $('[data-mi]', card).textContent = c.miles;
+    card.hidden = false;
+    $('[data-area-quote]', card).addEventListener('click', (e) => { e.preventDefault(); $('[name="city"]', form).value = c.name; startQuote({}); });
+    svg.classList.add('spotlit');
+    if (!zoom) setSpot([c.x, c.y]);
+    if (zoom) {
+      // Frame the city and the base together, never tighter than 360 units wide
+      const minX = Math.min(c.x, bx), maxX = Math.max(c.x, bx), minY = Math.min(c.y, by), maxY = Math.max(c.y, by);
+      const w = Math.max(360, (maxX - minX) + 180), h = w * (REST[3] / REST[2]);
+      zoomTo([(minX + maxX) / 2 - w / 2, (minY + maxY) / 2 - h / 2 - 20, w, h], [c.x, c.y]);
+      resetBtn.hidden = false;
+    }
+  }
+  function unknownCity(q) {
+    clearActive();
+    svg.classList.remove('spotlit');
+    card.innerHTML = `<p class="font-heading text-brand-midnight"><span data-q></span> isn’t on our list yet</p>
+      <p class="mt-1 text-sm text-brand-grey-700">We often help nearby towns, so call us to check.</p>
+      <a href="tel:+18777877121" class="btn btn-red btn-sm mt-4"><svg><use href="#i-phone"/></svg><span class="tnum">(877) 787-7121</span></a>`;
+    $('[data-q]', card).textContent = q;
+    card.hidden = false;
+  }
+
+  svg.addEventListener('click', (e) => {
+    if (e.target.classList.contains('hit')) return;
+    const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM().inverse());
+    const pxPerUnit = svg.getBoundingClientRect().width / vb[2];
+    let best = null, bestD = Infinity;
+    CITIES.forEach((c) => { const d = Math.hypot(c.x - pt.x, c.y - pt.y) * pxPerUnit; if (d < bestD) { bestD = d; best = c; } });
+    if (best && bestD <= 24) selectCity(best, { zoom: true });
+  });
+
+  // Search with suggestions (combobox + listbox)
   const areaForm = $('[data-area-form]');
   const input = $('[data-area-input]');
   const sug = $('[data-area-suggest]');
-  const result = $('[data-area-result]');
   let active = -1, matches = [];
   function closeSug() { sug.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; }
   function paintSug() {
@@ -291,9 +398,9 @@
       li.id = `sug-${i}`;
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', String(i === active));
-      li.className = `cursor-pointer rounded-xl px-4 py-2.5 text-[0.95rem] ${i === active ? 'bg-brand-red text-white' : 'hover:bg-brand-red-tint'}`;
-      li.textContent = c;
-      li.addEventListener('mousedown', (e) => { e.preventDefault(); input.value = c; closeSug(); check(); });
+      li.className = `cursor-pointer rounded-lg px-3 py-2 text-[0.95rem] ${i === active ? 'bg-brand-red-tint text-brand-red-deep' : 'hover:bg-brand-grey-50'}`;
+      li.textContent = c.name;
+      li.addEventListener('mousedown', (e) => { e.preventDefault(); input.value = c.name; closeSug(); check(); });
       sug.append(li);
     });
     sug.hidden = !matches.length;
@@ -302,7 +409,9 @@
   }
   input.addEventListener('input', () => {
     const q = norm(input.value);
-    matches = q ? CITIES.filter((c) => norm(c).includes(q)).slice(0, 6) : [];
+    svg.classList.toggle('searching', !!q);
+    byName.forEach(({ g, city }) => g.classList.toggle('match', !!q && norm(city.name).startsWith(q)));
+    matches = q ? CITIES.filter((c) => norm(c.name).includes(q)).slice(0, 6) : [];
     active = -1;
     paintSug();
   });
@@ -310,25 +419,17 @@
     if (sug.hidden || !matches.length) return;
     if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % matches.length; paintSug(); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + matches.length) % matches.length; paintSug(); }
-    else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); input.value = matches[active]; closeSug(); check(); }
+    else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); input.value = matches[active].name; closeSug(); check(); }
     else if (e.key === 'Escape') { closeSug(); }
   });
   input.addEventListener('blur', () => setTimeout(closeSug, 120));
   function check() {
+    svg.classList.remove('searching');
     const q = input.value.trim();
-    if (!q) { result.className = 'mt-3 min-h-[1.5rem] pl-4 text-sm font-heading text-brand-red'; result.textContent = 'Please type a city name.'; return; }
-    const hit = CITIES.find((c) => norm(c) === norm(q));
-    result.className = 'mt-3 min-h-[1.5rem] pl-4 text-sm ' + (hit ? 'font-title text-brand-midnight' : 'text-brand-grey-700');
-    result.textContent = hit
-      ? `Yes, we serve ${hit}! Call (877) 787-7121 or request a quote below.`
-      : `${q} isn’t on our list, but we often help nearby towns. Call (877) 787-7121 to check.`;
+    if (!q) { card.innerHTML = '<p class="text-sm font-heading text-brand-red">Please type a city name.</p>'; card.hidden = false; return; }
+    const hit = byName.get(norm(q));
+    if (hit) selectCity(hit.city, { zoom: true }); else unknownCity(q);
   }
   areaForm.addEventListener('submit', (e) => { e.preventDefault(); closeSug(); check(); });
 
-  /* ---------- Magnetic hero call button (desktop pointer only) ---------- */
-  const mag = $('[data-magnet]');
-  if (mag && !reduced && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    mag.addEventListener('pointermove', (e) => { const r = mag.getBoundingClientRect(); mag.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.08}px, ${(e.clientY - r.top - r.height / 2) * 0.12}px)`; });
-    mag.addEventListener('pointerleave', () => { mag.style.transform = ''; });
-  }
 })();
