@@ -114,8 +114,8 @@
 
   SYMPTOMS.forEach((s) => {
     const li = document.createElement('li');
-    li.innerHTML = `<button type="button" class="symptom group flex w-full items-center gap-3 rounded-2xl py-2 pl-2 pr-3 text-left text-[0.95rem] font-medium text-brand-midnight transition hover:bg-brand-grey-50" aria-pressed="false" data-symptom="${s.id}">
-      <span class="sym-ic grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-grey-100 transition"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[s.id]}"/></svg></span>
+    li.innerHTML = `<button type="button" class="symptom group flex w-full items-center gap-3 rounded-2xl py-1.5 pl-2 pr-3 text-left text-[0.95rem] font-medium text-brand-midnight transition hover:bg-brand-grey-50" aria-pressed="false" data-symptom="${s.id}">
+      <span class="sym-ic grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-grey-100 transition"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[s.id]}"/></svg></span>
       <span class="flex-1" data-label></span>
       <svg class="sym-chev h-4 w-4 shrink-0 text-brand-grey-500 transition" aria-hidden="true"><use href="#i-arrow"/></svg></button>`;
     li.querySelector('[data-label]').textContent = s.label;
@@ -125,7 +125,7 @@
   function renderResult(s) {
     result.classList.remove('result-swap'); void result.offsetWidth; result.classList.add('result-swap');
     result.innerHTML = `
-      <div class="grid items-center gap-5 ${s.img ? 'md:grid-cols-[1fr_auto] lg:gap-7' : ''}">
+      <div class="grid items-center gap-5 ${s.img ? 'md:grid-cols-[1fr_auto] lg:grid-cols-1' : ''}">
         <div>
           <div class="flex flex-wrap items-center gap-2">
             <span class="rounded-full px-3 py-1 text-[0.8rem] font-title ${s.urgent ? 'bg-brand-red text-white' : 'bg-white/10 text-white'}">${s.urgent ? 'Urgent · call now' : 'Book a visit'}</span>
@@ -140,7 +140,7 @@
               : '<a href="#quote" class="btn btn-red min-h-[3rem] px-5 text-sm" data-book>Book this fix<svg class="nudge"><use href="#i-arrow"/></svg></a><a href="tel:+18777877121" class="btn btn-ghost-light min-h-[3rem] px-5 text-sm"><svg><use href="#i-phone"/></svg>Call</a>'}
           </div>
         </div>
-        ${s.img ? `<figure class="arch relative mx-auto aspect-square w-full max-w-[12.5rem] bg-white/5 ring-1 ring-white/10 md:w-[12.5rem]" data-r-fig><img class="absolute inset-0 h-full w-full ${s.fit === 'contain' ? 'bg-white object-contain px-5 pb-3 pt-[4.25rem]' : 'object-cover'}" loading="lazy" data-r-img><figcaption class="sr-only">Photo from the Garage Door ASAP website</figcaption></figure>` : ''}
+        ${s.img ? `<figure class="arch relative mx-auto aspect-square w-full max-w-[12.5rem] bg-white/5 ring-1 ring-white/10 md:w-[12.5rem] lg:hidden" data-r-fig><img class="absolute inset-0 h-full w-full ${s.fit === 'contain' ? 'bg-white object-contain px-5 pb-3 pt-[4.25rem]' : 'object-cover'}" loading="lazy" data-r-img><figcaption class="sr-only">Photo from the Garage Door ASAP website</figcaption></figure>` : ''}
       </div>`;
     $('[data-r-title]', result).textContent = s.service;
     $('[data-r-sym]', result).textContent = s.label;
@@ -225,11 +225,6 @@
     dio.observe(diagram);
   } else place(HALF);
 
-  /* ---------- Before / after ---------- */
-  const ba = $('[data-ba]');
-  const baRange = $('[data-ba-range]');
-  baRange.addEventListener('input', () => ba.style.setProperty('--pos', baRange.value + '%'));
-
   /* ---------- Steps: the track line draws with scroll ---------- */
   const steps = $('[data-steps]');
   const line = $('[data-steps-line]');
@@ -269,7 +264,7 @@
      Data: ../assets/data/service-area.js (US Census Gazetteer points; miles = straight line from the Clermont base). */
   const AREA = window.GDA_AREA;
   const CITIES = AREA ? AREA.cities.map((c) => c.name) : ['Orlando', 'Kissimmee', 'The Villages', 'Clermont'];
-  const PREVIEW = 9;
+  const PREVIEW = 5;
   const SVGNS = 'http://www.w3.org/2000/svg';
   const norm = (s) => s.toLowerCase().replace(/^st\.?\s/, 'saint ').replace(/[^a-z]/g, '');
   // Geographic groupings only (never county names)

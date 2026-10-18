@@ -165,115 +165,104 @@
     </section>
 
     <!-- =========================================================== 4. SERVICES: COMMON PROBLEMS (asymmetric, urgent first) -->
-    <section id="services" class="bg-brand-grey-50 pb-20 pt-24 sm:pb-32 sm:pt-32" aria-labelledby="services-title">
+    <section id="services" class="bg-brand-grey-50 py-16 sm:py-20 lg:py-12" aria-labelledby="services-title">
       <div class="wrap">
-        <div class="reveal max-w-2xl">
-            <h2 id="services-title" class="h2">Common problems we fix</h2>
-            <p class="lead mt-4">Urgent repairs first. Check any problem in Find my fix, or book it.</p>
+        <div class="reveal grid gap-3 lg:grid-cols-2 lg:items-end lg:gap-8">
+          <h2 id="services-title" class="h2">Common problems we fix</h2>
+          <p class="lead">Urgent repairs first. Check any problem in Find my fix, or book it.</p>
+        </div>
+
+        <div class="mt-10 grid gap-12 lg:mt-8 lg:grid-cols-2 lg:gap-8">
+          <div>
+            <div class="flex items-center gap-3">
+              <span class="h-2.5 w-2.5 rounded-full bg-brand-red" aria-hidden="true"></span>
+              <h3 class="whitespace-nowrap text-sm font-title uppercase tracking-[0.14em] text-brand-red">Urgent: call now</h3>
+              <span class="h-px flex-1 bg-brand-grey-300" aria-hidden="true"></span>
+            </div>
+            <ul class="mt-4 grid gap-3" data-services data-stagger>
+          <li class="reveal lift group flex overflow-hidden card">
+            <div class="relative w-24 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-32"><img src="../assets/img/brand-svc-spring-broken.jpg" alt="A broken torsion spring above a garage door, with a visible gap in the coil" width="741" height="330" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Loud bang, door won’t lift</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-700">Usually a snapped torsion spring. We replace it and rebalance the door, same day.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="bang">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Spring Replacement">Book<span class="sr-only">: Loud bang, door won’t lift</span></a></div>
+            </div>
+          </li>
+          <li class="reveal lift group flex overflow-hidden card">
+            <div class="relative w-24 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-32"><img src="../assets/img/brand-shifted-door-sm.jpg" alt="A garage door pushed out of its track" width="640" height="480" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Crooked or off track</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-700">A shifted door can fall. We realign it and correct the cables, rollers and tracks.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="offtrack">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Shifted Door Repair">Book<span class="sr-only">: Crooked or off track</span></a></div>
+            </div>
+          </li>
+          <li class="reveal lift group flex overflow-hidden on-dark rounded-2xl bg-brand-midnight text-white shadow-[0_12px_32px_-16px_rgba(28,31,42,.45)]">
+            <div class="grid w-24 shrink-0 place-items-center self-stretch sm:w-32"><span class="grid shrink-0 place-items-center rounded-xl bg-white/10 text-white [&>svg]:h-6 [&>svg]:w-6 h-12 w-12"><svg aria-hidden="true"><use href="#i-cable"/></svg></span></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg text-white">Cable snapped or loose</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-300">One side lower, or stuck partway? Keep clear. We replace the cable and check the drums.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline-light btn-sm px-3" data-check="cable">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Cable Replacement">Book<span class="sr-only">: Cable snapped or loose</span></a></div>
+            </div>
+          </li>
+          <li class="reveal lift group flex overflow-hidden rounded-2xl bg-brand-red-tint">
+            <div class="grid w-24 shrink-0 place-items-center self-stretch sm:w-32"><span class="icon-tile bg-white h-12 w-12"><svg aria-hidden="true"><use href="#i-lock"/></svg></span></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Door won’t open</h3><p class="mt-1 text-sm leading-relaxed text-brand-ink">Often the spring, sometimes the opener or its power. We find which and fix it on the spot.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="wontopen">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Not sure — please advise">Book<span class="sr-only">: Door won’t open</span></a></div>
+            </div>
+          </li>
+            </ul>
           </div>
-
-        <div class="mt-14 flex items-center gap-3">
-          <span class="h-2.5 w-2.5 rounded-full bg-brand-red" aria-hidden="true"></span>
-          <h3 class="whitespace-nowrap text-sm font-title uppercase tracking-[0.14em] text-brand-red">Urgent: call now</h3>
-          <span class="h-px flex-1 bg-brand-grey-300" aria-hidden="true"></span>
+          <div>
+            <div class="flex items-center gap-3">
+              <span class="h-2.5 w-2.5 rounded-full bg-brand-grey-500" aria-hidden="true"></span>
+              <h3 class="whitespace-nowrap text-sm font-title uppercase tracking-[0.14em] text-brand-grey-700">Routine repairs &amp; upkeep</h3>
+              <span class="h-px flex-1 bg-brand-grey-300" aria-hidden="true"></span>
+            </div>
+            <ul class="mt-4 grid gap-3" data-stagger>
+          <li class="reveal lift group flex overflow-hidden card">
+            <div class="relative w-24 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-32"><img src="../assets/img/brand-svc-opener.jpg" alt="A garage door opener on the ceiling" width="400" height="300" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Opener or remote not working</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-700">No response, or stops halfway? We repair it on the spot, or fit a new opener.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="opener">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Opener or remote not working</span></a></div>
+            </div>
+          </li>
+          <li class="reveal lift group flex overflow-hidden card">
+            <div class="grid w-24 shrink-0 place-items-center self-stretch sm:w-32"><span class="icon-tile h-12 w-12"><svg aria-hidden="true"><use href="#i-sensor"/></svg></span></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Reverses before closing</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-700">Usually the safety sensors. We realign or replace them and test the reverse.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="reverse">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Reverses before closing</span></a></div>
+            </div>
+          </li>
+          <li class="reveal lift group flex overflow-hidden card">
+            <div class="relative w-24 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-32"><img src="../assets/img/brand-svc-rollers.jpg" alt="A set of garage door rollers" width="300" height="244" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Noisy or shaking</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-700">Worn rollers grind and shudder. New ones bring back smooth, quiet travel.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="noisy">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Roller Replacement">Book<span class="sr-only">: Noisy or shaking</span></a></div>
+            </div>
+          </li>
+          <li class="reveal lift group flex overflow-hidden card">
+            <div class="relative w-24 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-32"><img src="../assets/img/brand-home-banner-sm.jpg" alt="White garage doors on a well-kept home" width="900" height="432" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"></div>
+            <div class="flex min-w-0 flex-1 flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">
+              <div class="min-w-0 flex-1"><h3 class="text-base sm:text-lg">Just want a tune-up</h3><p class="mt-1 text-sm leading-relaxed text-brand-grey-700">Hardware tightened, parts lubricated, balance and sensors checked.</p></div>
+              <div class="flex shrink-0 gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="tuneup">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="General Maintenance">Book<span class="sr-only">: Just want a tune-up</span></a></div>
+            </div>
+          </li>
+            </ul>
+          </div>
         </div>
-        <ul class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8" data-services data-stagger>
-          <li class="reveal lift group card flex flex-col overflow-hidden sm:row-span-2 lg:col-span-7">
-            <div class="relative h-[220px] overflow-hidden bg-brand-midnight sm:h-[300px] lg:h-[330px]">
-              <img src="../assets/img/brand-svc-spring-broken.jpg" alt="A broken torsion spring above a garage door, with a visible gap in the coil" width="741" height="330" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
-              <span class="absolute inset-0 bg-gradient-to-t from-brand-ink/70 via-transparent to-transparent" aria-hidden="true"></span>
-              <div class="absolute left-4 top-4 flex flex-wrap gap-2"><span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-red text-white"><svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#i-alert"/></svg>Often urgent</span></div>
-            </div>
-            <div class="flex flex-1 flex-col p-7 sm:p-8">
-              <h3 class="text-2xl font-title sm:text-[1.7rem]">Loud bang, door won’t lift</h3>
-              <p class="mt-2 max-w-[52ch] leading-relaxed text-brand-grey-700">Usually a snapped torsion spring. We replace it safely and rebalance the door, same day.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="bang">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Spring Replacement">Book<span class="sr-only">: Loud bang, door won’t lift</span></a></div>
-            </div>
-          </li>
-          <li class="reveal lift group card flex flex-col overflow-hidden sm:flex-row lg:col-span-5" style="--d:80ms">
-            <div class="relative h-44 w-full shrink-0 overflow-hidden bg-brand-midnight sm:h-auto sm:w-40 lg:w-[44%]">
-              <img src="../assets/img/brand-shifted-door-sm.jpg" alt="A garage door pushed out of its track" width="640" height="480" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
-            </div>
-            <div class="flex min-w-0 flex-1 flex-col p-5">
-              <span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-red text-white">Often urgent</span>
-              <h3 class="mt-3 text-lg">Crooked or off track</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">A shifted door can fall. We realign it and correct the cables, rollers and tracks.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="offtrack">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Shifted Door Repair">Book<span class="sr-only">: Crooked or off track</span></a></div>
-            </div>
-          </li>
-          <li class="reveal lift on-dark flex flex-col rounded-2xl bg-brand-midnight p-5 text-white shadow-[0_12px_32px_-16px_rgba(28,31,42,.45)] lg:col-span-5" style="--d:120ms">
-            <span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-white/10 text-white ring-1 ring-white/20">Often urgent</span>
-            <h3 class="mt-3 text-lg text-white">Cable snapped or loose</h3>
-            <p class="mt-1.5 max-w-md text-sm leading-relaxed text-brand-grey-300">One side lower, or stuck partway? Keep clear. We replace the cable and check the drums.</p>
-            <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline-light btn-sm px-3" data-check="cable">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Cable Replacement">Book<span class="sr-only">: Cable snapped or loose</span></a></div>
-          </li>
-          <li class="reveal lift flex flex-col gap-5 rounded-2xl bg-brand-red-tint p-5 sm:col-span-2 sm:p-7 lg:col-span-12 lg:flex-row lg:items-center">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-x-3 gap-y-1"><span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-red text-white">Often urgent</span><h3 class="text-lg">Door won’t open</h3></div>
-              <p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-brand-ink">Often the spring, sometimes the opener or its power. We find which and fix it on the spot.</p>
-            </div>
-            <div class="flex flex-wrap gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="wontopen">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Not sure — please advise">Book<span class="sr-only">: Door won’t open</span></a></div>
-          </li>
-        </ul>
-
-        <div class="mt-20 flex items-center gap-3">
-          <span class="h-2.5 w-2.5 rounded-full bg-brand-grey-500" aria-hidden="true"></span>
-          <h3 class="whitespace-nowrap text-sm font-title uppercase tracking-[0.14em] text-brand-grey-700">Routine repairs &amp; upkeep</h3>
-          <span class="h-px flex-1 bg-brand-grey-300" aria-hidden="true"></span>
-        </div>
-        <ul class="mt-6 grid gap-6 sm:grid-cols-5 lg:grid-cols-12 lg:gap-8" data-stagger>
-          <li class="reveal lift group card flex flex-col overflow-hidden sm:col-span-5 sm:flex-row lg:col-span-8">
-            <div class="relative h-48 w-full shrink-0 overflow-hidden bg-brand-midnight sm:h-auto sm:w-[45%] sm:max-w-[400px]">
-              <img src="../assets/img/brand-svc-opener.jpg" alt="A garage door opener on the ceiling" width="400" height="300" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
-            </div>
-            <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
-              <h3 class="text-lg">Opener or remote not working</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">No response, or stops halfway? We repair it on the spot, or fit a new opener.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="opener">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Opener or remote not working</span></a></div>
-            </div>
-          </li>
-          <li class="reveal lift card flex flex-col p-5 sm:col-span-2 sm:p-6 lg:col-span-4" style="--d:80ms">
-            <span class="icon-tile h-12 w-12"><svg aria-hidden="true"><use href="#i-sensor"/></svg></span>
-            <h3 class="mt-4 text-lg">Reverses before closing</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Usually the safety sensors. We realign or replace them and test the reverse.</p>
-            <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="reverse">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Reverses before closing</span></a></div>
-          </li>
-          <li class="reveal lift group card flex overflow-hidden sm:col-span-3 lg:col-span-5">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36">
-              <img src="../assets/img/brand-svc-rollers.jpg" alt="A set of garage door rollers" width="300" height="244" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
-            </div>
-            <div class="flex min-w-0 flex-1 flex-col p-5">
-              <h3 class="text-lg">Noisy or shaking</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Worn rollers grind and shudder. New ones bring back smooth, quiet travel.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="noisy">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Roller Replacement">Book<span class="sr-only">: Noisy or shaking</span></a></div>
-            </div>
-          </li>
-          <li class="reveal lift group card flex flex-col overflow-hidden sm:col-span-5 sm:flex-row-reverse lg:col-span-7" style="--d:80ms">
-            <div class="relative h-44 w-full shrink-0 overflow-hidden bg-brand-midnight sm:h-auto sm:w-[46%]">
-              <img src="../assets/img/brand-home-banner-sm.jpg" alt="White garage doors on a well-kept home" width="900" height="432" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
-            </div>
-            <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
-              <h3 class="text-lg">Just want a tune-up</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Hardware tightened, parts lubricated, balance and sensors checked.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="tuneup">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="General Maintenance">Book<span class="sr-only">: Just want a tune-up</span></a></div>
-            </div>
-          </li>
-        </ul>
       </div>
     </section>
 
     <!-- =========================================================== 5. KNOW YOUR DOOR -->
-    <section id="know" class="py-20 sm:py-32" aria-labelledby="know-title">
+    <section id="know" class="py-16 sm:py-20 lg:py-12" aria-labelledby="know-title">
       <div class="wrap">
         <div class="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-8">
-          <div class="reveal lg:col-span-7">
+          <div class="reveal lg:col-span-8">
             <h2 id="know-title" class="h2">Six parts keep your door moving. Here’s how to spot trouble early.</h2>
           </div>
-          <p class="reveal lead lg:col-span-5" style="--d:80ms">Tap a marker or pick a part to see what it does and what to watch for.</p>
+          <p class="reveal lead lg:col-span-4" style="--d:80ms">Tap a marker or pick a part to see what it does and what to watch for.</p>
         </div>
-        <div class="mt-14 grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+        <div class="mt-10 grid items-start gap-8 lg:mt-8 lg:grid-cols-12 lg:gap-12">
           <div class="reveal min-w-0 lg:col-span-7">
-            <div class="know-stage" data-know-stage>
+            <div class="know-stage lg:mx-auto lg:max-w-[34rem]" data-know-stage>
               <div class="know-canvas" data-know-canvas data-active="spring">
                 <svg viewBox="0 0 640 480" class="know-ill block h-auto w-full" role="img" aria-labelledby="know-ill-title" data-know-svg>
                   <title id="know-ill-title">Front view of a sectional garage door from inside the garage, showing the spring, opener, tracks, rollers, cables and safety sensors</title>
@@ -354,7 +343,7 @@
     </section>
 
     <!-- =========================================================== 7. HOW IT WORKS -->
-    <section id="how" class="py-20 sm:py-32" aria-labelledby="how-title">
+    <section id="how" class="py-16 sm:py-20" aria-labelledby="how-title">
       <div class="wrap">
         <div class="reveal mx-auto max-w-2xl text-center">
           <h2 id="how-title" class="h2">From stuck to working again, in four steps.</h2>
@@ -370,7 +359,7 @@
     </section>
 
     <!-- =========================================================== 8. SAFETY + VIDEO -->
-    <section id="safety" class="bg-brand-grey-50 py-20 sm:py-32" aria-labelledby="safety-title">
+    <section id="safety" class="bg-brand-grey-50 py-16 sm:py-20" aria-labelledby="safety-title">
       <div class="wrap grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
         <div class="reveal lg:col-span-7">
           <div class="relative mx-auto aspect-video w-full max-w-[640px] overflow-hidden rounded-2xl bg-brand-midnight shadow-xl lg:mx-0" data-video>
@@ -398,7 +387,7 @@
     </section>
 
     <!-- =========================================================== 9. WHY CHOOSE US -->
-    <section id="why" class="py-20 sm:py-32" aria-labelledby="why-title">
+    <section id="why" class="py-16 sm:py-20" aria-labelledby="why-title">
       <div class="wrap">
         <div class="reveal max-w-2xl">
           <h2 id="why-title" class="h2">Fine workmanship. Honest prices. A promise we keep.</h2>
@@ -422,18 +411,10 @@
     </section>
 
     <!-- =========================================================== 10. REVIEWS (V2 pattern, V3 tokens) -->
-    <section id="reviews" class="overflow-hidden bg-brand-grey-50 py-20 sm:py-32" aria-labelledby="reviews-title">
+    <section id="reviews" class="overflow-hidden bg-brand-grey-50 py-16 sm:py-20" aria-labelledby="reviews-title">
       <div class="wrap grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-14">
         <div class="reveal lg:col-span-4">
           <h2 id="reviews-title" class="h2">Homeowners ask for our technicians by name.</h2>
-          <div class="card mt-7 flex items-center gap-4 p-5">
-            <p class="tnum text-5xl font-display text-brand-midnight">4.7</p>
-            <div>
-              <p class="flex gap-0.5" role="img" aria-label="Rated 4.7 out of 5"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star opacity-60" aria-hidden="true"><use href="#i-star"/></svg></p>
-              <p class="mt-1 flex items-center gap-1.5 text-sm text-brand-grey-700"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-google"/></svg><span class="tnum">1,337</span> Google reviews</p>
-            </div>
-          </div>
-          <a href="https://www.google.com/maps/place/Garage+Door+ASAP+Service/@28.505861,-81.7689547,17z/data=!4m7!3m6!1s0x88e7894ff1fd8cc3:0x4bd696395a30e80b!8m2!3d28.505861!4d-81.766766!9m1!1b1" target="_blank" rel="noopener" class="btn btn-dark mt-5">Read all reviews on Google<span class="sr-only"> (opens in a new tab)</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="reveal min-w-0 lg:col-span-8" style="--d:120ms">
           <!-- Quoted as written on Google (read 18 Oct 2026). Names shortened; long reviews excerpted with "…". -->
@@ -501,19 +482,19 @@
     </section>
 
     <!-- =========================================================== 12. SERVICE AREAS: distance radar (data: ../assets/data/service-area.js) -->
-    <section id="areas" class="bg-brand-grey-50 py-20 sm:py-32" aria-labelledby="areas-title">
+    <section id="areas" class="bg-brand-grey-50 py-16 sm:py-20 lg:py-12" aria-labelledby="areas-title">
       <div class="wrap">
-        <div class="reveal max-w-2xl">
-          <h2 id="areas-title" class="h2">How far are you from us?</h2>
-          <p class="lead mt-4">We’re based on US-27 in Clermont and serve 73 cities across Central Florida. Find yours, or slide to see who’s in reach.</p>
-        </div>
-        <div class="mt-14 grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
-          <figure class="reveal min-w-0 lg:col-span-7">
+        <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-6">
+          <div class="reveal lg:col-span-5 lg:col-start-8 lg:row-start-1">
+            <h2 id="areas-title" class="h2">How far are you from us?</h2>
+            <p class="lead mt-4">We’re based on US-27 in Clermont and serve 73 cities across Central Florida. Find yours, or slide to see who’s in reach.</p>
+          </div>
+          <figure class="reveal min-w-0 lg:col-span-7 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mx-auto lg:w-full lg:max-w-[33rem]">
             <div class="radar" data-radar></div>
             <!-- Outline: Natural Earth; city locations: US Census Bureau Gazetteer (both public domain). -->
             <figcaption class="mt-3 text-xs leading-relaxed text-brand-grey-700">Rings show straight-line miles from our Clermont base.</figcaption>
           </figure>
-          <div class="reveal min-w-0 lg:col-span-5" style="--d:100ms">
+          <div class="reveal min-w-0 lg:col-span-5 lg:col-start-8 lg:row-start-2" style="--d:100ms">
             <form data-area-form novalidate role="search" aria-label="Find your city">
               <label for="area-city" class="text-sm font-heading text-brand-midnight">Find your city</label>
               <div class="mt-2 flex gap-2">
@@ -526,7 +507,7 @@
             </form>
             <div class="mt-4" role="status" aria-live="polite" data-area-card></div>
 
-            <div class="mt-10">
+            <div class="mt-6">
               <div class="flex items-baseline justify-between gap-4">
                 <label for="area-range" class="text-sm font-heading text-brand-midnight">How far are you?</label>
                 <output for="area-range" class="tnum text-sm font-heading text-brand-red" data-area-out>30 miles</output>
@@ -535,7 +516,7 @@
               <p id="area-count" class="mt-2 text-sm text-brand-grey-700" aria-live="polite" data-area-count></p>
             </div>
 
-            <div class="mt-10 border-t border-brand-grey-200 pt-6">
+            <div class="mt-6 border-t border-brand-grey-200 pt-5">
               <button type="button" class="btn btn-outline btn-sm" aria-expanded="false" aria-controls="area-all" data-area-toggle><span>Show all 73 cities</span><svg class="!h-4 !w-4 rotate-90" aria-hidden="true"><use href="#i-arrow"/></svg></button>
               <ul id="area-all" class="mt-5 columns-2 gap-x-6 text-[0.95rem] sm:columns-3 lg:columns-2 xl:columns-3" hidden data-area-list></ul>
             </div>
@@ -546,7 +527,7 @@
     </section>
 
     <!-- =========================================================== 12b. FAQ -->
-    <section id="faq" class="py-20 sm:py-32" aria-labelledby="faq-title">
+    <section id="faq" class="py-16 sm:py-20" aria-labelledby="faq-title">
       <div class="wrap grid gap-10 lg:grid-cols-12 lg:gap-20">
         <div class="reveal lg:col-span-4">
           <h2 id="faq-title" class="h2">Common questions</h2>
@@ -584,12 +565,12 @@
     </section>
 
     <!-- =========================================================== 13. QUOTE FORM + CONTACT -->
-    <section id="quote" class="bg-brand-grey-50 py-20 sm:py-32" aria-labelledby="quote-title">
+    <section id="quote" class="bg-brand-grey-50 py-16 sm:py-20 lg:py-12" aria-labelledby="quote-title">
       <div class="wrap grid gap-14 lg:grid-cols-12 lg:gap-20">
         <div class="lg:col-span-5">
           <h2 id="quote-title" class="h2">Tell us about your door. We’ll call you back.</h2>
           <p class="lead mt-4">Stuck open, won’t close or a car trapped? Calling is fastest: <a href="tel:+18777877121" class="tnum whitespace-nowrap font-heading text-brand-red hover:underline">(877) 787-7121</a>.</p>
-          <ul class="mt-10 grid gap-5 text-[0.95rem]" aria-label="Contact details">
+          <ul class="mt-8 grid gap-4 text-[0.95rem]" aria-label="Contact details">
             <li class="flex items-center gap-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><span><strong class="font-heading text-brand-midnight">Open 24/7</strong>, holidays included</span></li>
             <li class="flex items-center gap-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><span>17649 US-27, Unit 16, Clermont, FL 34711</span></li>
             <li class="flex items-center gap-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><a href="mailto:info@garagedoorasapservice.com" class="inline-flex min-h-[2.75rem] min-w-0 items-center break-all font-heading text-brand-midnight hover:underline">info@garagedoorasapservice.com</a></li>
