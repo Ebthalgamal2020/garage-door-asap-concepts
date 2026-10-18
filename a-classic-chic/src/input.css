@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Base ---------- */
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white font-sans text-ink antialiased; text-rendering: optimizeLegibility; }
+  h1, h2, h3 { @apply font-display text-navy; font-stretch: 92%; }
+  ::selection { @apply bg-navy text-white; }
+  :focus-visible { @apply outline outline-2 outline-offset-4 outline-red; }
+  svg use { pointer-events: none; }
+}
+
+/* ---------- Components ---------- */
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-4 sm:px-8 lg:px-10; }
+
+  .label { @apply flex items-center gap-3 font-display text-[0.74rem] font-semibold uppercase tracking-label text-steel-dark; font-stretch: 100%; }
+  .label::before { content: ''; @apply h-[2px] w-6 bg-red; }
+  .label-light { @apply text-steel-light; }
+
+  .h2 { @apply text-[clamp(1.95rem,3.3vw,3rem)] font-bold leading-[1.06] tracking-[-0.02em]; }
+
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-2.5 rounded-md px-6 font-display text-[1rem] font-semibold tracking-[0.01em] transition duration-300 ease-silk; font-stretch: 100%; }
+  .btn svg { @apply h-[1.15rem] w-[1.15rem] shrink-0; }
+  .btn-call { @apply bg-red text-white shadow-[0_10px_24px_-12px_rgba(219,0,0,.75)] hover:bg-red-deep; }
+  .btn-call-soft { @apply border border-red/30 text-red hover:border-red hover:bg-red hover:text-white; }
+  .btn-navy { @apply bg-navy text-white hover:bg-navy-3; }
+  .btn-white { @apply bg-white text-navy hover:bg-mist; }
+  .btn-outline { @apply border border-navy/25 text-navy hover:border-navy hover:bg-navy hover:text-white; }
+  .btn-ghost-light { @apply border border-white/30 text-white hover:border-white hover:bg-white hover:text-navy; }
+  .btn .arrow { @apply transition-transform duration-300 ease-silk; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  .link-arrow { @apply inline-flex items-center gap-2 font-display text-[0.95rem] font-semibold text-navy underline decoration-red/0 decoration-2 underline-offset-[6px] transition hover:decoration-red; font-stretch: 100%; }
+  .link-arrow svg { @apply h-4 w-4 transition-transform duration-300 ease-silk; }
+  .link-arrow:hover svg { transform: translateX(3px); }
+
+  .field > label, .field > legend { @apply mb-2 block font-display text-[0.8rem] font-semibold text-navy; font-stretch: 100%; }
+  .field input:not([type='radio']), .field textarea, .field select {
+    @apply w-full appearance-none rounded-md border border-navy/20 bg-white px-4 py-3 text-base text-ink shadow-[inset_0_1px_2px_rgba(16,32,58,.04)] transition placeholder:text-slate/60 hover:border-navy/40 focus:border-navy focus:outline-none focus:ring-4 focus:ring-navy/10;
+  }
+  .field [aria-invalid='true'] { @apply border-red bg-red-soft/40 focus:ring-red/15; }
+  .field-err { @apply mt-1.5 min-h-[1.15rem] text-[0.82rem] font-medium text-red-deep; }
+
+  .emblem { --em-ring: #8a8d91; --em-red: #c8202a; }
+  .emblem-light { --em-ring: #c9ccd1; }
+
+  .stars { @apply flex gap-0.5 text-red; }
+}
+
+/* ---------- Distinctive effects ---------- */
+@layer utilities {
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); transition-delay: var(--d, 0ms); }
+  .reveal.is-in { opacity: 1; transform: none; }
+
+  /* Hero: a sectional garage door rolls up to reveal Mr. ASAP, leaving its bottom lip in the header. */
+  .door { transform: translateY(0); animation: door-up 1.6s cubic-bezier(.7,0,.2,1) .5s forwards; }
+  @keyframes door-up { 60% { transform: translateY(-80%); } to { transform: translateY(calc(-100% + 22px)); } }
+  .door-rise > * { opacity: 0; transform: translateY(24px); animation: rise .9s cubic-bezier(.22,.61,.36,1) forwards; animation-delay: var(--d, 1.2s); }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .pulse-dot { position: relative; }
+  .pulse-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 999px; background: currentColor; opacity: .45; animation: pulse 2s cubic-bezier(.22,.61,.36,1) infinite; }
+  @keyframes pulse { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
+
+  .door-texture { background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 7px); }
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
+  .clamp-5 { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .burger-lines, .burger-lines::before, .burger-lines::after { content: ''; display: block; width: 22px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .35s cubic-bezier(.22,.61,.36,1), opacity .2s; }
+  .burger-lines { position: relative; }
+  .burger-lines::before { position: absolute; top: -7px; }
+  .burger-lines::after { position: absolute; top: 7px; }
+  [aria-expanded='true'] .burger-lines { background: transparent; }
+  [aria-expanded='true'] .burger-lines::before { transform: translateY(7px) rotate(45deg); }
+  [aria-expanded='true'] .burger-lines::after { transform: translateY(-7px) rotate(-45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}

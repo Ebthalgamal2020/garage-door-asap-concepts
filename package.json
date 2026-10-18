@@ -1,0 +1,21 @@
+{
+  "name": "garage-door-asap-concepts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Three homepage redesign concepts for Garage Door ASAP Service (HTML5 + Tailwind CSS + vanilla JS).",
+  "scripts": {
+    "build:a": "tailwindcss -c a-classic-chic/tailwind.config.js -i a-classic-chic/src/input.css -o a-classic-chic/styles.css --minify",
+    "build:b": "tailwindcss -c b-modern-architectural/tailwind.config.js -i b-modern-architectural/src/input.css -o b-modern-architectural/styles.css --minify",
+    "build:c": "tailwindcss -c c-modern-friendly/tailwind.config.js -i c-modern-friendly/src/input.css -o c-modern-friendly/styles.css --minify",
+    "build:v4": "tailwindcss -c v4-k1-journey/tailwind.config.js -i v4-k1-journey/src/input.css -o v4-k1-journey/styles.css --minify",
+    "build:hub": "tailwindcss -c tailwind.hub.config.js -i assets/hub.input.css -o assets/hub.css --minify",
+    "build": "npm run build:a && npm run build:b && npm run build:c && npm run build:v4 && npm run build:hub",
+    "watch:a": "tailwindcss -c a-classic-chic/tailwind.config.js -i a-classic-chic/src/input.css -o a-classic-chic/styles.css --watch",
+    "watch:b": "tailwindcss -c b-modern-architectural/tailwind.config.js -i b-modern-architectural/src/input.css -o b-modern-architectural/styles.css --watch",
+    "watch:c": "tailwindcss -c c-modern-friendly/tailwind.config.js -i c-modern-friendly/src/input.css -o c-modern-friendly/styles.css --watch",
+    "start": "node serve.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
