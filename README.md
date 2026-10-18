@@ -7,7 +7,9 @@ Homepage redesign concepts for [garagedoorasapservice.com](https://garagedoorasa
 
 ### Round 2: the three current concepts
 
-**Preview page with all three (start here): https://ebthalgamal2020.github.io/garage-door-asap-concepts/**
+**One page with only these three concepts (start here): https://ebthalgamal2020.github.io/garage-door-asap-concepts/three-concepts/**
+
+The full hub, including the earlier round, is at https://ebthalgamal2020.github.io/garage-door-asap-concepts/
 
 | Concept | Live preview |
 |---|---|
@@ -43,6 +45,7 @@ npm start          # zero-dependency static server → http://localhost:5173
 | Route | Concept |
 |---|---|
 | `/` | Concept hub: previews, verified facts and open questions for the client |
+| `/three-concepts/` | **V1, V2 and V3 together on one page** |
 | `/the-lift/` | **V1 — The Lift** (round 2) |
 | `/v2-the-signature/` | **V2 — The Signature** (round 2) |
 | `/v3-garage-door-lab/` | **V3 — The Garage Door Lab** (round 2) |
