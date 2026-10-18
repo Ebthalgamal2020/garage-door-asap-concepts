@@ -20,6 +20,28 @@ It has Back and Start over, a 3-dot progress indicator, an aria-live status and 
 "Check this" on the service cards and "Check a symptom" in Know your door open the widget preselected. The same
 illustration powers **Know your door**: part buttons, plus hotspots on tablet and desktop, and a detail panel.
 
+## Common problems (asymmetric, urgent first)
+The cards are ordered by urgency and customer value under two labels:
+- **"Urgent: call now"** comes first. A large broken-spring feature tile (real photo, "Often urgent", Call now / Check
+  this / Book) sits beside stacked "off track" (photo) and "cable" (charcoal, text-led) tiles. A full-width red-tint
+  "won't open" banner follows.
+- **"Routine repairs & upkeep"** comes second: opener, sensors, rollers and tune-up, in mixed widths with varied photo
+  placement.
+
+Tablet uses a 2-column asymmetric layout. Phones use a single column with the feature tile first. Every tile has
+"Check this" (opens Find my fix preselected) and "Book".
+
+## Know your door
+A refined front-view illustration sits on a soft stage: gradients, depth shadow, wall and trim, an opener on the
+ceiling, springs with drums and winding cones, tracks, rollers, cables and sensors.
+- Six numbered markers sit on the parts. They pulse gently and show a leader-line label on hover and focus.
+- Selecting a part turns it red, dims the rest and cross-fades the detail panel. The panel shows the part number, an
+  urgency chip, what the part does, a real photo where one exists, warning signs with icons, what we do, and Check
+  this / Book / Call.
+- The minimal numbered selector is an ARIA tablist: arrow keys plus Home and End move between parts, and prev/next
+  buttons cycle them.
+- On desktop the illustration has a subtle pointer parallax. All motion is off under reduced motion.
+
 ## Section order (K1 journey)
 Top bar + header → Hero with Find my fix → Trust bar → Common problems (8 photo cards) → Know your door → About
 (real shifted-door job + before/after) → How it works → Safety + client video → Why choose us + financing →

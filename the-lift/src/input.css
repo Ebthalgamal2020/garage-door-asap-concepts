@@ -119,8 +119,11 @@
   .hotspot[aria-pressed='true'] .hs-n { @apply bg-white text-brand-red; }
   .hotspot[aria-pressed='true'] .hs-n::after { animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite; }
   @keyframes ping { 0% { opacity: .8; transform: scale(1); } 100% { opacity: 0; transform: scale(1.9); } }
-  .symptom[aria-pressed='true'] { @apply bg-brand-midnight text-white; }
-  .symptom[aria-pressed='true'] .sym-n { @apply bg-brand-red text-white; }
+  .sym-group { @apply flex items-center gap-2 px-2 pb-2 pt-1 text-[0.7rem] font-title uppercase tracking-[0.18em] text-brand-grey-700; }
+  .symptom[aria-pressed='true'] { @apply bg-brand-midnight text-white hover:bg-brand-midnight; }
+  .symptom[aria-pressed='true'] .sym-ic { @apply bg-brand-red text-white; }
+  .symptom[aria-pressed='true'] .sym-chev { @apply translate-x-0.5 text-white; }
+  .symptom:hover .sym-chev { @apply text-brand-midnight; }
   .result-swap { animation: swap .5s cubic-bezier(.22,1,.36,1); }
   @keyframes swap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
@@ -135,6 +138,12 @@
   /* Rating ring */
   .ring-fill { stroke-dasharray: var(--c); stroke-dashoffset: var(--c); transition: stroke-dashoffset 1.8s cubic-bezier(.65,0,.2,1); }
   .ring-on .ring-fill { stroke-dashoffset: calc(var(--c) * (1 - var(--v))); }
+
+  /* Gentle hover lift for cards (pointer devices only) */
+  @media (hover: hover) {
+    .lift-hover { transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1); }
+    .lift-hover:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -36px rgba(28,31,42,.45); }
+  }
 
   /* Emergency mascot float */
   .float { animation: float 6s ease-in-out infinite; }

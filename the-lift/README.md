@@ -1,7 +1,8 @@
 # V1 · The Lift — Garage Door ASAP homepage
 
-Status: the first version of this page reached GitHub Pages when PR #1 merged `the-lift` into `main` (18 Oct 2026).
-The updates below live on the `three-concepts` branch and are **not published** until the user approves them.
+Status: published on GitHub Pages with V2 and V3 (round 2), at the user's request on 18 Oct 2026.
+Round 2 added the announcement bar, the emergency vs. not-urgent hero, the approved short form, the always-visible mobile call bar,
+the redesigned fix finder (symptoms grouped by urgency, one connected diagram + answer panel), and restrained motion.
 
 One creative idea runs through the page: **the bend of a garage-door track**. The same curve shapes the section edges
 (each one sweeps in as it scrolls into view), the arch-topped photo frame, the hero door rolling up, the "How it works"

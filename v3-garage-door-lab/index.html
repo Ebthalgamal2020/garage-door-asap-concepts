@@ -65,7 +65,7 @@
   <!-- =========================================================== 1. TOP BAR + HEADER -->
   <div class="on-dark bg-brand-midnight text-white" role="region" aria-label="24/7 emergency line">
     <div class="wrap flex min-h-[2.75rem] items-center justify-center gap-3 text-[0.85rem] sm:justify-between">
-      <p class="hidden items-center gap-2 sm:flex"><span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 motion-reduce:hidden"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-white"></span></span>Open 24/7 for garage door emergencies, holidays included</p>
+      <p class="hidden items-center gap-2 sm:flex"><span class="relative flex h-2 w-2"><span class="relative inline-flex h-2 w-2 rounded-full bg-white"></span></span>Open 24/7 for garage door emergencies, holidays included</p>
       <a href="tel:+18777877121" class="inline-flex min-h-[2.75rem] items-center gap-2 whitespace-nowrap font-heading hover:underline"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-phone"/></svg><span><span class="sm:hidden">24/7 emergencies: </span><span class="tnum">(877) 787-7121</span></span></a>
     </div>
   </div>
@@ -118,14 +118,14 @@
       </div>
       <div class="wrap grid gap-8 pb-16 pt-2 lg:grid-cols-12 lg:items-start lg:gap-10 lg:pb-24 lg:pt-14 xl:gap-14">
         <div class="text-white lg:col-span-6 lg:pt-6 xl:col-span-6">
-          <p class="mb-4 hidden items-center gap-2 rounded-full sm:inline-flex bg-white/10 px-3 py-1.5 text-sm font-medium ring-1 ring-white/20 backdrop-blur">Family owned · 30+ years · Central Florida</p>
-          <h1 id="hero-title" class="text-display font-display text-white">Garage door trouble? Let’s find the <span class="mark">fix</span>.</h1>
-          <p class="mt-3 max-w-xl text-base leading-relaxed text-brand-grey-200 sm:mt-4 sm:text-lg">Tell us what your door is doing and see the likely repair in seconds. Same-day service, and 24/7 when it can’t wait.</p>
-          <div class="mt-5 grid gap-3 sm:mt-6 sm:max-w-[23rem]">
+          <p class="hero-in mb-4 hidden items-center gap-2 rounded-full sm:inline-flex bg-white/10 px-3 py-1.5 text-sm font-medium ring-1 ring-white/20 backdrop-blur">Family owned · 30+ years · Central Florida</p>
+          <h1 id="hero-title" style="--d:80ms" class="hero-in text-display font-display text-white">Garage door trouble? Let’s find the <span class="mark">fix</span>.</h1>
+          <p style="--d:160ms" class="hero-in mt-3 max-w-xl text-base leading-relaxed text-brand-grey-200 sm:mt-4 sm:text-lg">Tell us what your door is doing and see the likely repair in seconds. Same-day service, and 24/7 when it can’t wait.</p>
+          <div style="--d:240ms" class="hero-in mt-5 grid gap-3 sm:mt-6 sm:max-w-[23rem]">
             <a href="tel:+18777877121" class="btn btn-red min-h-[3.5rem] px-6 text-base"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>Emergency? Call <span class="tnum">(877) 787-7121</span></span></a>
             <a href="#quote" class="btn btn-white min-h-[3.5rem] px-6 text-base">Not urgent? Free quote<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
-          <a href="#reviews" class="mt-6 inline-flex items-center gap-2.5 text-sm text-brand-grey-200 hover:text-white">
+          <a href="#reviews" style="--d:320ms" class="hero-in mt-6 inline-flex items-center gap-2.5 text-sm text-brand-grey-200 hover:text-white">
             <span class="grid h-8 w-8 place-items-center rounded-full bg-white"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></span>
             <span class="font-title text-white">4.7</span>
             <span class="flex gap-0.5" aria-hidden="true"><svg class="h-4 w-4 fill-white"><use href="#i-star"/></svg><svg class="h-4 w-4 fill-white"><use href="#i-star"/></svg><svg class="h-4 w-4 fill-white"><use href="#i-star"/></svg><svg class="h-4 w-4 fill-white"><use href="#i-star"/></svg><svg class="h-4 w-4 fill-white opacity-70"><use href="#i-star"/></svg></span>
@@ -134,7 +134,7 @@
         </div>
 
         <!-- Find my fix widget -->
-        <div class="lg:col-span-6 xl:col-span-6">
+        <div class="hero-in hero-in-widget lg:col-span-6 xl:col-span-6" style="--d:220ms">
           <div id="find-my-fix" class="widget" role="region" aria-labelledby="fmf-title" data-widget>
             <div class="mb-4 flex items-center justify-between gap-3">
               <p id="fmf-title" class="flex items-center gap-2 text-sm font-title uppercase tracking-[0.12em] text-brand-red"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-wrench"/></svg>Find my fix</p>
@@ -156,114 +156,121 @@
     <!-- =========================================================== 3. TRUST BAR -->
     <section class="relative z-10 -mt-10 pb-4" aria-label="Why homeowners trust us">
       <div class="wrap">
-        <ul class="card grid grid-cols-2 gap-x-4 gap-y-5 p-5 sm:grid-cols-4 sm:p-6 xl:grid-cols-[repeat(4,minmax(0,1fr))_minmax(0,1.45fr)] xl:divide-x xl:divide-brand-grey-200 xl:gap-0">
-          <li class="flex items-center gap-3 xl:px-5 xl:first:pl-0"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-grey-50"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-google"/></svg></span><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight">4.7 <span class="text-brand-red" aria-hidden="true">★</span><span class="sr-only">out of 5</span></strong><span class="tnum">1,337</span> Google reviews</p></li>
+        <ul class="reveal card grid grid-cols-2 gap-x-4 gap-y-5 p-5 sm:grid-cols-4 sm:p-6 xl:grid-cols-[repeat(4,minmax(0,1fr))_minmax(0,1.45fr)] xl:divide-x xl:divide-brand-grey-200 xl:gap-0">
+          <li class="flex items-center gap-3 xl:px-5 xl:first:pl-0"><span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-grey-50"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-google"/></svg></span><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight"><span class="tnum" data-count="4.7" data-decimals="1">4.7</span> <span class="text-brand-red" aria-hidden="true">★</span><span class="sr-only">out of 5</span></strong><span class="tnum">1,337</span> Google reviews</p></li>
           <li class="flex items-center gap-3 xl:px-5"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-clock"/></svg></span><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight">24/7</strong>Emergency service</p></li>
-          <li class="flex items-center gap-3 xl:px-5"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-users"/></svg></span><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight">30+ years</strong>Family owned</p></li>
+          <li class="flex items-center gap-3 xl:px-5"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-users"/></svg></span><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight"><span class="tnum" data-count="30">30</span>+ years</strong>Family owned</p></li>
           <li class="flex items-center gap-3 xl:px-5"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight">Licensed</strong>Bonded &amp; insured</p></li>
           <li class="col-span-2 flex items-center gap-3 border-t border-brand-grey-200 pt-5 sm:col-span-4 xl:col-span-1 xl:border-t-0 xl:px-5 xl:pt-0 xl:pr-0"><img src="../assets/brand/we-finance-badge.png" alt="We finance" width="200" height="133" loading="lazy" class="h-12 w-auto shrink-0"><p class="text-sm leading-tight text-brand-grey-700"><strong class="block text-base font-title text-brand-midnight">Financing</strong>No payment, no interest for 25 months</p></li>
         </ul>
       </div>
     </section>
 
-    <!-- =========================================================== 4. SERVICES: COMMON PROBLEMS -->
+    <!-- =========================================================== 4. SERVICES: COMMON PROBLEMS (asymmetric, urgent first) -->
     <section id="services" class="bg-brand-grey-50 pb-16 pt-14 sm:pb-24 sm:pt-20" aria-labelledby="services-title">
       <div class="wrap">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div class="reveal max-w-2xl">
             <p class="eyebrow">Services</p>
             <h2 id="services-title" class="h2">Common problems we fix</h2>
-            <p class="lead mt-3">Start with what you’re seeing. Check it in Find my fix, or book the repair straight away.</p>
+            <p class="lead mt-3">Urgent repairs first. Check any of them in Find my fix, or book the repair straight away.</p>
           </div>
           <a href="tel:+18777877121" class="reveal btn btn-outline self-start lg:self-auto"><svg aria-hidden="true"><use href="#i-phone"/></svg>Not listed? Call us</a>
         </div>
-        <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-services>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:0ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><img src="../assets/img/brand-springs-pair.jpg" alt="A pair of garage door torsion springs" width="600" height="378" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"><span class="absolute left-3 top-3 hidden rounded-md bg-brand-red px-2 py-1 text-xs font-heading text-white lg:inline">Often urgent</span></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Loud bang, door won’t lift</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Usually a broken spring. We replace it safely and rebalance the door.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="bang">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Spring Replacement">Book<span class="sr-only">: Loud bang, door won’t lift</span></a>
-              </div>
+
+        <div class="mt-10 flex items-center gap-3">
+          <span class="relative flex h-2.5 w-2.5"><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-red"></span></span>
+          <h3 class="whitespace-nowrap text-sm font-title uppercase tracking-[0.14em] text-brand-red">Urgent: call now</h3>
+          <span class="h-px flex-1 bg-brand-grey-300" aria-hidden="true"></span>
+          <a href="tel:+18777877121" class="hidden min-h-[2.75rem] items-center gap-2 whitespace-nowrap text-sm font-heading text-brand-midnight hover:text-brand-red sm:inline-flex"><svg class="h-4 w-4 text-brand-red" aria-hidden="true"><use href="#i-phone"/></svg>24/7 <span class="tnum">(877) 787-7121</span></a>
+        </div>
+        <ul class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-12" data-services data-stagger>
+          <li class="reveal lift group card flex flex-col overflow-hidden sm:row-span-2 lg:col-span-7">
+            <div class="relative h-[220px] overflow-hidden bg-brand-midnight sm:h-[300px] lg:h-[330px]">
+              <img src="../assets/img/brand-svc-spring-broken.jpg" alt="A broken torsion spring above a garage door, with a visible gap in the coil" width="741" height="330" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
+              <span class="absolute inset-0 bg-gradient-to-t from-brand-ink/70 via-transparent to-transparent" aria-hidden="true"></span>
+              <div class="absolute left-4 top-4 flex flex-wrap gap-2"><span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-red text-white"><svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#i-alert"/></svg>Often urgent</span><span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-ink/85 text-white">Same-day service</span></div>
+            </div>
+            <div class="flex flex-1 flex-col p-6 sm:p-7">
+              <p class="text-sm font-heading text-brand-red">Broken spring</p>
+              <h3 class="mt-1 text-2xl font-title sm:text-[1.7rem]">Loud bang, door won’t lift</h3>
+              <p class="mt-2 max-w-xl leading-relaxed text-brand-grey-700">Usually a snapped torsion spring. We replace it safely, then rebalance and test the door, the same day when you need it.</p>
+              <p class="mt-4 flex max-w-xl gap-2.5 rounded-xl bg-brand-red-tint px-4 py-3 text-sm leading-relaxed text-brand-ink"><svg class="mt-0.5 h-4 w-4 shrink-0 text-brand-red" aria-hidden="true"><use href="#i-alert"/></svg><span><strong class="font-heading">Don’t force the door.</strong> Without a working spring, nothing is holding its weight.</span></p>
+              <div class="mt-auto flex flex-wrap gap-2 pt-5"><a href="tel:+18777877121" class="btn btn-red btn-sm px-3.5"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call now</a><button type="button" class="btn btn-outline btn-sm px-3" data-check="bang">Check this</button><a href="#quote" class="btn btn-dark btn-sm px-3.5" data-book="Spring Replacement">Book<span class="sr-only">: Loud bang, door won’t lift</span></a></div>
             </div>
           </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:60ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><img src="../assets/img/brand-svc-spring-broken.jpg" alt="A broken torsion spring above a garage door" width="741" height="330" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"><span class="absolute left-3 top-3 hidden rounded-md bg-brand-red px-2 py-1 text-xs font-heading text-white lg:inline">Often urgent</span></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Door won’t open</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Often the spring, sometimes the opener. We find which and fix it on the spot.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="wontopen">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Not sure — please advise">Book<span class="sr-only">: Door won’t open</span></a>
-              </div>
+          <li class="reveal lift group card flex flex-col overflow-hidden sm:flex-row lg:col-span-5" style="--d:80ms">
+            <div class="relative h-44 w-full shrink-0 overflow-hidden bg-brand-midnight sm:h-auto sm:w-40 lg:w-[44%]">
+              <img src="../assets/img/brand-shifted-door-sm.jpg" alt="A garage door pushed out of its track" width="640" height="480" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col p-5">
+              <span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-red text-white">Often urgent</span>
+              <h3 class="mt-3 text-lg">Crooked or off track</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">A shifted door can fall. We realign it and correct the cables, rollers and tracks.</p>
+              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="offtrack">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Shifted Door Repair">Book<span class="sr-only">: Crooked or off track</span></a></div>
             </div>
           </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:120ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><img src="../assets/img/brand-shifted-door-sm.jpg" alt="A garage door pushed out of its track" width="640" height="480" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"><span class="absolute left-3 top-3 hidden rounded-md bg-brand-red px-2 py-1 text-xs font-heading text-white lg:inline">Often urgent</span></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Crooked or off track</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">A shifted door is realigned and its cables, rollers and tracks corrected.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="offtrack">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Shifted Door Repair">Book<span class="sr-only">: Crooked or off track</span></a>
-              </div>
+          <li class="reveal lift on-dark flex flex-col rounded-2xl bg-brand-midnight p-5 text-white shadow-[0_12px_32px_-16px_rgba(28,31,42,.45)] lg:col-span-5" style="--d:120ms">
+            <div class="flex items-start justify-between gap-4">
+              <span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-white/10 text-white ring-1 ring-white/20">Often urgent</span>
+              <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/10"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-cable"/></svg></span>
+            </div>
+            <h3 class="mt-2 text-lg text-white">Cable snapped or loose</h3>
+            <p class="mt-1.5 max-w-md text-sm leading-relaxed text-brand-grey-300">One side hanging lower or stuck partway? Cables are under high tension, so keep clear. We replace the cable and check the drums and spring.</p>
+            <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline-light btn-sm px-3" data-check="cable">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Cable Replacement">Book<span class="sr-only">: Cable snapped or loose</span></a></div>
+          </li>
+          <li class="reveal lift flex flex-col gap-5 rounded-2xl bg-brand-red-tint p-5 ring-1 ring-brand-red/15 sm:col-span-2 sm:p-6 lg:col-span-12 lg:flex-row lg:items-center">
+            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white text-brand-red shadow-sm"><svg class="h-7 w-7" aria-hidden="true"><use href="#i-lock"/></svg></span>
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1"><span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-red text-white">Often urgent</span><h3 class="text-lg">Door won’t open</h3></div>
+              <p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-brand-ink">If the opener hums but the door doesn’t move, it’s often the spring. If nothing happens at all, it may be the opener or its power. We find which and fix it on the spot.</p>
+            </div>
+            <div class="flex flex-wrap gap-2"><button type="button" class="btn btn-outline btn-sm px-3" data-check="wontopen">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Not sure — please advise">Book<span class="sr-only">: Door won’t open</span></a></div>
+          </li>
+        </ul>
+
+        <div class="mt-14 flex items-center gap-3">
+          <span class="h-2.5 w-2.5 rounded-full bg-brand-grey-500" aria-hidden="true"></span>
+          <h3 class="whitespace-nowrap text-sm font-title uppercase tracking-[0.14em] text-brand-grey-700">Routine repairs &amp; upkeep</h3>
+          <span class="h-px flex-1 bg-brand-grey-300" aria-hidden="true"></span>
+        </div>
+        <ul class="mt-5 grid gap-5 sm:grid-cols-5 lg:grid-cols-12" data-stagger>
+          <li class="reveal lift group card flex flex-col overflow-hidden sm:col-span-5 sm:flex-row lg:col-span-8">
+            <div class="relative h-48 w-full shrink-0 overflow-hidden bg-brand-midnight sm:h-auto sm:w-[45%] sm:max-w-[400px]">
+              <img src="../assets/img/brand-svc-opener.jpg" alt="A garage door opener on the ceiling" width="400" height="300" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+              <span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-grey-100 text-brand-midnight">Book a visit</span>
+              <h3 class="mt-3 text-lg">Opener or remote not working</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">No response to the remote or wall button, or a door that stops halfway. We repair the motor, controls and settings on the spot, or supply, install and program a new opener.</p>
+              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="opener">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Opener or remote not working</span></a></div>
             </div>
           </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:180ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><span class="absolute inset-0 grid place-items-center text-white"><span class="grid h-16 w-16 place-items-center rounded-2xl bg-white/10"><svg class="h-9 w-9" aria-hidden="true"><use href="#i-cable"/></svg></span></span><span class="absolute left-3 top-3 hidden rounded-md bg-brand-red px-2 py-1 text-xs font-heading text-white lg:inline">Often urgent</span></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Cable snapped or loose</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">We replace the lift cable and check the drums and springs.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="cable">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Cable Replacement">Book<span class="sr-only">: Cable snapped or loose</span></a>
-              </div>
-            </div>
+          <li class="reveal lift card flex flex-col p-5 sm:col-span-2 sm:p-6 lg:col-span-4" style="--d:80ms">
+            <span class="icon-tile h-12 w-12"><svg aria-hidden="true"><use href="#i-sensor"/></svg></span>
+            <h3 class="mt-4 text-lg">Reverses before closing</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Usually the safety sensors near the floor. We realign or replace them and test the safety reverse. Never disable them.</p>
+            <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="reverse">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Reverses before closing</span></a></div>
           </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:0ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><img src="../assets/img/brand-svc-rollers.jpg" alt="A set of garage door rollers" width="300" height="244" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Noisy or shaking</h3>
+          <li class="reveal lift group card flex overflow-hidden sm:col-span-3 lg:col-span-5">
+            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36">
+              <img src="../assets/img/brand-svc-rollers.jpg" alt="A set of garage door rollers" width="300" height="244" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
+            </div>
+            <div class="flex min-w-0 flex-1 flex-col p-5">
+              <h3 class="text-lg">Noisy or shaking</h3>
               <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Worn rollers grind and shudder. New ones bring back smooth, quiet travel.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="noisy">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Roller Replacement">Book<span class="sr-only">: Noisy or shaking</span></a>
-              </div>
+              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="noisy">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Roller Replacement">Book<span class="sr-only">: Noisy or shaking</span></a></div>
             </div>
           </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:60ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><span class="absolute inset-0 grid place-items-center text-white"><span class="grid h-16 w-16 place-items-center rounded-2xl bg-white/10"><svg class="h-9 w-9" aria-hidden="true"><use href="#i-sensor"/></svg></span></span></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Reverses before closing</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Usually the safety sensors. We realign or replace them and test the reverse.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="reverse">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Reverses before closing</span></a>
-              </div>
+          <li class="reveal lift group card flex flex-col overflow-hidden sm:col-span-5 sm:flex-row-reverse lg:col-span-7" style="--d:80ms">
+            <div class="relative h-44 w-full shrink-0 overflow-hidden bg-brand-midnight sm:h-auto sm:w-[46%]">
+              <img src="../assets/img/brand-home-banner-sm.jpg" alt="White garage doors on a well-kept home" width="900" height="432" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
             </div>
-          </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:120ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><img src="../assets/img/brand-svc-opener.jpg" alt="A garage door opener on the ceiling" width="400" height="300" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Opener or remote not working</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">We repair the motor, controls and settings, or fit a new opener.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="opener">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="Opener Repair">Book<span class="sr-only">: Opener or remote not working</span></a>
-              </div>
-            </div>
-          </li>
-          <li class="reveal group card lift flex overflow-hidden lg:flex-col" style="--d:180ms">
-            <div class="relative max-h-[240px] w-32 shrink-0 self-stretch overflow-hidden bg-brand-midnight sm:w-36 lg:h-[180px] lg:max-h-none lg:w-full"><img src="../assets/img/brand-home-banner-sm.jpg" alt="White garage doors on a well-kept home" width="900" height="432" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"></div>
-            <div class="flex min-w-0 flex-1 flex-col p-4 sm:p-5 lg:p-4 xl:p-5">
-              <h3 class="text-[1.05rem] leading-snug">Just want a tune-up</h3>
-              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Hardware tightened, parts lubricated, balance and sensors checked.</p>
-              <div class="mt-auto flex flex-wrap gap-2 pt-4">
-                <button type="button" class="btn btn-outline btn-sm px-3" data-check="tuneup">Check this</button>
-                <a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="General Maintenance">Book<span class="sr-only">: Just want a tune-up</span></a>
-              </div>
+            <div class="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
+              <span class="inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-xs font-heading bg-brand-grey-100 text-brand-midnight">Maintenance</span>
+              <h3 class="mt-3 text-lg">Just want a tune-up</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-brand-grey-700">Hardware tightened, moving parts lubricated, balance and safety sensors checked, so the door stays quiet and lasts longer.</p>
+              <div class="mt-auto flex flex-wrap gap-2 pt-5"><button type="button" class="btn btn-outline btn-sm px-3" data-check="tuneup">Check this</button><a href="#quote" class="btn btn-red btn-sm px-3.5" data-book="General Maintenance">Book<span class="sr-only">: Just want a tune-up</span></a></div>
             </div>
           </li>
         </ul>
@@ -273,23 +280,71 @@
     <!-- =========================================================== 5. KNOW YOUR DOOR -->
     <section id="know" class="py-16 sm:py-24" aria-labelledby="know-title">
       <div class="wrap">
-        <div class="reveal max-w-2xl">
-          <p class="eyebrow">Know your door</p>
-          <h2 id="know-title" class="h2">Tap a part to see how it works, and when it needs us.</h2>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Garage door parts" data-part-btns>
-          <button type="button" class="part-btn" data-part-btn="spring" aria-pressed="true">Torsion spring</button>
-          <button type="button" class="part-btn" data-part-btn="opener" aria-pressed="false">Opener</button>
-          <button type="button" class="part-btn" data-part-btn="cables" aria-pressed="false">Lift cables</button>
-          <button type="button" class="part-btn" data-part-btn="rollers" aria-pressed="false">Rollers</button>
-          <button type="button" class="part-btn" data-part-btn="track" aria-pressed="false">Tracks</button>
-          <button type="button" class="part-btn" data-part-btn="sensors" aria-pressed="false">Safety sensors</button>
-        </div>
-        <div class="mt-6 grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
-          <div class="relative overflow-hidden rounded-2xl bg-brand-grey-50 p-3 lg:col-span-7" data-know-ill>
-            <div class="relative" data-know-canvas></div>
+        <div class="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-8">
+          <div class="reveal lg:col-span-7">
+            <p class="eyebrow">Know your door</p>
+            <h2 id="know-title" class="h2">Six parts keep your door moving. Here’s how to spot trouble early.</h2>
           </div>
-          <div class="card p-6 sm:p-7 lg:col-span-5" aria-live="polite" data-know-panel></div>
+          <p class="reveal lead lg:col-span-5" style="--d:80ms">Tap a numbered marker or choose a part to see what it does, the warning signs to look for, and how we fix it.</p>
+        </div>
+        <div class="mt-10 grid items-start gap-6 lg:grid-cols-12 lg:gap-8">
+          <div class="reveal min-w-0 lg:col-span-7">
+            <div class="know-stage" data-know-stage>
+              <div class="know-canvas" data-know-canvas data-active="spring">
+                <svg viewBox="0 0 640 480" class="know-ill block h-auto w-full" role="img" aria-labelledby="know-ill-title" data-know-svg>
+                  <title id="know-ill-title">Front view of a sectional garage door from inside the garage, showing the spring, opener, tracks, rollers, cables and safety sensors</title>
+                  <defs>
+                    <linearGradient id="kg-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6F7F8"/><stop offset="1" stop-color="#EFF0F2"/></linearGradient>
+                    <linearGradient id="kg-panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EFF0F2"/></linearGradient>
+                    <linearGradient id="kg-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E6E8EA"/><stop offset="1" stop-color="#C0C2C6"/></linearGradient>
+                    <linearGradient id="kg-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E1E2E5"/><stop offset="1" stop-color="#F6F7F8"/></linearGradient>
+                    <filter id="kg-shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#1C1F2A" flood-opacity=".14"/></filter>
+                  </defs>
+                  <rect width="640" height="480" fill="url(#kg-wall)"/>
+                  <rect width="640" height="36" fill="#E6E8EA"/><line x1="0" y1="36" x2="640" y2="36" stroke="#E1E2E5"/>
+                  <rect y="440" width="640" height="40" fill="url(#kg-floor)"/><line x1="0" y1="440" x2="640" y2="440" stroke="#C0C2C6"/>
+                  <rect x="90" y="114" width="460" height="328" rx="6" fill="#FFFFFF" stroke="#C0C2C6"/>
+                  <rect x="106" y="126" width="428" height="316" fill="#E6E8EA"/>
+                  <g class="kp" data-k="track"><rect class="kf-soft" x="96" y="124" width="10" height="318" rx="2" fill="#E6E8EA" stroke="#7F8188"/><line x1="101" y1="128" x2="101" y2="438" stroke="#C0C2C6"/><rect class="kf-soft" x="534" y="124" width="10" height="318" rx="2" fill="#E6E8EA" stroke="#7F8188"/><line x1="539" y1="128" x2="539" y2="438" stroke="#C0C2C6"/></g>
+                  <g class="k-door" filter="url(#kg-shadow)"><rect x="112" y="132" width="416" height="76" fill="url(#kg-panel)" stroke="#C0C2C6"/><rect x="124" y="153" width="90" height="34" rx="3" fill="url(#kg-glass)" stroke="#C0C2C6"/><path d="M134 182l18-24M146 182l14-18" stroke="#FFFFFF" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/><rect x="226" y="153" width="90" height="34" rx="3" fill="url(#kg-glass)" stroke="#C0C2C6"/><path d="M236 182l18-24M248 182l14-18" stroke="#FFFFFF" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/><rect x="328" y="153" width="90" height="34" rx="3" fill="url(#kg-glass)" stroke="#C0C2C6"/><path d="M338 182l18-24M350 182l14-18" stroke="#FFFFFF" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/><rect x="430" y="153" width="90" height="34" rx="3" fill="url(#kg-glass)" stroke="#C0C2C6"/><path d="M440 182l18-24M452 182l14-18" stroke="#FFFFFF" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/><rect x="112" y="208" width="416" height="76" fill="url(#kg-panel)" stroke="#C0C2C6"/><rect x="124" y="222" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M127 224h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="226" y="222" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M229 224h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="328" y="222" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M331 224h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="430" y="222" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M433 224h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="112" y="284" width="416" height="76" fill="url(#kg-panel)" stroke="#C0C2C6"/><rect x="124" y="298" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M127 300h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="226" y="298" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M229 300h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="328" y="298" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M331 300h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="430" y="298" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M433 300h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="112" y="360" width="416" height="76" fill="url(#kg-panel)" stroke="#C0C2C6"/><rect x="124" y="374" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M127 376h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="226" y="374" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M229 376h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="328" y="374" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M331 376h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="430" y="374" width="90" height="48" rx="3" fill="#F6F7F8" stroke="#E1E2E5"/><path d="M433 376h84" stroke="#FFFFFF" stroke-width="1.5"/><rect x="112" y="434" width="416" height="6" rx="1" fill="#5D6068"/><rect x="306" y="410" width="28" height="6" rx="3" fill="#C0C2C6"/></g>
+                  <g class="kp" data-k="rollers"><line x1="106" y1="140" x2="114" y2="140" stroke="#949596" stroke-width="2"/><circle class="ks" cx="101" cy="140" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="101" cy="140" r="1.8" fill="#5D6068"/><line x1="526" y1="140" x2="534" y2="140" stroke="#949596" stroke-width="2"/><circle class="ks" cx="539" cy="140" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="539" cy="140" r="1.8" fill="#5D6068"/><line x1="106" y1="208" x2="114" y2="208" stroke="#949596" stroke-width="2"/><circle class="ks" cx="101" cy="208" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="101" cy="208" r="1.8" fill="#5D6068"/><line x1="526" y1="208" x2="534" y2="208" stroke="#949596" stroke-width="2"/><circle class="ks" cx="539" cy="208" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="539" cy="208" r="1.8" fill="#5D6068"/><line x1="106" y1="284" x2="114" y2="284" stroke="#949596" stroke-width="2"/><circle class="ks" cx="101" cy="284" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="101" cy="284" r="1.8" fill="#5D6068"/><line x1="526" y1="284" x2="534" y2="284" stroke="#949596" stroke-width="2"/><circle class="ks" cx="539" cy="284" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="539" cy="284" r="1.8" fill="#5D6068"/><line x1="106" y1="360" x2="114" y2="360" stroke="#949596" stroke-width="2"/><circle class="ks" cx="101" cy="360" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="101" cy="360" r="1.8" fill="#5D6068"/><line x1="526" y1="360" x2="534" y2="360" stroke="#949596" stroke-width="2"/><circle class="ks" cx="539" cy="360" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="539" cy="360" r="1.8" fill="#5D6068"/><line x1="106" y1="428" x2="114" y2="428" stroke="#949596" stroke-width="2"/><circle class="ks" cx="101" cy="428" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="101" cy="428" r="1.8" fill="#5D6068"/><line x1="526" y1="428" x2="534" y2="428" stroke="#949596" stroke-width="2"/><circle class="ks" cx="539" cy="428" r="5.5" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="539" cy="428" r="1.8" fill="#5D6068"/></g>
+                  <g class="kp" data-k="cables"><line class="ks" x1="110" y1="112" x2="110" y2="428" stroke="#7F8188" stroke-width="1.3"/><line class="ks" x1="530" y1="112" x2="530" y2="428" stroke="#7F8188" stroke-width="1.3"/><rect class="kf" x="106" y="424" width="8" height="12" rx="1.5" fill="#5D6068"/><rect class="kf" x="526" y="424" width="8" height="12" rx="1.5" fill="#5D6068"/></g>
+                  <g class="kp" data-k="spring">
+                    <line x1="84" y1="100" x2="556" y2="100" stroke="#949596" stroke-width="2.5"/>
+                    <rect x="80" y="88" width="8" height="24" rx="2" fill="#C0C2C6"/><rect x="552" y="88" width="8" height="24" rx="2" fill="#C0C2C6"/>
+                    <circle class="ks" cx="104" cy="100" r="12" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle cx="104" cy="100" r="7.5" fill="none" stroke="#C0C2C6"/>
+                    <circle class="ks" cx="536" cy="100" r="12" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle cx="536" cy="100" r="7.5" fill="none" stroke="#C0C2C6"/>
+                    <rect x="144" y="91" width="6" height="18" rx="1.5" fill="#7F8188"/><rect x="302" y="91" width="6" height="18" rx="1.5" fill="#7F8188"/>
+                    <rect x="332" y="91" width="6" height="18" rx="1.5" fill="#7F8188"/><rect x="490" y="91" width="6" height="18" rx="1.5" fill="#7F8188"/>
+                    <ellipse class="ks" cx="153.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="157.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="162.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="166.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="171.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="175.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="180.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="184.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="189.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="193.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="198.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="202.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="207.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="211.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="216.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="220.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="225.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="229.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="234.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="238.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="243.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="247.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="252.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="256.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="261.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="265.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="270.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="274.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="279.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="283.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="288.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="292.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="297.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="341.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="345.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="350.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="354.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="359.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="363.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="368.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="372.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="377.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="381.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="386.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="390.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="395.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="399.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="404.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="408.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="413.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="417.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="422.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="426.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="431.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="435.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="440.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="444.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="449.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="453.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="458.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="462.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="467.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="471.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="476.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="480.5" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/><ellipse class="ks" cx="485.0" cy="100" rx="2.1" ry="9.5" fill="none" stroke="#3C3F49" stroke-width="1.2"/>
+                    <rect x="313" y="84" width="14" height="32" rx="2" fill="#C0C2C6" stroke="#7F8188"/>
+                  </g>
+                  <g class="kp" data-k="opener">
+                    <line x1="296" y1="36" x2="296" y2="56" stroke="#949596" stroke-width="1.5"/><line x1="344" y1="36" x2="344" y2="56" stroke="#949596" stroke-width="1.5"/>
+                    <rect class="ks" x="276" y="54" width="88" height="32" rx="8" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/>
+                    <path d="M284 62h72" stroke="#E6E8EA" stroke-width="2"/>
+                    <rect class="klight" x="300" y="79" width="40" height="5" rx="2.5" fill="#E6E8EA"/>
+                    <path class="ks" d="M320 86v40" stroke="#7F8188" stroke-width="3" stroke-linecap="round"/>
+                    <rect x="312" y="128" width="16" height="8" rx="2" fill="#7F8188"/>
+                  </g>
+                  <g class="kp" data-k="sensors">
+                    <line class="kbeam" x1="96" y1="420" x2="544" y2="420" stroke="#DB0000" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/>
+                    <rect class="ks" x="80" y="410" width="16" height="18" rx="3" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="88" cy="419" r="2.2" fill="#7F8188"/>
+                    <rect class="ks" x="544" y="410" width="16" height="18" rx="3" fill="#FFFFFF" stroke="#5D6068" stroke-width="1.5"/><circle class="kf" cx="552" cy="419" r="2.2" fill="#7F8188"/>
+                  </g>
+                </svg>
+                <button type="button" class="kmark" style="left:35.3%;top:20.8%" data-kmark="spring" aria-pressed="false" aria-label="Part 1: Torsion spring"><span class="kmark-dot" aria-hidden="true">1</span><span class="kmark-label" aria-hidden="true">Torsion spring</span></button><button type="button" class="kmark" style="left:50%;top:14.8%" data-kmark="opener" aria-pressed="false" aria-label="Part 2: Opener"><span class="kmark-dot" aria-hidden="true">2</span><span class="kmark-label" aria-hidden="true">Opener</span></button><button type="button" class="kmark" style="left:15.8%;top:37.5%" data-kmark="track" aria-pressed="false" aria-label="Part 3: Tracks"><span class="kmark-dot" aria-hidden="true">3</span><span class="kmark-label" aria-hidden="true">Tracks</span></button><button type="button" class="kmark kmark-flip" style="left:84.2%;top:59.2%" data-kmark="rollers" aria-pressed="false" aria-label="Part 4: Rollers"><span class="kmark-dot" aria-hidden="true">4</span><span class="kmark-label" aria-hidden="true">Rollers</span></button><button type="button" class="kmark" style="left:17.2%;top:68.8%" data-kmark="cables" aria-pressed="false" aria-label="Part 5: Lift cables"><span class="kmark-dot" aria-hidden="true">5</span><span class="kmark-label" aria-hidden="true">Lift cables</span></button><button type="button" class="kmark kmark-flip" style="left:86.3%;top:87.3%" data-kmark="sensors" aria-pressed="false" aria-label="Part 6: Safety sensors"><span class="kmark-dot" aria-hidden="true">6</span><span class="kmark-label" aria-hidden="true">Safety sensors</span></button>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center gap-2">
+              <button type="button" class="kstep" data-know-prev><span class="sr-only">Previous part</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-back"/></svg></button>
+              <div class="scrollbar-none flex min-w-0 flex-1 gap-1 overflow-x-auto rounded-2xl bg-brand-grey-100 p-1" role="tablist" aria-label="Garage door parts" data-know-tabs><button type="button" role="tab" id="kt-spring" class="ktab" aria-selected="false" aria-controls="know-panel" tabindex="-1" data-ktab="spring"><span class="ktab-n" aria-hidden="true">01</span>Spring</button><button type="button" role="tab" id="kt-opener" class="ktab" aria-selected="false" aria-controls="know-panel" tabindex="-1" data-ktab="opener"><span class="ktab-n" aria-hidden="true">02</span>Opener</button><button type="button" role="tab" id="kt-track" class="ktab" aria-selected="false" aria-controls="know-panel" tabindex="-1" data-ktab="track"><span class="ktab-n" aria-hidden="true">03</span>Tracks</button><button type="button" role="tab" id="kt-rollers" class="ktab" aria-selected="false" aria-controls="know-panel" tabindex="-1" data-ktab="rollers"><span class="ktab-n" aria-hidden="true">04</span>Rollers</button><button type="button" role="tab" id="kt-cables" class="ktab" aria-selected="false" aria-controls="know-panel" tabindex="-1" data-ktab="cables"><span class="ktab-n" aria-hidden="true">05</span>Cables</button><button type="button" role="tab" id="kt-sensors" class="ktab" aria-selected="false" aria-controls="know-panel" tabindex="-1" data-ktab="sensors"><span class="ktab-n" aria-hidden="true">06</span>Sensors</button></div>
+              <button type="button" class="kstep" data-know-next><span class="sr-only">Next part</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            </div>
+          </div>
+          <div class="reveal min-w-0 lg:sticky lg:top-28 lg:col-span-5" style="--d:100ms">
+            <div id="know-panel" class="card overflow-hidden" role="tabpanel" aria-labelledby="kt-spring" tabindex="0" data-know-panel></div>
+          </div>
         </div>
       </div>
     </section>
@@ -297,8 +352,8 @@
     <!-- =========================================================== 6. ABOUT -->
     <section id="about" class="on-dark bg-brand-midnight py-16 text-white sm:py-24" aria-labelledby="about-title">
       <div class="wrap grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        <figure class="reveal relative lg:col-span-6">
-          <img src="../assets/img/brand-shifted-door.jpg" srcset="../assets/img/brand-shifted-door-sm.jpg 640w, ../assets/img/brand-shifted-door.jpg 960w" sizes="(min-width: 1024px) 560px, (min-width: 640px) 600px, 100vw" alt="A white garage door that has shifted out of its track, with the bottom panels pushed inward" width="960" height="720" loading="lazy" class="block aspect-[4/3] w-full max-w-[600px] rounded-2xl object-cover">
+        <figure class="reveal group relative max-w-[600px] overflow-hidden rounded-2xl lg:col-span-6">
+          <img src="../assets/img/brand-shifted-door.jpg" srcset="../assets/img/brand-shifted-door-sm.jpg 640w, ../assets/img/brand-shifted-door.jpg 960w" sizes="(min-width: 1024px) 560px, (min-width: 640px) 600px, 100vw" alt="A white garage door that has shifted out of its track, with the bottom panels pushed inward" width="960" height="720" loading="lazy" class="block aspect-[4/3] w-full max-w-[600px] rounded-2xl object-cover transition duration-700 group-hover:scale-[1.03]">
           <figcaption class="absolute left-4 top-4 rounded-lg bg-white px-3 py-1.5 text-sm font-heading text-brand-midnight shadow-lg">Real job: shifted door repair</figcaption>
         </figure>
         <div class="reveal lg:col-span-6" style="--d:100ms">
@@ -326,7 +381,7 @@
           <h2 id="how-title" class="h2">From stuck to working again, in four steps.</h2>
         </div>
         <ol class="relative mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <span class="absolute left-[12%] right-[12%] top-[2.75rem] hidden border-t-2 border-dashed border-brand-grey-300 lg:block" aria-hidden="true"></span>
+          <span class="absolute left-[12%] right-[12%] top-[2.75rem] draw hidden border-t-2 border-dashed border-brand-grey-300 lg:block" aria-hidden="true"></span>
           <li class="reveal card lift relative p-6"><span class="icon-tile relative h-14 w-14 bg-brand-red text-white"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><p class="mt-5 text-xs font-title uppercase tracking-[0.14em] text-brand-grey-700">Step 1</p><h3 class="mt-1 text-lg">Call or request a quote</h3><p class="mt-2 text-[0.95rem] leading-relaxed text-brand-grey-700">Ring <a href="tel:+18777877121" class="tnum font-heading text-brand-red">(877) 787-7121</a> any time, or send the form. We answer 24 hours a day.</p></li>
           <li class="reveal card lift relative p-6" style="--d:80ms"><span class="icon-tile relative h-14 w-14"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><p class="mt-5 text-xs font-title uppercase tracking-[0.14em] text-brand-grey-700">Step 2</p><h3 class="mt-1 text-lg">Tell us what happened</h3><p class="mt-2 text-[0.95rem] leading-relaxed text-brand-grey-700">A loud bang, a door off track, an opener that hums: a few details help us bring the right parts.</p></li>
           <li class="reveal card lift relative p-6" style="--d:160ms"><span class="icon-tile relative h-14 w-14"><svg aria-hidden="true"><use href="#i-truck"/></svg></span><p class="mt-5 text-xs font-title uppercase tracking-[0.14em] text-brand-grey-700">Step 3</p><h3 class="mt-1 text-lg">A technician comes to you</h3><p class="mt-2 text-[0.95rem] leading-relaxed text-brand-grey-700">Same-day service across Central Florida. You get the problem, your options and the price before we start.</p></li>
@@ -341,7 +396,7 @@
         <div class="reveal lg:col-span-7">
           <div class="relative mx-auto aspect-video w-full max-w-[640px] overflow-hidden rounded-2xl bg-brand-midnight shadow-xl lg:mx-0" data-video>
             <button type="button" class="group absolute inset-0 h-full w-full text-left" data-video-play>
-              <img src="../assets/img/brand-shifted-door-sm.jpg" srcset="../assets/img/brand-shifted-door-sm.jpg 640w, ../assets/img/brand-shifted-door.jpg 960w" sizes="(min-width: 640px) 640px, 100vw" alt="" width="640" height="480" loading="lazy" class="absolute inset-0 h-full w-full object-cover">
+              <img src="../assets/img/brand-shifted-door-sm.jpg" srcset="../assets/img/brand-shifted-door-sm.jpg 640w, ../assets/img/brand-shifted-door.jpg 960w" sizes="(min-width: 640px) 640px, 100vw" alt="" width="640" height="480" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]">
               <span class="absolute inset-0 bg-gradient-to-t from-brand-ink/90 via-brand-ink/30 to-brand-ink/10" aria-hidden="true"></span>
               <span class="absolute left-1/2 top-1/2 grid h-[4.5rem] w-[4.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-brand-red text-white shadow-xl transition duration-300 group-hover:scale-110"><svg class="ml-1 h-8 w-8" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4.5v15l12-7.5-12-7.5Z"/></svg></span>
               <span class="absolute inset-x-0 bottom-0 p-5 text-white"><span class="block text-xs font-title uppercase tracking-[0.14em] text-white/90">Video · Garage Door ASAP Service</span><span class="mt-1 block text-lg font-title leading-snug sm:text-xl">What should you do with a crooked garage door?</span></span>
@@ -358,11 +413,11 @@
               <h2 id="safety-title" class="h2">Don’t force it.</h2>
             </div>
           </div>
-          <ul class="mt-6 grid gap-3">
-            <li class="card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Keep everyone clear</strong>People, pets and cars stay away from a damaged door.</p></li>
-            <li class="card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-remote"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Stop using the opener</strong>If the door is crooked, heavy or making a new noise.</p></li>
-            <li class="card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-wrench"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Leave springs and cables to us</strong>They’re under extreme tension and can cause serious injury.</p></li>
-            <li class="card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Don’t pull the release on a broken door</strong>If a spring or cable has failed with the door open, the door can drop.</p></li>
+          <ul class="mt-6 grid gap-3" data-stagger>
+            <li class="reveal card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-alert"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Keep everyone clear</strong>People, pets and cars stay away from a damaged door.</p></li>
+            <li class="reveal card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-remote"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Stop using the opener</strong>If the door is crooked, heavy or making a new noise.</p></li>
+            <li class="reveal card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-wrench"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Leave springs and cables to us</strong>They’re under extreme tension and can cause serious injury.</p></li>
+            <li class="reveal card flex gap-4 p-4"><span class="icon-tile"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><p class="text-[0.95rem] leading-relaxed"><strong class="block font-heading text-brand-midnight">Don’t pull the release on a broken door</strong>If a spring or cable has failed with the door open, the door can drop.</p></li>
           </ul>
         </div>
       </div>
@@ -411,43 +466,43 @@
         </div>
       </div>
       <!-- Quoted as written on Google (listing read 18 Oct 2026). Names shortened; long reviews excerpted with "…". -->
-      <ul class="scrollbar-none rv-pad mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-4 pt-1 sm:px-6" tabindex="0" aria-label="Google reviews, scroll sideways for more" data-reviews>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+      <ul class="reveal scrollbar-none rv-pad mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-4 pt-1 sm:px-6" tabindex="0" aria-label="Google reviews, scroll sideways for more" data-reviews>
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“Andy was able to make it out within 45 minutes of my call and changed out my tension springs and other hardware on my garage in just under an hour. Pricing was reasonable and the parts carry a warranty too…”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">J</span><span><strong class="block font-heading text-brand-midnight">Jean T.</strong><span class="text-sm text-brand-grey-700">Tension springs · 5 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“Andy and Sam did an outstanding job replacing my garage door springs. They were professional, knowledgeable, and worked efficiently. They kept everything clean throughout the job and made sure everything was working perfectly before they left.”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">M</span><span><strong class="block font-heading text-brand-midnight">Mike Z.</strong><span class="text-sm text-brand-grey-700">Spring replacement · 2 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“He didn’t just do a quick fix; he made sure everything was balanced, safely tested, and properly lubricated. He is polite, transparent about pricing, and clearly takes pride in his work. The garage door operates smoother and quieter now than it ever has before.”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">T</span><span><strong class="block font-heading text-brand-midnight">Tala K.</strong><span class="text-sm text-brand-grey-700">Spring replacement · 4 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“Moe was very knowledgeable and professional. The spring was broken. He gave us 2 option, no pushy and he fixed everything in 1 hour. New spring coils, rollers, and replaced the cables. We definitely recommend him!”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">R</span><span><strong class="block font-heading text-brand-midnight">Rosa L.</strong><span class="text-sm text-brand-grey-700">Broken spring · 3 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“Andy did a very thorough job and he was very good at communicating my options. My garage door opener broke in the evening and Andy Hamidan was at my house at 9AM the next morning. Seems that is why they call it ASAP.”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">J</span><span><strong class="block font-heading text-brand-midnight">Jim B.</strong><span class="text-sm text-brand-grey-700">Opener repair · 4 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“When the spring on my garage door broke, ASAP was able to schedule a repair the next day. This is my 2nd time using ASAP and I will continue to use them. Moe was my technician and he was great!! He was right on time and very knowledgeable…”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">H</span><span><strong class="block font-heading text-brand-midnight">Hannah E.</strong><span class="text-sm text-brand-grey-700">Spring, cables &amp; rollers · 4 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“Andy came to my house today and repaired the springs, cables, and drum professionally and efficiently. I’m very happy and grateful to the company for the excellent service. Andy was very kind, respectful, and knowledgeable.”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">R</span><span><strong class="block font-heading text-brand-midnight">Russell P.</strong><span class="text-sm text-brand-grey-700">Springs, cables &amp; drum · 4 months ago</span></span></figcaption>
         </figure></li>
-        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card flex h-full flex-col p-6 text-brand-ink">
+        <li class="w-[85%] max-w-[22rem] shrink-0 snap-start"><figure class="card lift flex h-full flex-col p-6 text-brand-ink">
           <div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" aria-hidden="true"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div>
           <blockquote class="mt-4 flex-1 text-[0.95rem] leading-relaxed">“Moe was very informative and was able to come to assist and diagnose the issues very quickly. Very professional and explained things at great length. I would recommend him to anyone.”</blockquote>
           <figcaption class="mt-5 flex items-center gap-3 border-t border-brand-grey-200 pt-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">T</span><span><strong class="block font-heading text-brand-midnight">Tim G.</strong><span class="text-sm text-brand-grey-700">Diagnosis · 4 months ago</span></span></figcaption>
@@ -465,7 +520,7 @@
     <!-- =========================================================== 11. EMERGENCY BAND -->
     <section id="emergency" class="on-red relative overflow-hidden bg-brand-red text-white" aria-labelledby="emergency-title">
       <div class="wrap grid items-center gap-6 lg:grid-cols-12">
-        <div class="py-14 lg:col-span-8 lg:py-16">
+        <div class="reveal py-14 lg:col-span-8 lg:py-16">
           <p class="eyebrow eyebrow-light"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-alert"/></svg>Emergency service · 24/7</p>
           <h2 id="emergency-title" class="h2 text-white">Door stuck open? Car trapped? We’re open right now.</h2>
           <p class="mt-4 max-w-xl text-lg leading-relaxed">Any hour, any day, holidays included. Call and we’ll give you a time on the phone.</p>

@@ -1,56 +1,74 @@
-# V2 — The Signature (local preview, not published)
+# V2 · The Signature — Garage Door ASAP homepage (round 4, local preview)
 
-A premium editorial **business website**, styled like a high-end contractor or architect firm's site rather than a magazine.
-Its signature is **sharp corners and fine red rules**. A 2 px red rule marks the seam between the charcoal hero panel and the
-photo, a short red rule sits under every heading, a 1 px red offset frame sits behind the About photo, and thin red dividers
-separate the trust badges. There are no pills, track curves (V1) or rounded cards (V3).
+A soft, premium and interactive business site. Every section floats as a large rounded "sheet" on a soft grey page.
+The dark sheets carry a quiet red glow, glass panels sit over the client's own photos, and there are no sharp corners.
+This build replaces the earlier sharp, editorial version, which the user rejected. That version is preserved in git commit 7918567.
 
 Preview: `npm start` from the project root, then open http://localhost:5173/v2-the-signature/
 Rebuild CSS: `npm run build:v2`
 
-## Brand
-Colours and font come only from `assets/brand/brand-tokens.js`: red `#DB0000`, deep red `#AD2529`, charcoal `#2F2D2E`,
-ink `#1C1F2A`, the theme's greys, and white. The typeface is Poppins; headlines mix 300 light and 800 extra-bold.
-Red is never used as text on charcoal: on dark backgrounds, red appears only as a rule or a filled block behind white.
+## Design system
+- **Radius scale:** pill / 28 px (`rounded-card`) / 40 px (`rounded-sheet`).
+- **Shadow scale:** `soft` / `medium` / `lifted` (plus a red glow on the main CTA).
+- **Icons:** 1.75 stroke.
+- **Colours and font:** only from `assets/brand/brand-tokens.js`: red #DB0000, deep red #AD2529, charcoal #2F2D2E, ink #1C1F2A, greys, white, and Poppins 300–600. There is no red text on dark backgrounds.
+- **Motion (restrained):**
+  - One entrance per section: a fade-up or a rounded mask reveal.
+  - Gentle hover lifts, and crossfades in the interactive parts.
+  - A magnetic effect on the main hero CTA only.
+  - A slow glow is the only continuous motion.
+  - Everything is off under `prefers-reduced-motion`.
 
-## Sections (K1 order)
-1. Charcoal top bar (24/7 + phone) and a sticky header: mascot logo, nav, the phone number as text, and a red "Free quote" button.
-2. Hero: a charcoal panel (45%) with "Garage doors, fixed properly. / And fixed ASAP.", red Call and white-outline Quote
-   buttons, and the Google rating line. The client's banner photo (55%) bleeds to the right edge, with a 2 px red seam and
-   an emergency/not-urgent card overlapping the photo. On phones the photo sits on top and both actions are in the first screen.
-3. Trust strip: Google 4.7 · We Finance badge · licensed, bonded & insured · 30+ years · lifetime parts warranty.
-4. About: a real shifted-door job photo in a red offset frame, the copy, a genuine review sentence, and Mr. ASAP.
-5. Services: a featured "Spring replacement" block (springs photo plus the broken-spring photo) and six service blocks,
-   each with a real photo (or a charcoal icon tile for cables), a symptom, "Book this repair" (pre-fills the form) and "Call".
-6. Red emergency band: the phone number in huge type, four situations, a safety note, and Mr. ASAP breaking the top edge.
-7. How it works: four steps joined by one thin red rule.
-8. Why choose us (charcoal): the parts photo strip, financing, and six promises with red icon blocks.
-9. Reviews: the 4.7 / 1,337 summary, one featured review with previous/next, three more reviews, and the before/after photo.
-10. Service areas: city checker, 12 main cities, and "Show all 73 cities". No county claims.
-11. FAQ accordion.
-12. Quote (charcoal): contact details, a big call button, and the approved form on a white card.
-13. Footer, plus an always-visible mobile call bar (the body reserves room for it, so it never covers content).
+## Sections (K1 order) and what they do
+1. **Announcement pill and floating glass header:** call number and Free quote, with a rounded mobile menu sheet.
+2. **Hero, "How can we help today?":** three intents, each with its own headline, photo and actions, and a call action in every one:
+   - "It's an emergency": call first.
+   - "Something's broken": quote first.
+   - "Tune-up or upgrade": book a tune-up.
 
-## Content sources (verified 18 Oct 2026)
-- Phone, address, email, services, guarantees, financing and the 73 cities: garagedoorasapservice.com.
-- Google 4.7★ from 1,337 reviews, and the eight review texts: the Google Business Profile, quoted as written, with names
-  shortened and long reviews excerpted (…).
-- Photos and Mr. ASAP: the client's own assets in `assets/img/brand-*` and `assets/brand/`. No stock photography is used.
-  No image is ever shown larger than its file, including object-cover crops, which is checked by the test suite.
+   A sliding indicator moves between the intents. Glass chips on the photo show the Google rating and the crew photo.
+3. **Trust ribbon:** Google 4.7, 24/7, 30+ years family owned, licensed, the We Finance badge.
+4. **About and real work:** the crew and trucks photo, plus a drag-to-compare before/after of a real job and a genuine review.
+5. **Services as an accordion gallery:**
+   - Desktop: seven rounded panels; hover, click, focus or the arrow keys expand one.
+   - Phones: a smooth accordion.
+   - Every panel has "Book this repair" (fills in the form) and Call.
+6. **Spring life estimator:** a slider for uses per day gives years = cycles ÷ (uses × 365) for 10,000, 10,000–20,000 and up to 50,000 cycles. The figures are quoted from the live spring page.
+7. **How it works:** four steps on a line that fills as you scroll.
+8. **29-point tune-up:**
+   - A counting ring and two tabs: Inspect (17) and Maintain (12).
+   - The checklist items are exactly as on the live maintenance page.
+   - "Show all" expands the list.
+9. **Why us and financing:** six verified promises, plus a red financing card.
+10. **Reviews:**
+    - The Google 4.7 ring.
+    - Topic filters: All, Springs, Openers, Service & staff.
+    - A manual carousel with previous/next and swipe (no autoplay), using the 8 genuine reviews verbatim.
+11. **Emergency:** a red sheet with Mr. ASAP, a large call button and two safety tips.
+12. **Areas:** a city search with instant suggestions (a keyboard-accessible combobox), 12 popular cities, and "Show all 73". No counties.
+13. **FAQ:** an accordion that opens smoothly in Chrome 131+.
+14. **Quote:**
+    - Three steps (Problem → Timing → Your details) with a live "Your request" summary.
+    - Emergency timing shows a call panel.
+    - Uses the shared `GDAForm` honest email/call hand-off; nothing is ever claimed as sent.
+    - A "What happens next" strip sits below the form.
+15. **Footer**, plus a glass mobile call bar that is always visible and respects the safe-area inset.
 
-## Form
-Uses the shared `assets/js/quote-form.js` with the approved fields: name, phone, city, problem, optional details, and
-preferred timing. No form service is connected, so a valid request offers a pre-filled email or a call and never claims
-to have been sent.
+## Photos (all the client's own; none shown larger than the file)
+- **From the live site:** `brand-home-banner` (homepage hero), `brand-crew-trucks` (crew photo), `brand-job-spring-a/b` (spring-page job photos), `brand-shifted-door` and the before/after.
+- **Service-page images:** `brand-springs-pair`, `brand-svc-*`.
 
-## Tested
-Headless Chrome via puppeteer-core plus axe-core, at 1440×900, 820×1180, 390×844, 360×740, and 390 with reduced motion.
-The suite reports 82/82 checks passing. It covers:
-- no console errors, failed requests or broken images, and no horizontal overflow;
-- no upscaled images (layout size against the real file pixels, including object-cover);
-- every `tel:` link is `+18777877121`, in-page anchors resolve, and no banned claims appear;
-- both hero actions are above the fold;
-- the mobile menu (open, Escape, link), and the mobile bar staying visible without covering the submit button or footer;
-- form errors and focus, the honest hand-off and mailto contents, and "Book this repair" pre-fill;
-- featured-review cycling, the city checker and the 73-city expand;
-- touch targets of at least 44 px, axe with 0 violations, and reduced motion (static reveals, no parallax).
+Sources are in `assets/CREDITS.md`.
+
+## Tested (headless Chrome)
+- **V2 suite: 62/62.** At 1440, 1024, 820, 390 and 360 px plus reduced motion:
+  - call and quote are visible in the first screen
+  - no image is shown larger than its file, including cover crops in every hero intent and service panel
+  - every interaction listed above, the estimator maths, and the checklist counts
+  - the quote steps and the honest hand-off
+- **Shared harness: 57/57** (`node qa.mjs v2-the-signature`):
+  - zero axe accessibility violations at every size
+  - no console errors or failed requests, no sideways scrolling, no duplicate ids
+  - every phone link is `tel:+18777877121`; no banned claims
+  - the mobile menu and call bar work
+- **Layout shift (CLS):** about 0.008 at desktop and phone sizes.

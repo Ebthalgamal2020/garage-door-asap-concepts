@@ -29,7 +29,25 @@
   const io = 'IntersectionObserver' in window && !reduced
     ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' })
     : null;
-  $$('.reveal').forEach((el) => (io ? io.observe(el) : el.classList.add('in')));
+  // Tiles and cards inside [data-stagger] enter one after another
+  $$('[data-stagger]').forEach((list) => [...list.children].forEach((el, i) => el.style.setProperty('--d', `${Math.min(i, 6) * 70}ms`)));
+  $$('.reveal, .draw').forEach((el) => (io ? io.observe(el) : el.classList.add('in')));
+
+  /* ---------- Count-up for trust-bar numbers (the final value is already in the HTML) ---------- */
+  if (io) {
+    const cio = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target, to = Number(el.dataset.count), dec = Number(el.dataset.decimals || 0), t0 = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - t0) / 1200);
+        el.textContent = (to * (1 - Math.pow(1 - t, 3))).toFixed(dec);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }), { threshold: 0.6 });
+    $$('[data-count]').forEach((el) => cio.observe(el));
+  }
 
   /* =====================================================================
      The door illustration: a simplified front view (white panels, charcoal frame).
@@ -226,41 +244,62 @@
   }));
 
   /* =====================================================================
-     Know your door
+     Know your door: numbered markers + part tabs (arrow keys, prev/next) drive one detail panel.
      ===================================================================== */
   const PARTS = {
-    spring: { name: 'Torsion spring', does: 'Springs carry the weight of the door, so the opener only has to guide it.', signs: ['A loud bang from the garage', 'A visible gap in the coil', 'The door feels very heavy or won’t lift'], we: 'Replace the spring safely, then rebalance and test the door.', service: 'Spring Replacement', symptom: 'bang', img: ['../assets/img/brand-springs-pair.jpg', 600, 378, 'A pair of garage door torsion springs'], hs: [36.9, 18.4] },
-    opener: { name: 'Opener', does: 'The motor and rail that move the door from the wall button or remote.', signs: ['Humming without movement', 'No response to the remote or wall button', 'The door stops halfway'], we: 'Diagnose the motor, controls and settings and repair them on the spot, or supply, install and program a new opener.', service: 'Opener Repair', symptom: 'opener', img: ['../assets/img/brand-svc-opener.jpg', 400, 300, 'A garage door opener mounted on the ceiling'], hs: [50, 8.8] },
-    cables: { name: 'Lift cables', does: 'Cables run from the bottom of the door to the drums and lift both sides evenly.', signs: ['A frayed or loose cable', 'One side of the door hanging lower', 'The door stuck partway'], we: 'Replace the cable and check the drums and springs.', service: 'Cable Replacement', symptom: 'cable', icon: 'i-cable', hs: [14.1, 60] },
-    rollers: { name: 'Rollers', does: 'Rollers carry each panel smoothly along the track.', signs: ['Grinding or squeaking', 'Shaking or juddering as the door moves'], we: 'Fit new rollers to restore smooth, quieter travel.', service: 'Roller Replacement', symptom: 'noisy', img: ['../assets/img/brand-svc-rollers.jpg', 300, 244, 'A set of garage door rollers'], hs: [87.8, 41.2] },
-    track: { name: 'Tracks', does: 'The two tracks guide the door straight up and over.', signs: ['A crooked door', 'A door off its track or hanging', 'Bent panels'], we: 'Realign the shifted door and inspect and correct the cables, rollers and tracks.', service: 'Shifted Door Repair', symptom: 'offtrack', img: ['../assets/img/brand-svc-shifted.jpg', 300, 280, 'A garage door that has shifted out of its track'], hs: [87.8, 70] },
-    sensors: { name: 'Safety sensors', does: 'Two sensors near the floor send a beam across the opening. If something breaks the beam, the door reverses.', signs: ['The door reverses before it closes', 'The door won’t close at all'], we: 'Realign or replace the sensors and test the safety reverse.', service: 'Opener Repair', symptom: 'reverse', icon: 'i-sensor', hs: [8.1, 81.6] }
+    spring: { name: 'Torsion spring', does: 'Carries the weight of the door, so the opener only has to guide it.', urgency: ['Often urgent', true], signs: ['A loud bang from the garage', 'A visible gap in the coil', 'The door feels very heavy or won’t lift'], we: 'Replace the spring safely, then rebalance and test the door.', service: 'Spring Replacement', symptom: 'bang', img: ['../assets/img/brand-springs-pair.jpg', 'A pair of garage door torsion springs'] },
+    opener: { name: 'Opener', does: 'The motor and rail that move the door from the wall button or remote.', urgency: ['Usually can wait', false], signs: ['Humming without movement', 'No response to the remote or wall button', 'The door stops halfway'], we: 'Diagnose the motor, controls and settings and repair them on the spot, or supply, install and program a new opener.', service: 'Opener Repair', symptom: 'opener', img: ['../assets/img/brand-svc-opener.jpg', 'A garage door opener mounted on the ceiling'] },
+    track: { name: 'Tracks', does: 'Two steel tracks guide the door straight up and over.', urgency: ['Often urgent', true], signs: ['A crooked door', 'A door off its track or hanging', 'Bent panels'], we: 'Realign the shifted door and inspect and correct the cables, rollers and tracks.', service: 'Shifted Door Repair', symptom: 'offtrack', img: ['../assets/img/brand-svc-shifted.jpg', 'A garage door that has shifted out of its track'] },
+    rollers: { name: 'Rollers', does: 'Carry each panel smoothly and quietly along the tracks.', urgency: ['Usually can wait', false], signs: ['Grinding or squeaking', 'Shaking or juddering as the door moves'], we: 'Fit new rollers to restore smooth, quieter travel.', service: 'Roller Replacement', symptom: 'noisy', img: ['../assets/img/brand-svc-rollers.jpg', 'A set of garage door rollers'] },
+    cables: { name: 'Lift cables', does: 'Run from the bottom of the door to the drums and lift both sides evenly.', urgency: ['Often urgent', true], signs: ['A frayed or loose cable', 'One side of the door hanging lower', 'The door stuck partway'], we: 'Replace the cable and check the drums and springs.', service: 'Cable Replacement', symptom: 'cable', icon: 'i-cable' },
+    sensors: { name: 'Safety sensors', does: 'Send a beam across the opening. If something breaks it, the door reverses.', urgency: ['Book soon: safety part', false], signs: ['The door reverses before it closes', 'The door won’t close at all'], we: 'Realign or replace the sensors and test the safety reverse.', service: 'Opener Repair', symptom: 'reverse', icon: 'i-sensor' }
   };
+  const ORDER = Object.keys(PARTS);
+  const stage = $('[data-know-stage]');
   const canvas = $('[data-know-canvas]');
+  const knowSvg = $('[data-know-svg]');
   const panel = $('[data-know-panel]');
-  canvas.innerHTML = doorSVG({ label: 'Front view of a garage door showing its main parts' })
-    + Object.entries(PARTS).map(([id, p]) => `<button type="button" class="hotspot" style="left:${p.hs[0]}%;top:${p.hs[1]}%" data-hotspot="${id}" tabindex="-1" aria-hidden="true" title="${esc(p.name)}"></button>`).join('');
-  const knowSvg = $('svg.door-ill', canvas);
+  const tabs = $$('[data-ktab]');
+  let partNow = 'spring';
 
-  function showPart(id) {
+  function showPart(id, { focusTab = false } = {}) {
     const p = PARTS[id];
-    $$('[data-part-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.partBtn === id)));
-    $$('[data-hotspot]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.hotspot === id)));
-    paint(knowSvg, [id]);
-    const media = p.img
-      ? `<div class="overflow-hidden rounded-xl bg-brand-midnight" style="max-width:${p.img[1]}px"><img src="${p.img[0]}" alt="${esc(p.img[3])}" width="${p.img[1]}" height="${p.img[2]}" class="h-[200px] w-full object-cover"></div>`
-      : `<div class="grid h-[120px] place-items-center rounded-xl bg-brand-midnight text-white"><svg class="h-12 w-12" aria-hidden="true"><use href="#${p.icon}"/></svg></div>`;
-    panel.innerHTML = `<div class="step-in">
-      ${media}
-      <h3 class="mt-5 text-2xl font-title">${esc(p.name)}</h3>
-      <p class="mt-2 leading-relaxed text-brand-grey-700">${esc(p.does)}</p>
-      <p class="mt-5 text-sm font-heading text-brand-midnight">Warning signs</p>
-      <ul class="mt-2 grid gap-1.5 text-[0.95rem]">${p.signs.map((x) => `<li class="flex gap-2.5"><svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-red" aria-hidden="true"><use href="#i-alert"/></svg>${esc(x)}</li>`).join('')}</ul>
-      <p class="mt-5 text-sm font-heading text-brand-midnight">What we do</p>
-      <p class="mt-1 leading-relaxed text-brand-grey-700">${esc(p.we)}</p>
-      <div class="mt-6 flex flex-wrap gap-2">
-        <a href="#quote" class="btn btn-red btn-sm" data-know-book>Book: ${esc(p.service)}</a>
-        <button type="button" class="btn btn-outline btn-sm" data-know-check>Check a symptom</button>
+    const n = ORDER.indexOf(id) + 1;
+    partNow = id;
+    canvas.dataset.active = id;
+    $$('.kp', knowSvg).forEach((g) => g.classList.toggle('on', g.dataset.k === id));
+    $$('[data-kmark]').forEach((m) => m.setAttribute('aria-pressed', String(m.dataset.kmark === id)));
+    tabs.forEach((t) => { const on = t.dataset.ktab === id; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+    const tab = $(`[data-ktab="${id}"]`);
+    panel.setAttribute('aria-labelledby', tab.id);
+    const rail = tab.parentElement;
+    if (rail.scrollWidth > rail.clientWidth) rail.scrollTo({ left: tab.offsetLeft - (rail.clientWidth - tab.offsetWidth) / 2, behavior: 'instant' });
+    if (focusTab) tab.focus();
+    const thumb = p.img
+      ? `<img src="${p.img[0]}" alt="${esc(p.img[1])}" class="h-20 w-24 shrink-0 rounded-xl object-cover ring-1 ring-brand-grey-200 sm:h-24 sm:w-32">`
+      : `<span class="grid h-20 w-24 shrink-0 place-items-center rounded-xl sm:h-24 sm:w-32 bg-brand-grey-50 text-brand-midnight ring-1 ring-brand-grey-200"><svg class="h-10 w-10" aria-hidden="true"><use href="#${p.icon}"/></svg></span>`;
+    panel.innerHTML = `<div class="kfade">
+      <div class="flex items-center justify-between gap-3 border-b border-brand-grey-200 px-6 py-3 sm:px-7">
+        <p class="text-xs font-heading tracking-[0.08em] text-brand-grey-700">Part <span class="tnum">0${n}</span> of 06</p>
+        <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-heading ${p.urgency[1] ? 'bg-brand-red text-white' : 'bg-brand-grey-100 text-brand-midnight'}"><svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#${p.urgency[1] ? 'i-alert' : 'i-calendar'}"/></svg>${esc(p.urgency[0])}</span>
+      </div>
+      <div class="p-6 sm:p-7">
+        <div class="flex items-start gap-4">
+          <div class="min-w-0 flex-1">
+            <h3 class="text-2xl font-title">${esc(p.name)}</h3>
+            <p class="mt-1.5 text-[0.95rem] leading-relaxed text-brand-grey-700">${esc(p.does)}</p>
+          </div>
+          ${thumb}
+        </div>
+        <h4 class="mt-6 text-xs font-title uppercase tracking-[0.14em] text-brand-grey-700">Warning signs</h4>
+        <ul class="mt-3 grid gap-2.5 text-[0.95rem]">${p.signs.map((x) => `<li class="flex items-center gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-red-tint text-brand-red"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-alert"/></svg></span>${esc(x)}</li>`).join('')}</ul>
+        <h4 class="mt-6 text-xs font-title uppercase tracking-[0.14em] text-brand-grey-700">What we do</h4>
+        <p class="mt-3 flex items-start gap-3 text-[0.95rem] leading-relaxed"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-midnight text-white"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-check"/></svg></span><span class="pt-0.5">${esc(p.we)}</span></p>
+        <div class="mt-7 flex flex-wrap items-center gap-2 border-t border-brand-grey-200 pt-5">
+          <button type="button" class="btn btn-outline btn-sm px-3" data-know-check>Check this in Find my fix</button>
+          <a href="#quote" class="btn btn-red btn-sm px-3.5" data-know-book>Book<span class="sr-only">: ${esc(p.service)}</span></a>
+          <a href="${TEL}" class="inline-flex min-h-[2.75rem] items-center gap-1.5 whitespace-nowrap px-2 text-sm font-heading text-brand-midnight hover:text-brand-red"><svg class="h-4 w-4 text-brand-red" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
+        </div>
       </div></div>`;
     $('[data-know-book]', panel).addEventListener('click', () => prefillForm({ service: p.service }));
     $('[data-know-check]', panel).addEventListener('click', () => {
@@ -269,8 +308,27 @@
       $('[data-step-title]', steps[2]).focus({ preventScroll: true });
     });
   }
-  $$('[data-part-btn]').forEach((b) => b.addEventListener('click', () => showPart(b.dataset.partBtn)));
-  $$('[data-hotspot]').forEach((b) => b.addEventListener('click', () => showPart(b.dataset.hotspot)));
+  const step = (d, focusTab = false) => showPart(ORDER[(ORDER.indexOf(partNow) + d + ORDER.length) % ORDER.length], { focusTab });
+  tabs.forEach((t) => t.addEventListener('click', () => showPart(t.dataset.ktab)));
+  $$('[data-kmark]').forEach((m) => m.addEventListener('click', () => showPart(m.dataset.kmark)));
+  $('[data-know-prev]').addEventListener('click', () => step(-1));
+  $('[data-know-next]').addEventListener('click', () => step(1));
+  $('[data-know-tabs]').addEventListener('keydown', (e) => {
+    const keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    if (e.key in keys) { e.preventDefault(); step(keys[e.key], true); }
+    else if (e.key === 'Home') { e.preventDefault(); showPart(ORDER[0], { focusTab: true }); }
+    else if (e.key === 'End') { e.preventDefault(); showPart(ORDER[ORDER.length - 1], { focusTab: true }); }
+  });
+  // A small parallax on the illustration, following the pointer (off for reduced motion and touch)
+  if (!reduced && matchMedia('(hover: hover)').matches) {
+    stage.addEventListener('pointermove', (e) => {
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      canvas.style.transform = `translate(${(x * -10).toFixed(1)}px, ${(y * -8).toFixed(1)}px)`;
+    });
+    stage.addEventListener('pointerleave', () => { canvas.style.transform = ''; });
+  }
   showPart('spring');
 
   /* ---------- Book buttons + financing pre-fill the form ---------- */
