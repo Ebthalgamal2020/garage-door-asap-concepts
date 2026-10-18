@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * "The Garage Door Lab": a friendly, modern home-services site with a built-in "Find my fix" tool.
+ * Shape language: rounded cards (12–16px), soft shadows, line icons, red buttons with a 10px radius.
+ * One door illustration (white panels, charcoal frame, red = the affected part) is shared by the
+ * hero widget and "Know your door".
+ */
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; -webkit-text-size-adjust: 100%; }
+  @media (max-width: 1023px) { html { scroll-padding-bottom: 6rem; } body { padding-bottom: 5.25rem; } }
+  body { @apply bg-white font-brand text-brand-ink antialiased; }
+  h1, h2, h3, h4 { @apply font-heading text-brand-midnight; letter-spacing: -0.02em; line-height: 1.15; }
+  ::selection { @apply bg-brand-red text-white; }
+  :focus-visible { @apply outline outline-[3px] outline-offset-2 outline-brand-red; }
+  .on-dark :focus-visible, .on-red :focus-visible { @apply outline-white; }
+  [hidden] { display: none !important; }
+  .tnum { font-variant-numeric: tabular-nums; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-4 sm:px-6 lg:px-10; }
+  .eyebrow { @apply mb-3 inline-flex items-center gap-2 text-sm font-heading text-brand-red; }
+  .eyebrow-light { @apply text-white; }
+  .h2 { @apply text-[clamp(1.85rem,3.4vw,2.75rem)] font-title; letter-spacing: -0.025em; line-height: 1.1; }
+  .lead { @apply text-base leading-relaxed text-brand-grey-700 sm:text-lg; }
+
+  /* Buttons: 10px radius (V1 uses full pills), never wrapping */
+  .btn { @apply inline-flex min-h-[3rem] items-center justify-center gap-2 whitespace-nowrap rounded-[10px] px-5 text-[0.95rem] font-heading transition duration-200; }
+  .btn svg { @apply h-5 w-5 shrink-0; }
+  .btn-red { @apply bg-brand-red text-white shadow-[0_8px_20px_-10px_rgba(219,0,0,.7)] hover:bg-brand-red-deep; }
+  .btn-dark { @apply bg-brand-midnight text-white hover:bg-brand-ink; }
+  .btn-white { @apply bg-white text-brand-midnight hover:bg-brand-grey-100; }
+  .btn-outline { @apply border-2 border-brand-grey-300 bg-white text-brand-midnight hover:border-brand-midnight; }
+  .btn-outline-light { @apply border-2 border-white/50 text-white hover:border-white hover:bg-white/10; }
+  .btn-sm { @apply min-h-[2.75rem] px-4 text-sm; }
+
+  .card { @apply rounded-2xl bg-white shadow-[0_1px_2px_rgba(28,31,42,.06),0_12px_32px_-16px_rgba(28,31,42,.25)]; }
+  /* Hover lift uses `translate`, so it composes with the reveal transform */
+  .lift { transition: translate .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease; }
+  .lift:hover { translate: 0 -4px; box-shadow: 0 1px 2px rgba(28,31,42,.06), 0 22px 40px -18px rgba(28,31,42,.35); }
+  .icon-tile { @apply grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-red-tint text-brand-red; }
+  .icon-tile svg { @apply h-6 w-6; }
+
+  /* Highlight: white text with a red block under it (never red text on dark) */
+  .mark { background: linear-gradient(transparent 62%, #DB0000 62%, #DB0000 92%, transparent 92%); padding: 0 .08em; }
+
+  /* ---------- Hero ---------- */
+  .hero { @apply relative isolate bg-brand-midnight; }
+  .hero-media { @apply relative h-[168px] w-full overflow-hidden min-[380px]:h-[200px] sm:h-[260px]; }
+  .hero-media img { @apply h-full w-full object-cover; object-position: 62% 60%; }
+  .hero-media::after { content: ''; @apply absolute inset-0; background: linear-gradient(0deg, #2F2D2E 0%, rgba(47,45,46,0) 55%); }
+  @media (min-width: 1024px) {
+    .hero-media { position: absolute; top: 0; left: 50%; z-index: -1; height: min(100%, 690px); width: min(100%, 1500px); transform: translateX(-50%); }
+    .hero-media img { object-position: 78% 50%; }
+    .hero-media::after { background: linear-gradient(90deg, rgba(47,45,46,.96) 0%, rgba(47,45,46,.86) 34%, rgba(47,45,46,.35) 62%, rgba(47,45,46,.15) 100%), linear-gradient(0deg, #2F2D2E 0%, rgba(47,45,46,0) 26%); }
+  }
+  @media (min-width: 1501px) { .hero-media { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); } }
+
+  /* ---------- Find my fix widget ---------- */
+  .widget { @apply rounded-2xl bg-white p-5 text-brand-ink shadow-[0_30px_60px_-20px_rgba(0,0,0,.55)] sm:p-6; }
+  .dots { @apply flex gap-1.5; }
+  .dots i { @apply block h-2 w-2 rounded-full bg-brand-grey-300 transition-all duration-300; }
+  .dots i.on { @apply w-6 bg-brand-red; }
+  .sym { @apply flex min-h-[3.5rem] w-full items-center gap-3 rounded-xl border border-brand-grey-200 bg-white p-2.5 pr-3 text-left text-[0.92rem] font-heading leading-snug text-brand-midnight transition duration-200 hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md; }
+  .sym .sym-ic { @apply grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-grey-100 text-brand-midnight transition; }
+  .sym:hover .sym-ic { @apply bg-brand-red text-white; }
+  .sym .sym-ic svg { @apply h-5 w-5; }
+  .yn { @apply min-h-[3rem] flex-1 whitespace-nowrap rounded-[10px] border-2 border-brand-grey-300 bg-white px-4 font-heading text-brand-midnight transition hover:border-brand-midnight; }
+  .step-in { animation: stepIn .45s cubic-bezier(.22,1,.36,1); }
+  @keyframes stepIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+  .bubble { @apply relative rounded-xl bg-brand-grey-100 px-4 py-3 text-sm leading-relaxed text-brand-ink; }
+  .bubble::before { content: ''; @apply absolute -left-1.5 top-4 h-3 w-3 rotate-45 bg-brand-grey-100; }
+
+  /* ---------- Know your door ---------- */
+  .know-stage { @apply relative overflow-hidden rounded-3xl bg-brand-grey-50 p-3 ring-1 ring-brand-grey-200 sm:p-8 lg:p-10; background-image: radial-gradient(ellipse at 50% 35%, #FFFFFF 0%, rgba(255,255,255,0) 70%); }
+  .know-canvas { @apply relative; transition: transform .6s cubic-bezier(.22,1,.36,1); will-change: transform; }
+  .know-ill { @apply overflow-hidden rounded-2xl shadow-[0_24px_48px_-28px_rgba(28,31,42,.45)] ring-1 ring-brand-grey-200; }
+  /* Marker: 44px hit area, 28px visual dot that sits exactly on the part */
+  .kmark { @apply absolute z-10 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full; }
+  .kmark-dot { @apply relative grid h-7 w-7 place-items-center rounded-full bg-white text-[0.72rem] font-title text-brand-red shadow-[0_4px_14px_-2px_rgba(28,31,42,.35)] ring-1 ring-brand-grey-200 transition duration-300; }
+  .kmark-dot::after { content: ''; @apply absolute inset-0 rounded-full border-2 border-brand-red/50; animation: halo 2.4s ease-out infinite; }
+  .kmark:hover .kmark-dot { transform: scale(1.12); }
+  .kmark[aria-pressed='true'] .kmark-dot { @apply bg-brand-red text-white ring-brand-red; }
+  .kmark[aria-pressed='true'] .kmark-dot::after { @apply border-brand-red; }
+  @keyframes halo { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(1.9); } }
+  /* Thin leader line + label, shown on hover / keyboard focus */
+  .kmark-label { @apply pointer-events-none absolute left-[calc(100%+6px)] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg bg-brand-midnight px-2.5 py-1 text-xs font-heading text-white opacity-0 shadow-lg transition duration-200; }
+  .kmark-label::before { content: ''; @apply absolute right-full top-1/2 h-px w-3 bg-brand-midnight; }
+  .kmark-flip .kmark-label { @apply left-auto right-[calc(100%+6px)]; }
+  .kmark-flip .kmark-label::before { @apply left-full right-auto; }
+  .kmark:hover .kmark-label, .kmark:focus-visible .kmark-label { @apply opacity-100; }
+  .kmark:focus-visible { outline: none; }
+  .kmark:focus-visible .kmark-dot { @apply outline outline-[3px] outline-offset-2 outline-brand-red; }
+  .ktab { @apply flex min-h-[2.75rem] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl px-2.5 text-[0.85rem] font-heading text-brand-grey-700 transition duration-200 hover:text-brand-midnight sm:flex-1 sm:justify-center; }
+  .ktab-n { @apply text-[0.68rem] tracking-[0.06em] text-brand-grey-700 transition; }
+  .ktab[aria-selected='true'] { @apply bg-white text-brand-midnight shadow-[0_2px_8px_-2px_rgba(28,31,42,.2)]; }
+  .ktab[aria-selected='true'] .ktab-n { @apply text-brand-red; }
+  .kstep { @apply grid h-11 w-11 shrink-0 place-items-center rounded-full border border-brand-grey-300 bg-white text-brand-midnight transition hover:border-brand-midnight; }
+  .kfade { animation: kfade .5s cubic-bezier(.22,1,.36,1); }
+  @keyframes kfade { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Forms ---------- */
+  .field label { @apply mb-1.5 block text-sm font-heading text-brand-midnight; }
+  .field input, .field textarea, .field select {
+    @apply w-full rounded-[10px] border border-brand-grey-400 bg-white px-4 py-3 text-base text-brand-ink transition placeholder:text-brand-grey-600 focus:border-brand-midnight focus:outline-none focus:ring-4 focus:ring-brand-midnight/10;
+  }
+  .field [aria-invalid='true'] { @apply border-brand-red ring-4 ring-brand-red/10; }
+  .field-err { @apply mt-1.5 min-h-[1.1rem] text-[0.8rem] font-medium text-brand-red; }
+  .seg { @apply relative flex min-h-[2.9rem] cursor-pointer items-center justify-center whitespace-nowrap rounded-[10px] border border-brand-grey-400 px-2 text-center text-sm font-medium transition hover:border-brand-midnight; }
+  .seg:has(input:checked) { @apply border-brand-midnight bg-brand-midnight text-white; }
+  .seg:has(input:focus-visible) { @apply outline outline-[3px] outline-offset-2 outline-brand-red; }
+  [data-status][data-show='false'], [data-status]:empty { display: none; }
+  [data-emergency-hint] { display: none; }
+  [data-emergency-hint][data-show='true'] { display: flex; }
+
+  .faq { @apply rounded-xl border border-brand-grey-200 bg-white px-5 transition; }
+  .faq[open] { @apply border-brand-grey-300 shadow-sm; }
+  .faq summary { @apply flex min-h-[3.5rem] cursor-pointer list-none items-center justify-between gap-4 py-3 text-left font-heading text-brand-midnight; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq .pm { @apply relative grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-grey-100 transition; }
+  .faq .pm::before, .faq .pm::after { content: ''; @apply absolute h-0.5 w-3 rounded bg-brand-midnight transition duration-300; }
+  .faq .pm::after { transform: rotate(90deg); }
+  .faq[open] .pm { @apply bg-brand-red; }
+  .faq[open] .pm::before, .faq[open] .pm::after { @apply bg-white; }
+  .faq[open] .pm::after { transform: rotate(0); }
+
+  .star { @apply h-4 w-4 fill-brand-red; }
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+@layer utilities {
+  /* ---------- Door illustration (shared) ---------- */
+  .door-ill .pt .pf, .door-ill .pt .ps, .door-ill .panel { transition: fill .35s ease, stroke .35s ease; }
+  .door-ill .pt.on .pf { fill: #DB0000; }
+  .door-ill .pt.on .ps { stroke: #DB0000; }
+  .door-ill .pt.on .panel { stroke: #DB0000; stroke-width: 2.5; }
+  .door-ill .coil-a, .door-ill .coil-b, .door-ill .door, .door-ill .cable-t, .door-ill .cable-s, .door-ill .spark { transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .4s ease; transform-box: view-box; }
+  .door-ill .spark, .door-ill .cable-s { opacity: 0; }
+  .door-ill .beam { opacity: .35; }
+  .door-ill .pt.on .beam { opacity: 1; }
+  .door-ill[data-state='spring'] .coil-a, .door-ill[data-state='wontopen'] .coil-a { transform: translateX(-6px); }
+  .door-ill[data-state='spring'] .coil-b, .door-ill[data-state='wontopen'] .coil-b { transform: translateX(6px); }
+  .door-ill[data-state='spring'] .spark, .door-ill[data-state='wontopen'] .spark { opacity: 1; }
+  .door-ill[data-state='offtrack'] .door { transform: rotate(-4deg); transform-origin: 46px 216px; }
+  .door-ill[data-state='cable'] .cable-t.l { opacity: 0; }
+  .door-ill[data-state='cable'] .cable-s { opacity: 1; }
+  .door-ill[data-state='noisy'] .roller { animation: jitter .16s linear infinite; transform-box: fill-box; transform-origin: center; }
+  .door-ill[data-state='reverse'] .beam { animation: blink .8s steps(2, jump-none) infinite; }
+  .door-ill[data-state='opener'] .op-light, .door-ill[data-state='wontopen'] .op-light { fill: #DB0000; animation: flash 1s ease-in-out infinite; }
+  @keyframes jitter { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(1.2px, -.8px); } 75% { transform: translate(-1.2px, .8px); } }
+  @keyframes blink { 0% { opacity: 1; } 100% { opacity: .1; } }
+  @keyframes flash { 50% { opacity: .3; } }
+
+  /* ---------- Know your door illustration: selected part red, the rest dimmed ---------- */
+  .know-ill .kp, .know-ill .k-door { transition: opacity .5s ease, filter .5s ease; }
+  .know-ill .ks, .know-ill .kf, .know-ill .kf-soft, .know-ill .klight { transition: stroke .4s ease, fill .4s ease; }
+  [data-know-canvas][data-active] .kp:not(.on) { opacity: .5; }
+  [data-know-canvas][data-active] .k-door { opacity: .9; }
+  .know-ill .kp.on { filter: drop-shadow(0 0 6px rgba(219, 0, 0, .35)); }
+  .know-ill .kp.on .ks { stroke: #DB0000; }
+  .know-ill .kp.on .kf, .know-ill .kp.on .klight { fill: #DB0000; }
+  .know-ill .kp.on .kf-soft { fill: #FDF0F0; stroke: #DB0000; }
+  .know-ill .kbeam { opacity: .25; }
+  .know-ill .kp.on .kbeam { opacity: 1; }
+
+  /* Hero entrance on load; the widget rises a touch further */
+  .js .hero-in { animation: heroIn .8s cubic-bezier(.22,1,.36,1) var(--d, 0ms) both; }
+  .js .hero-in-widget { animation-name: heroInWidget; animation-duration: .9s; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes heroInWidget { from { opacity: 0; transform: translateY(28px) scale(.985); } }
+  /* Connector line draws in once */
+  .js .draw { transform: scaleX(0); transform-origin: left center; transition: transform 1.2s cubic-bezier(.22,1,.36,1) .25s; }
+  .js .draw.in { transform: none; }
+
+  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); transition-delay: var(--d, 0ms); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  @media (min-width: 1024px) { .rv-pad { padding-inline: max(2.5rem, calc((100vw - 1280px) / 2 + 2.5rem)); scroll-padding-inline: max(2.5rem, calc((100vw - 1280px) / 2 + 2.5rem)); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    .js .reveal, .js .draw { opacity: 1; transform: none; }
+    .lift:hover { translate: none; }
+    .sym:hover { transform: none; }
+    .door-ill[data-state='reverse'] .beam { opacity: 1; }
+  }
+}

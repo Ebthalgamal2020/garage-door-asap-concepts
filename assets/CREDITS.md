@@ -32,3 +32,28 @@ These are stock images for the design concepts, not photos of Garage Door ASAP j
 | `assets/img/c-wrench.jpg` | Gabriel Alenius | https://unsplash.com/photos/ijSV5Be3P3M |
 
 Brand assets in `assets/brand/` (`mr-asap-mascot.png`, `we-finance-badge.png`) are taken from the client's live website. `emblem.svg` is a vector redraw of the emblem on the mascot's shirt.
+
+## Client photography (garagedoorasapservice.com, downloaded 18 Oct 2026)
+
+Re-encoded only (never enlarged). Used by V1–V3. The banner is the live site's own homepage background.
+`brand-shifted-door` is a real shifted-door job from the live site's service pages (the blue mark on the house is in the original).
+
+| File | Size | Source on the live site |
+|---|---|---|
+| `assets/img/brand-home-banner.jpg` (+ `-sm` 900 w) | 1500×720 | `/wp-content/uploads/2019/06/gasapbg.jpg` (homepage hero) |
+| `assets/img/brand-shifted-door.jpg` (+ `-sm` 640 w) | 960×720 | `/wp-content/uploads/2019/06/1-1.jpg` (shifted door page) |
+| `assets/img/brand-springs-stock.jpg` | 600×368 | `/wp-content/uploads/2019/06/4.jpg` (spring page) |
+| `assets/img/brand-springs-pair.jpg` | 600×378 | `/wp-content/uploads/2019/06/5.jpg` (spring page) |
+| `assets/img/brand-parts-band.jpg` | 1200×280 | `/wp-content/uploads/2019/06/bgg.jpg` (dark parts banner) |
+
+Not used on purpose: `/2019/06/03.jpg` (a technician in a manufacturer-branded glove). It looks like a manufacturer's stock image, so it shouldn't be presented as a Garage Door ASAP technician.
+
+### Added for V2 (round 3), also from garagedoorasapservice.com
+
+| File | Size | Source on the live site |
+|---|---|---|
+| `assets/img/brand-crew-trucks.jpg` (+ `-sm` 640 w) | 960×720 | `/wp-content/uploads/2019/07/56721522_876580286017153_5149141118994087936_n.jpg`. Crew with branded trucks outside the shop; it appears on about 98 pages of the live site and its filename shows it came from the company's Facebook |
+| `assets/img/brand-job-spring-a.jpg` (+ `-sm` 800 w) | 1600×1200 | `/wp-content/uploads/2019/08/WhatsApp-Image-2019-05-23-at-8.43.27-PM.jpeg` (spring replacement page, Leesburg) |
+| `assets/img/brand-job-spring-b.jpg` (+ `-sm` 800 w) | 1600×1200 | `/wp-content/uploads/2019/08/Broken-Garage-Door-Spring.jpeg` (spring replacement page, Leesburg) |
+
+These were found after comparing with a teammate's demo repo (github.com/bassem1sttest/garage-door-asap-service-demos), then traced back to and downloaded from the client's own site.

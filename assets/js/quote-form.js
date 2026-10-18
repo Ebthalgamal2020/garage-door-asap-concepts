@@ -9,6 +9,8 @@
  *
  * Markup contract (inside a <form data-form novalidate>):
  *   - inputs with name="name|phone|email|city|message" (+ optional select[data-service-select])
+ *   - or the approved short form (V1–V3): name, phone, city, select name="problem" (required),
+ *     textarea name="details" (optional), radios name="timing" [data-urgency]
  *   - error element referenced by each input's aria-describedby (id ending in "-err")
  *   - optional radios [data-urgency] + [data-emergency-hint]
  *   - [data-status] live region for the result
@@ -30,7 +32,9 @@
     email: (v) => (!v.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'That email address doesn’t look right — please check it, or leave it blank.'),
     city: (v) => (v.trim().length >= 2 ? '' : 'Please tell us which city the door is in.'),
     zip: (v) => (/^\d{5}$/.test(v.trim()) ? '' : 'Please enter a 5-digit ZIP code.'),
-    message: (v) => (v.trim().length >= 10 ? '' : 'Please describe the problem in a few words (at least 10 characters).')
+    message: (v) => (v.trim().length >= 10 ? '' : 'Please describe the problem in a few words (at least 10 characters).'),
+    problem: (v) => (v ? '' : 'Please choose the problem, or “Not sure”.'),
+    details: (v) => (v.length <= 1000 ? '' : 'Please keep the details under 1,000 characters.')
   };
 
   function errorEl(input) {
@@ -64,12 +68,15 @@
       data.city ? `City: ${data.city}` : null,
       data.zip ? `ZIP: ${data.zip}` : null,
       data.service ? `Service: ${data.service}` : null,
-      data.urgency ? `Timing: ${data.urgency}` : null,
-      '',
-      'Problem:',
-      data.message
+      data.problem ? `Problem: ${data.problem}` : null,
+      data.urgency || data.timing ? `Timing: ${data.urgency || data.timing}` : null,
+      data.message !== undefined ? '' : null,
+      data.message !== undefined ? 'Problem:' : null,
+      data.message !== undefined ? data.message : null,
+      data.details ? '' : null,
+      data.details ? `Details: ${data.details}` : null
     ].filter((l) => l !== null);
-    const subject = `Quote request — ${data.service || 'Garage door'} — ${data.city || data.zip || ''}`.replace(/ — $/, '');
+    const subject = `Quote request — ${data.service || data.problem || 'Garage door'} — ${data.city || data.zip || ''}`.replace(/ — $/, '');
     return `mailto:${BUSINESS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
   }
 
@@ -83,7 +90,7 @@
       onReady: null
     }, opts);
     const status = form.querySelector('[data-status]');
-    const fields = [...form.querySelectorAll('input[name], textarea[name]')].filter((f) => rules[f.name]);
+    const fields = [...form.querySelectorAll('input[name], textarea[name], select[name]')].filter((f) => rules[f.name]);
     let attempted = false;
 
     fields.forEach((f) => {
@@ -91,7 +98,7 @@
         if (f.name === 'phone') formatPhone(f);
         if (attempted || f.value) validateField(f);
       });
-      f.addEventListener('input', () => {
+      f.addEventListener(f.tagName === 'SELECT' ? 'change' : 'input', () => {
         if (f.getAttribute('aria-invalid') === 'true') validateField(f);
       });
     });
@@ -165,7 +172,7 @@
       select.value = opt ? opt.value : '';
       select.dispatchEvent(new Event('change', { bubbles: true }));
     }
-    const msg = form.querySelector('[name="message"]');
+    const msg = form.querySelector('[name="message"], [name="details"]');
     if (msg && message && !msg.value.trim()) msg.value = message;
     if (urgency) {
       const r = [...form.querySelectorAll('[data-urgency]')].find((x) => x.value === urgency);

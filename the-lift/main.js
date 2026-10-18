@@ -33,6 +33,19 @@
     : null;
   $$('.reveal').forEach((el) => (io ? io.observe(el) : el.classList.add('in')));
 
+  /* ---------- Trust ribbon numbers count up once, when seen ---------- */
+  const counters = $$('[data-count]');
+  if (io && counters.length) {
+    const cio = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      const el = e.target, end = parseFloat(el.dataset.count), dec = (el.dataset.count.split('.')[1] || '').length, t0 = performance.now();
+      const step = (now) => { const t = Math.min(1, (now - t0) / 1400); el.textContent = (end * (1 - Math.pow(1 - t, 3))).toFixed(dec); if (t < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }), { threshold: 0.6 });
+    counters.forEach((c) => cio.observe(c));
+  }
+
   /* ---------- Hero arch: gentle parallax on the photo ---------- */
   const arch = $('[data-parallax] img');
   if (arch && !reduced) {
@@ -83,27 +96,40 @@
   ];
   const PART_TO_SYMPTOM = { spring: 'spring', cables: 'cable', opener: 'hum', track: 'offtrack', rollers: 'noisy', sensors: 'reverse' };
 
-  const symList = $('[data-symptoms]');
+  // Small line icons per symptom (24×24, stroke)
+  const ICONS = {
+    spring: 'M2 12h2.5l1.5-5 3 10 3-10 3 10 3-10 1.5 5H22',
+    cable: 'M6 3v8a3 3 0 0 0 3 3h1M18 21v-8a3 3 0 0 0-3-3h-1M11.5 13.5l1-1',
+    offtrack: 'M3 21h18M5 21 7 7l12 3-1.5 11M7.5 12.5l10 2.2',
+    hum: 'M3 5h18v7H3zM7 12v3M17 12v3M9 19h6',
+    reverse: 'M4 8h13l-3-3M20 16H7l3 3',
+    noisy: 'M4 9v6h4l5 4V5L8 9H4ZM17 9.5a3.5 3.5 0 0 1 0 5M19.5 7a7 7 0 0 1 0 10',
+    old: 'M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z',
+    tuneup: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6Z'
+  };
+  const symLists = { urgent: $('[data-symptoms="urgent"]'), routine: $('[data-symptoms="routine"]') };
   const diagram = $('[data-diagram]');
   const result = $('[data-result]');
   const form = $('[data-form]');
 
-  SYMPTOMS.forEach((s, i) => {
+  SYMPTOMS.forEach((s) => {
     const li = document.createElement('li');
-    li.innerHTML = `<button type="button" class="symptom flex w-full items-center gap-3 rounded-full bg-white py-2 pl-2 pr-5 text-left text-[0.95rem] font-medium text-brand-midnight ring-1 ring-brand-grey-200 transition hover:ring-brand-midnight" aria-pressed="false" data-symptom="${s.id}">
-      <span class="sym-n grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-grey-100 text-xs font-title transition">${String(i + 1).padStart(2, '0')}</span><span></span></button>`;
-    li.querySelector('span:last-child').textContent = s.label;
-    symList.append(li);
+    li.innerHTML = `<button type="button" class="symptom group flex w-full items-center gap-3 rounded-2xl py-2 pl-2 pr-3 text-left text-[0.95rem] font-medium text-brand-midnight transition hover:bg-brand-grey-50" aria-pressed="false" data-symptom="${s.id}">
+      <span class="sym-ic grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-grey-100 transition"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[s.id]}"/></svg></span>
+      <span class="flex-1" data-label></span>
+      <svg class="sym-chev h-4 w-4 shrink-0 text-brand-grey-500 transition" aria-hidden="true"><use href="#i-arrow"/></svg></button>`;
+    li.querySelector('[data-label]').textContent = s.label;
+    symLists[s.urgent ? 'urgent' : 'routine'].append(li);
   });
 
   function renderResult(s) {
     result.classList.remove('result-swap'); void result.offsetWidth; result.classList.add('result-swap');
     result.innerHTML = `
-      <div class="grid gap-7 ${s.img ? 'md:grid-cols-[1.25fr_1fr]' : ''}">
+      <div class="grid items-center gap-7 ${s.img ? 'md:grid-cols-[1.3fr_1fr] lg:gap-10' : ''}">
         <div>
           <div class="flex flex-wrap items-center gap-2">
             <span class="rounded-full px-3 py-1 text-xs font-title ${s.urgent ? 'bg-brand-red text-white' : 'bg-white/10 text-white'}">${s.urgent ? 'Urgent · call now' : 'Book a visit'}</span>
-            <span class="text-xs text-brand-grey-400">Likely fix</span>
+            <span class="text-xs text-brand-grey-400">Likely fix for “<span data-r-sym></span>”</span>
           </div>
           <h3 class="mt-4 text-2xl font-title text-white sm:text-3xl" data-r-title></h3>
           <p class="mt-3 text-[0.95rem] leading-relaxed text-brand-grey-400" data-r-text></p>
@@ -114,14 +140,19 @@
               : '<a href="#quote" class="btn btn-red min-h-[3rem] px-5 text-sm" data-book>Book this fix<svg class="nudge"><use href="#i-arrow"/></svg></a><a href="tel:+18777877121" class="btn btn-ghost-light min-h-[3rem] px-5 text-sm"><svg><use href="#i-phone"/></svg>Call</a>'}
           </div>
         </div>
-        ${s.img ? `<figure class="self-stretch"><img class="h-full max-h-72 w-full rounded-3xl object-cover md:max-h-none" loading="lazy" data-r-img><figcaption class="sr-only">Photo from a Garage Door ASAP job</figcaption></figure>` : ''}
+        ${s.img ? `<figure class="arch relative mx-auto aspect-square w-full max-w-[17rem] bg-white/5 ring-1 ring-white/10" data-r-fig><img class="absolute inset-0 h-full w-full object-cover" loading="lazy" data-r-img><figcaption class="sr-only">Photo from the Garage Door ASAP website</figcaption></figure>` : ''}
       </div>`;
     $('[data-r-title]', result).textContent = s.service;
+    $('[data-r-sym]', result).textContent = s.label;
     $('[data-r-text]', result).textContent = s.text;
     $('[data-r-tip]', result).textContent = s.tip;
     const img = $('[data-r-img]', result);
-    if (img) { img.src = s.img; img.alt = s.alt; }
-    $('[data-book]', result).addEventListener('click', () => prefillForm({ service: s.service, urgency: s.urgent ? 'Emergency — today' : undefined }));
+    if (img) {
+      // The client's photos are small: cap the square frame at the photo's own pixels so it is never enlarged
+      img.addEventListener('load', () => { $('[data-r-fig]', result).style.maxWidth = Math.min(272, img.naturalWidth, img.naturalHeight) + 'px'; }, { once: true });
+      img.src = s.img; img.alt = s.alt;
+    }
+    $('[data-book]', result).addEventListener('click', () => prefillForm({ service: s.service, urgency: s.urgent ? 'Emergency — as soon as possible' : undefined }));
   }
 
   function selectSymptom(id) {
@@ -134,7 +165,12 @@
     renderResult(s);
   }
 
-  symList.addEventListener('click', (e) => { const b = e.target.closest('[data-symptom]'); if (b) selectSymptom(b.dataset.symptom); });
+  Object.values(symLists).forEach((list) => list.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-symptom]');
+    if (!b) return;
+    selectSymptom(b.dataset.symptom);
+    if (innerWidth < 1024) result.scrollIntoView({ behavior: smooth, block: 'nearest' });
+  }));
   $$('[data-hotspot]').forEach((h) => h.addEventListener('click', () => selectSymptom(PART_TO_SYMPTOM[h.dataset.hotspot])));
   $$('[data-pick]').forEach((a) => a.addEventListener('click', () => selectSymptom(a.dataset.pick)));
   selectSymptom('spring');
@@ -310,14 +346,4 @@
     prefillForm({ service: $('[data-quick-service]').value, phone: quickPhone.value });
   });
 
-  /* ---------- Mobile contact bar: hide while the quote form or footer call is on screen ---------- */
-  const bar = $('[data-mobile-bar]');
-  if ('IntersectionObserver' in window) {
-    const seen = new Set();
-    const bio = new IntersectionObserver((es) => {
-      es.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
-      bar.style.transform = seen.size ? 'translateY(140%)' : '';
-    });
-    bio.observe(form);
-  }
 })();

@@ -5,11 +5,22 @@ Homepage redesign concepts for [garagedoorasapservice.com](https://garagedoorasa
 
 ## Review links
 
+### Round 2: the three current concepts
+
+**Preview page with all three (start here): https://ebthalgamal2020.github.io/garage-door-asap-concepts/**
+
+| Concept | Live preview |
+|---|---|
+| **V1 — The Lift** | https://ebthalgamal2020.github.io/garage-door-asap-concepts/the-lift/ |
+| **V2 — The Signature** | https://ebthalgamal2020.github.io/garage-door-asap-concepts/v2-the-signature/ |
+| **V3 — The Garage Door Lab** | https://ebthalgamal2020.github.io/garage-door-asap-concepts/v3-garage-door-lab/ |
+
+### Round 1 (earlier concepts, kept for reference; tag `concepts-v1`)
+
 Verified live on 18 October 2026 (each returns HTTP 200 and renders without errors at desktop and mobile widths):
 
 | Page | Link |
 |---|---|
-| **Concept hub (start here)** | https://ebthalgamal2020.github.io/garage-door-asap-concepts/ |
 | A — Classic Chic | https://ebthalgamal2020.github.io/garage-door-asap-concepts/a-classic-chic/ |
 | B — Modern Architectural | https://ebthalgamal2020.github.io/garage-door-asap-concepts/b-modern-architectural/ |
 | C — Modern Friendly | https://ebthalgamal2020.github.io/garage-door-asap-concepts/c-modern-friendly/ |
@@ -32,6 +43,9 @@ npm start          # zero-dependency static server → http://localhost:5173
 | Route | Concept |
 |---|---|
 | `/` | Concept hub: previews, verified facts and open questions for the client |
+| `/the-lift/` | **V1 — The Lift** (round 2) |
+| `/v2-the-signature/` | **V2 — The Signature** (round 2) |
+| `/v3-garage-door-lab/` | **V3 — The Garage Door Lab** (round 2) |
 | `/a-classic-chic/` | A — Classic |
 | `/b-modern-architectural/` | B — Modern Architectural |
 | `/c-modern-friendly/` | C — Modern Friendly |

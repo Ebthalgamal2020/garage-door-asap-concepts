@@ -1,4 +1,8 @@
-# The Lift — Garage Door ASAP homepage (local preview, not published)
+# V1 · The Lift — Garage Door ASAP homepage
+
+Status: published on GitHub Pages with V2 and V3 (round 2), at the user's request on 18 Oct 2026.
+Round 2 added the announcement bar, the emergency vs. not-urgent hero, the approved short form, the always-visible mobile call bar,
+the redesigned fix finder (symptoms grouped by urgency, one connected diagram + answer panel), and restrained motion.
 
 One creative idea runs through the page: **the bend of a garage-door track**. The same curve shapes the section edges
 (each one sweeps in as it scrolls into view), the arch-topped photo frame, the hero door rolling up, the "How it works"
@@ -13,9 +17,9 @@ red `#DB0000`, deep red `#AD2529` (hover), charcoal `#2F2D2E`, ink `#1C1F2A`, th
 Font: Poppins (declared by the live theme; loaded here from Google Fonts because the live site never loads it).
 
 ## Section order (K1 Mobile Tyres journey)
-Header → Hero (call + two-field quick quote) → Trust ribbon → About (before/after slider) → Services: door diagram + fix finder →
+Announcement bar → Header → Hero (split: "Emergency right now?" call vs. "Not urgent?" two-field quick quote) → Trust ribbon → About (before/after slider) → Services: door diagram + fix finder →
 How it works → Why choose us (guarantees, financing) → Service areas → Google reviews → Emergency → FAQ → Quote form → Footer,
-plus a mobile contact bar.
+plus a mobile contact bar that stays visible at all times below 1024 px (scroll padding keeps focused fields clear of it).
 
 ## Content sources (verified 18 Oct 2026)
 | Item | Source |
@@ -23,7 +27,7 @@ plus a mobile contact bar.
 | Phone (877) 787-7121, address, email | garagedoorasapservice.com homepage (email decoded from the site's protected link) |
 | 30+ years, family owned, same-day, 24/7, licensed/bonded/insured, best price & 100% satisfaction guarantees, lifetime warranty on all parts, American-made, cable replacement | live homepage and /about |
 | Financing: no payment, no interest for 25 months | "We Finance" badge on the live site |
-| 73 cities, 6 counties | city list in the live site footer |
+| 73 cities | city list in the live site footer (county claims removed until the client confirms them) |
 | Google 4.7★, 1,337 reviews, review texts | Google Business Profile, read 18 Oct 2026 |
 
 Open discrepancy for the client: /about and /contact show (877) 919-7828; the homepage and this page use (877) 787-7121.
