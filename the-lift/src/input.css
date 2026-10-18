@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * "The Lift" — one shape language: the bend of a garage-door track.
+ * --track is the bend radius used for section edges, arch frames and the steps line.
+ */
+@layer base {
+  :root { --track: clamp(48px, 8vw, 140px); }
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white font-brand text-brand-ink antialiased; font-feature-settings: 'tnum' 0; }
+  h1, h2, h3, h4 { @apply font-heading text-brand-midnight; letter-spacing: -0.02em; line-height: 1.15; }
+  ::selection { @apply bg-brand-red text-white; }
+  :focus-visible { @apply outline outline-[3px] outline-offset-[3px] outline-brand-red; }
+  [hidden] { display: none !important; }
+  .tnum { font-variant-numeric: tabular-nums; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-4 sm:px-6 lg:px-10; }
+
+  .kicker { @apply mb-5 flex items-center gap-3 text-[0.72rem] font-title uppercase tracking-[0.2em] text-brand-red; }
+  .kicker::before { content: ''; @apply h-[2px] w-8 rounded-full bg-current; }
+  .kicker-light { @apply text-white; }
+  .kicker-muted { @apply text-brand-grey-400; }
+  .h2 { @apply text-[clamp(2rem,4.2vw,3.5rem)] font-title; letter-spacing: -0.03em; line-height: 1.06; }
+  .lead { @apply text-base leading-relaxed text-brand-grey-700 sm:text-lg; }
+
+  /* Pill buttons — fluid, never sharp */
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-2.5 rounded-full px-7 text-[0.95rem] font-heading transition duration-300 ease-glide; }
+  .btn svg { @apply h-5 w-5 shrink-0 transition-transform duration-300 ease-glide; }
+  .btn:hover svg.nudge { transform: translateX(3px); }
+  .btn-red { @apply bg-brand-red text-white shadow-[0_10px_30px_-12px_rgba(219,0,0,.65)] hover:bg-brand-red-deep; }
+  .btn-dark { @apply bg-brand-midnight text-white hover:bg-brand-ink; }
+  .btn-white { @apply bg-white text-brand-midnight hover:bg-brand-grey-100; }
+  .btn-ghost { @apply border border-brand-grey-400 text-brand-midnight hover:border-brand-midnight; }
+  .btn-ghost-light { @apply border border-white/40 text-white hover:border-white hover:bg-white/10; }
+
+  /* Section edge that bends like the track. Sections never overlap content: the area outside the curve is
+     filled with the previous section's colour (--prev) by an upward shadow that the earlier section covers. */
+  .bend { @apply relative; padding-top: calc(var(--track) * .55 + 3rem); box-shadow: 0 calc(var(--track) * -1) 0 0 var(--prev, #fff); }
+  .bend-l { border-top-left-radius: var(--track); }
+  .bend-r { border-top-right-radius: var(--track); }
+
+  /* Arch-topped frame: the opening a garage door rolls up into */
+  .arch { border-radius: 50% 50% 28px 28px / 34% 34% 28px 28px; overflow: hidden; isolation: isolate; }
+
+  .field label { @apply mb-1.5 block text-sm font-heading text-brand-midnight; }
+  .field input, .field textarea, .field select {
+    @apply w-full rounded-2xl border border-brand-grey-400 bg-white px-4 py-3 text-base text-brand-ink transition placeholder:text-brand-grey-600 focus:border-brand-midnight focus:outline-none focus:ring-4 focus:ring-brand-midnight/10;
+  }
+  .field [aria-invalid='true'] { @apply border-brand-red ring-4 ring-brand-red/10; }
+  .field-err { @apply mt-1.5 min-h-[1.1rem] text-[0.8rem] font-medium text-brand-red; }
+  .seg { @apply relative flex cursor-pointer items-center justify-center rounded-full border border-brand-grey-400 px-3 py-2.5 text-center text-sm font-medium transition; }
+  .seg:has(input:checked) { @apply border-brand-midnight bg-brand-midnight text-white; }
+  .seg:has(input:focus-visible) { @apply outline outline-[3px] outline-offset-2 outline-brand-red; }
+  [data-status][data-show='false'], [data-status]:empty { display: none; }
+  [data-emergency-hint] { display: none; }
+  [data-emergency-hint][data-show='true'] { display: flex; }
+
+  .faq summary { @apply flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-left text-base font-heading text-brand-midnight sm:text-lg; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq .pm { @apply relative h-9 w-9 shrink-0 rounded-full bg-brand-grey-100 transition duration-300; }
+  .faq .pm::before, .faq .pm::after { content: ''; @apply absolute left-1/2 top-1/2 h-0.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded bg-brand-midnight transition duration-300; }
+  .faq .pm::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .faq[open] .pm { @apply bg-brand-red; }
+  .faq[open] .pm::before { @apply bg-white; }
+  .faq[open] .pm::after { @apply bg-white; transform: translate(-50%, -50%) rotate(0); }
+
+  .star { @apply h-4 w-4 fill-brand-red; }
+}
+
+@layer utilities {
+  /* ---------- Hero: sectional door rolls up into the arch on load ---------- */
+  .door { display: grid; grid-template-rows: repeat(5, 1fr); }
+  .door span { background: linear-gradient(#FFFFFF, #EFF0F2 70%, #E6E8EA); border-bottom: 1px solid #C0C2C6; box-shadow: inset 0 1px 0 #fff; }
+  .door span:nth-child(odd) { background: linear-gradient(#F6F7F8, #E6E8EA); }
+  .js .door { animation: rollup 1.6s cubic-bezier(.65,0,.2,1) .35s forwards; transform-origin: top; }
+  .no-js .door { display: none; }
+  @keyframes rollup { 0% { transform: translateY(0); } 100% { transform: translateY(-104%); } }
+
+  /* Mascot entrance */
+  .js .hero-mascot { opacity: 0; transform: translateY(24px); animation: rise 1s cubic-bezier(.22,1,.36,1) 1.15s forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* Track line drawn in the hero background */
+  .js .track-draw path { stroke-dasharray: var(--len, 2200); stroke-dashoffset: var(--len, 2200); animation: draw 2.2s cubic-bezier(.65,0,.2,1) .2s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  /* Scroll reveals */
+  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); transition-delay: var(--d, 0ms); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* Section bends grow as they scroll in (Chrome/Edge/Safari 18+; static radius elsewhere) */
+  @supports (animation-timeline: view()) {
+    .bend-l { animation: bendL linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .bend-r { animation: bendR linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    @keyframes bendL { from { border-top-left-radius: calc(var(--track) * .25); } to { border-top-left-radius: var(--track); } }
+    @keyframes bendR { from { border-top-right-radius: calc(var(--track) * .25); } to { border-top-right-radius: var(--track); } }
+  }
+
+  /* Door diagram */
+  .part { transition: opacity .4s ease, stroke .4s ease, fill .4s ease; }
+  [data-diagram][data-active] .part { opacity: .35; }
+  [data-diagram][data-active] .part.on { opacity: 1; }
+  .part.on .hl { stroke: #DB0000; }
+  .part.on .hlf { fill: #DB0000; }
+  /* Labelled hotspot pill: the number sits exactly on the part, the label reads outward */
+  .hotspot { @apply absolute flex items-center gap-2 rounded-full bg-white p-1 text-xs font-heading text-brand-midnight shadow-[0_6px_20px_-6px_rgba(28,31,42,.4)] ring-1 ring-brand-grey-200 transition duration-300 sm:pr-3.5; transform: translate(-18px, -50%); }
+  .hotspot-flip { @apply flex-row-reverse sm:pl-3.5 sm:pr-1; transform: translate(calc(-100% + 18px), -50%); }
+  .hotspot .hs-n { @apply relative grid h-7 w-7 place-items-center rounded-full bg-brand-midnight text-[0.7rem] font-title text-white transition duration-300; }
+  .hotspot .hs-n::after { content: ''; @apply absolute inset-0 rounded-full border-2 border-brand-red opacity-0; }
+  .hotspot .hs-label { @apply hidden sm:inline; }
+  .hotspot:hover { @apply ring-brand-midnight; }
+  .hotspot[aria-pressed='true'] { @apply bg-brand-red text-white ring-brand-red; }
+  .hotspot[aria-pressed='true'] .hs-n { @apply bg-white text-brand-red; }
+  .hotspot[aria-pressed='true'] .hs-n::after { animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes ping { 0% { opacity: .8; transform: scale(1); } 100% { opacity: 0; transform: scale(1.9); } }
+  .symptom[aria-pressed='true'] { @apply bg-brand-midnight text-white; }
+  .symptom[aria-pressed='true'] .sym-n { @apply bg-brand-red text-white; }
+  .result-swap { animation: swap .5s cubic-bezier(.22,1,.36,1); }
+  @keyframes swap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* Before / after slider */
+  .ba { --pos: 50%; }
+  .ba .ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba .ba-handle { left: var(--pos); }
+
+  /* Steps track */
+  .steps-line { stroke-dasharray: var(--len); stroke-dashoffset: calc(var(--len) * (1 - var(--p, 0))); }
+
+  /* Rating ring */
+  .ring-fill { stroke-dasharray: var(--c); stroke-dashoffset: var(--c); transition: stroke-dashoffset 1.8s cubic-bezier(.65,0,.2,1); }
+  .ring-on .ring-fill { stroke-dashoffset: calc(var(--c) * (1 - var(--v))); }
+
+  /* Emergency mascot float */
+  .float { animation: float 6s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-12px); } }
+
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    .js .reveal { opacity: 1; transform: none; }
+  }
+}
+
+@layer utilities {
+  /* Reviews rail aligns its first card with the page content, then bleeds to the right edge */
+  @media (min-width: 1024px) { .rv-pad { padding-inline: max(2.5rem, calc((100vw - 1280px) / 2 + 2.5rem)); scroll-padding-inline: max(2.5rem, calc((100vw - 1280px) / 2 + 2.5rem)); } }
+}
