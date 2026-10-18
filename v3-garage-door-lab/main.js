@@ -298,7 +298,6 @@
         <div class="mt-7 flex flex-wrap items-center gap-2 border-t border-brand-grey-200 pt-5">
           <button type="button" class="btn btn-outline btn-sm px-3" data-know-check>Check this in Find my fix</button>
           <a href="#quote" class="btn btn-red btn-sm px-3.5" data-know-book>Book<span class="sr-only">: ${esc(p.service)}</span></a>
-          <a href="${TEL}" class="inline-flex min-h-[2.75rem] items-center gap-1.5 whitespace-nowrap px-2 text-sm font-heading text-brand-midnight hover:text-brand-red"><svg class="h-4 w-4 text-brand-red" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
         </div>
       </div></div>`;
     $('[data-know-book]', panel).addEventListener('click', () => prefillForm({ service: p.service }));
@@ -343,50 +342,288 @@
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); rv.scrollBy({ left: cardStep() * (e.key === 'ArrowRight' ? 1 : -1), behavior: smooth }); }
   });
 
-  /* ---------- Service areas (73 cities listed on garagedoorasapservice.com) ---------- */
-  const CITIES = ['Orlando', 'Kissimmee', 'The Villages', 'Clermont', 'Apopka', 'Winter Garden', 'Winter Park', 'Sanford', 'Casselberry',
-    'Oviedo', 'Lake Mary', 'Altamonte Springs', 'Longwood', 'Windermere', 'Leesburg', 'Ocoee', 'Pine Hills', 'Groveland', 'Eustis',
-    'Maitland', 'Wildwood', 'Minneola', 'Mount Dora', 'Tavares', 'Lockhart', 'Saint Cloud', 'Winter Springs', 'Coleman', 'Umatilla',
-    'Fruitland Park', 'Lady Lake', 'Bushnell', 'Mascotte', 'Grand Island', 'Webster', 'Montverde', 'Astatula', 'Fairview Shores',
-    'Center Hill', 'Oakland', 'Gotha', 'Davenport', 'Doctor Phillips', 'Deltona', 'DeBary', 'Sorrento', 'Hunters Creek',
-    'Howey-in-the-Hills', 'Heathrow', 'Buena Ventura Lakes', 'Belle Isle', 'Meadow Woods', 'Azalea Park', 'Poinciana', 'Oak Ridge',
-    'Union Park', 'Ormond Beach', 'Ormond-by-the-Sea', 'Daytona Beach', 'Holly Hill', 'Port Orange', 'Edgewater', 'New Smyrna Beach',
-    'Orange City', 'Palm Coast', 'South Daytona', 'DeLand', 'Ponce Inlet', 'Lake Helen', 'Melbourne', 'Rockledge', 'Titusville',
-    'Flagler Beach'];
-  const PREVIEW = 18;
-  const norm = (s) => s.toLowerCase().replace(/^st\.?\s/, 'saint ').replace(/[^a-z]/g, '');
-  const areaList = $('[data-area-list]');
-  const datalist = $('[data-area-datalist]');
-  $('[data-area-count]').textContent = CITIES.length;
-  CITIES.forEach((c, i) => {
-    const li = document.createElement('li');
-    li.className = 'flex items-center gap-2';
-    li.innerHTML = '<svg class="h-4 w-4 shrink-0 text-brand-red" aria-hidden="true"><use href="#i-pin"/></svg>';
-    li.append(c);
-    if (i >= PREVIEW) li.hidden = true;
-    areaList.append(li);
-    const o = document.createElement('option'); o.value = c; datalist.append(o);
-  });
-  const areaToggle = $('[data-area-toggle]');
-  areaToggle.addEventListener('click', () => {
-    const open = areaToggle.getAttribute('aria-expanded') !== 'true';
-    $$('li', areaList).forEach((li, i) => { if (i >= PREVIEW) li.hidden = !open; });
-    areaToggle.setAttribute('aria-expanded', String(open));
-    areaToggle.querySelector('span').textContent = open ? 'Show fewer cities' : `Show all ${CITIES.length} cities`;
-    areaToggle.querySelector('svg').classList.toggle('-rotate-90', open);
-    areaToggle.querySelector('svg').classList.toggle('rotate-90', !open);
-  });
-  const areaForm = $('[data-area-form]');
-  const areaResult = $('[data-area-result]');
-  areaForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const q = areaForm.area.value.trim();
-    if (!q) { areaResult.className = 'mt-3 min-h-[1.5rem] text-sm font-medium text-brand-red'; areaResult.textContent = 'Please type a city name.'; return; }
-    const hit = CITIES.find((c) => norm(c) === norm(q));
-    areaResult.className = 'mt-3 min-h-[1.5rem] text-sm ' + (hit ? 'font-medium text-brand-midnight' : 'text-brand-grey-700');
-    areaResult.textContent = hit
-      ? `Yes, we serve ${hit}. Call ${PHONE} or request a quote below.`
-      : `${q} isn’t on our list, but we often help nearby towns. Call ${PHONE} to check.`;
+  /* =====================================================================
+     Service areas: distance radar. Data from ../assets/data/service-area.js (window.GDA_AREA):
+     73 cities from garagedoorasapservice.com, miles = straight-line distance from the Clermont base.
+     ===================================================================== */
+  const AREA = window.GDA_AREA;
+  const radar = $('[data-radar]');
+  if (AREA && radar) {
+    const B = AREA.base;
+    const CITY = AREA.cities;
+    const VB = [40, 60, 900, 960];
+    // SVG units per mile, measured from the data itself
+    const per = CITY.filter((c) => c.miles > 0).map((c) => Math.hypot(c.x - B.x, c.y - B.y) / c.miles);
+    const UPM = per.reduce((a, b) => a + b, 0) / per.length;
+    const RINGS = [15, 30, 45, 60, 75];
+    const LABELLED = ['Orlando', 'Kissimmee', 'The Villages', 'Sanford', 'Leesburg', 'Daytona Beach', 'Palm Coast', 'Melbourne'];
+    const norm = (s) => s.toLowerCase().replace(/^st\.?\s/, 'saint ').replace(/[^a-z]/g, '');
+    const byName = new Map(CITY.map((c) => [norm(c.name), c]));
+    const MINOR_CITY = ['Kissimmee', 'Sanford', 'Leesburg', 'Palm Coast'];   // hidden on small phones
+    const MINOR_RING = [15, 45, 75];
+    // Bearing of each city from the base: 0° = north, clockwise (the direction the beam turns)
+    const bearing = (x, y) => (Math.atan2(y - B.y, x - B.x) * 180 / Math.PI + 450) % 360;
+    const BEAR = CITY.map((c) => bearing(c.x, c.y));
+    const BEAM_R = Math.max(...[[VB[0], VB[1]], [VB[0] + VB[2], VB[1]], [VB[0], VB[1] + VB[3]], [VB[0] + VB[2], VB[1] + VB[3]]].map(([x, y]) => Math.hypot(x - B.x, y - B.y)));
+    const at = (deg, r = BEAM_R) => [B.x + r * Math.sin(deg * Math.PI / 180), B.y - r * Math.cos(deg * Math.PI / 180)].map((v) => v.toFixed(1)).join(' ');
+    // A soft trailing wedge: 16 thin slices that fade out behind the leading edge
+    const beamSlices = Array.from({ length: 16 }, (_, i) => `<path d="M${B.x} ${B.y}L${at(-(i + 1) * 2.5)}A${BEAM_R.toFixed(0)} ${BEAM_R.toFixed(0)} 0 0 1 ${at(-i * 2.5)}Z" fill="#DB0000" fill-opacity="${(0.16 * (1 - i / 16)).toFixed(3)}"/>`).join('');
+
+    radar.innerHTML = `
+      <svg viewBox="${VB.join(' ')}" class="block h-auto w-full" role="img" aria-labelledby="radar-title">
+        <title id="radar-title">Map of Central Florida with distance rings around our Clermont base and the 73 cities we serve</title>
+        <defs>
+          <clipPath id="rd-clip"><rect x="${VB[0]}" y="${VB[1]}" width="${VB[2]}" height="${VB[3]}"/></clipPath>
+        </defs>
+        <rect x="${VB[0]}" y="${VB[1]}" width="${VB[2]}" height="${VB[3]}" fill="#FFFFFF"/>
+        <g clip-path="url(#rd-clip)">
+          <path d="${AREA.florida}" fill="#EFF0F2" stroke="#E1E2E5" stroke-width="1.5" stroke-linejoin="round"/>
+          <g class="rd-rings">${RINGS.map((m) => `<circle cx="${B.x}" cy="${B.y}" r="${(m * UPM).toFixed(1)}" fill="none" stroke="#C0C2C6" stroke-width="1" stroke-dasharray="2 6"/>`).join('')}</g>
+          <circle class="rd-reach" cx="${B.x}" cy="${B.y}" r="${(30 * UPM).toFixed(1)}" fill="#2F2D2E" fill-opacity=".04" stroke="#5D6068" stroke-width="1.5" data-reach/>
+          <g class="rd-beam" opacity="0" data-beam>${beamSlices}<line x1="${B.x}" y1="${B.y}" x2="${B.x}" y2="${(B.y - BEAM_R).toFixed(1)}" stroke="#DB0000" stroke-opacity=".55" stroke-width="2"/></g>
+          <g class="rd-ring-labels">${RINGS.map((m) => `<text x="${B.x}" y="${B.y}" text-anchor="middle" dominant-baseline="central" class="rd-ring-lbl${MINOR_RING.includes(m) ? ' minor' : ''}" data-ring="${m}">${m} mi</text>`).join('')}</g>
+          <g class="rd-pings">${CITY.map((c) => `<circle class="rd-ping" cx="${c.x}" cy="${c.y}" r="10"/>`).join('')}</g>
+          <g class="rd-dots">${CITY.map((c) => `<circle class="rd-dot" cx="${c.x}" cy="${c.y}" r="6" data-city="${c.name}"/>`).join('')}</g>
+          <g class="rd-drop" data-drop hidden><g class="rd-drop-in"><ellipse cx="0" cy="0" rx="7" ry="2.5" fill="#1C1F2A" fill-opacity=".18"/><path d="M0 0C-5-9-11-15-11-23a11 11 0 1 1 22 0C11-15 5-9 0 0Z" fill="#DB0000"/><circle cx="0" cy="-23" r="4.2" fill="#FFFFFF"/></g></g>
+          <circle class="rd-pulse" cx="0" cy="0" r="10" data-pulse/>
+          <g class="rd-labels">${CITY.filter((c) => LABELLED.includes(c.name)).map((c) => `<text x="${c.x}" y="${c.y}" dx="${c.x > 760 ? -10 : 10}" dy="-10" text-anchor="${c.x > 760 ? 'end' : 'start'}" class="rd-lbl${MINOR_CITY.includes(c.name) ? ' minor' : ''}" data-label="${c.name}">${c.name}</text>`).join('')}</g>
+          <g class="rd-base" data-base>
+            <circle cx="${B.x}" cy="${B.y}" r="44" fill="none" stroke="#DB0000" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="2 5"/>
+            <circle cx="${B.x}" cy="${B.y}" r="36" fill="#FFFFFF" fill-opacity=".9" stroke="#E1E2E5"/>
+            ${Array.from({ length: 12 }, (_, i) => `<line x1="${at(i * 30, 33)}" x2="${at(i * 30, 39)}" stroke="#C0C2C6" stroke-width="1.5"/>`).join('').replace(/x1="([\d.-]+) ([\d.-]+)" x2="([\d.-]+) ([\d.-]+)"/g, 'x1="$1" y1="$2" x2="$3" y2="$4"')}
+            <circle cx="${B.x}" cy="${B.y}" r="27" fill="#FFFFFF" stroke="#DB0000" stroke-width="2.5"/>
+            <clipPath id="rd-mascot"><circle cx="${B.x}" cy="${B.y}" r="24"/></clipPath>
+            <image href="../assets/brand/brand-mr-asap-mark.png" x="${B.x - 24}" y="${B.y - 24}" width="48" height="48" clip-path="url(#rd-mascot)"/>
+            <text x="${B.x}" y="${B.y + 62}" text-anchor="middle" class="rd-base-lbl">Clermont base</text>
+          </g>
+        </g>
+      </svg>
+      <div class="radar-tip" hidden data-radar-tip></div>`;
+
+    const svg = $('svg', radar);
+    const dots = $$('.rd-dot', radar);
+    const reach = $('[data-reach]', radar);
+    const pulse = $('[data-pulse]', radar);
+    const pings = $$('.rd-ping', radar);
+    const beam = $('[data-beam]', radar);
+    const drop = $('[data-drop]', radar);
+    const tip = $('[data-radar-tip]', radar);
+    const range = $('[data-area-range]');
+    const out = $('[data-area-out]');
+    const count = $('[data-area-count]');
+    const card = $('[data-area-card]');
+    const input = $('[data-area-input]');
+    const suggest = $('[data-area-suggest]');
+    const list = $('[data-area-list]');
+    const toggle = $('[data-area-toggle]');
+
+    // Dots and labels keep a constant on-screen size as the map scales
+    const sizeDots = () => {
+      const k = VB[2] / Math.max(1, svg.clientWidth);
+      radar.style.setProperty('--k', k.toFixed(3));
+      dots.forEach((d) => d.setAttribute('r', (4.5 * k).toFixed(1)));
+      pulse.setAttribute('r', (7 * k).toFixed(1));
+      pings.forEach((p) => p.setAttribute('r', (9 * k).toFixed(1)));
+      radar.dataset.k = k.toFixed(3);
+      const s = Math.max(1, k * 0.8);   // the base pin never drops below ~22px on screen
+      $('[data-base]', radar).setAttribute('transform', `translate(${B.x} ${B.y}) scale(${s.toFixed(3)}) translate(${-B.x} ${-B.y})`);
+      placeRingLabels(k, s);
+    };
+    // Each ring label goes to the clearest point on its ring (preferring the empty upper-left),
+    // measured against every dot, city label, the base pin and the labels already placed.
+    function placeRingLabels(k, s) {
+      const boxes = dots.map((d) => { const r = 4.5 * k + 2 * k; const x = +d.getAttribute('cx'), y = +d.getAttribute('cy'); return [x - r, y - r, x + r, y + r]; });
+      $$('.rd-lbl', radar).forEach((l) => { const b = l.getBBox(); boxes.push([b.x, b.y, b.x + b.width, b.y + b.height]); });
+      const bb = $('[data-base]', radar).getBBox();   // untransformed; the group is scaled by s around the base point
+      boxes.push([B.x + (bb.x - B.x) * s, B.y + (bb.y - B.y) * s, B.x + (bb.x + bb.width - B.x) * s, B.y + (bb.y + bb.height - B.y) * s]);
+      const pad = 4 * k;
+      $$('.rd-ring-lbl', radar).forEach((t) => {
+        const R = Number(t.dataset.ring) * UPM;
+        t.setAttribute('x', B.x); t.setAttribute('y', B.y);
+        const bb = t.getBBox(), w = bb.width / 2 + pad, h = bb.height / 2 + pad;
+        let best = null;
+        // On the ring first; if a crowded ring has no clear point, just outside it
+        for (const off of [0, 1.2, 2.4]) for (let deg = -180; deg < 180; deg += 2) {
+          const a = deg * Math.PI / 180, rr = R + off * h, x = B.x + rr * Math.cos(a), y = B.y + rr * Math.sin(a);
+          if (x - w < VB[0] || x + w > VB[0] + VB[2] || y - h < VB[1] || y + h > VB[1] + VB[3]) continue;
+          let gap = Infinity;
+          for (const [x0, y0, x1, y1] of boxes) gap = Math.min(gap, Math.hypot(Math.max(0, x0 - (x + w), (x - w) - x1), Math.max(0, y0 - (y + h), (y - h) - y1)));
+          // Any clear spot beats any blocked one; among clear spots, the one nearest the upper-left wins
+          const clear = gap >= 3 * k;
+          const score = clear ? 1e6 - off * 1e3 - Math.abs(deg + 130) : gap - off;
+          if (!best || score > best.score) best = { x, y, score };
+        }
+        if (!best) return;
+        t.setAttribute('x', best.x.toFixed(1)); t.setAttribute('y', best.y.toFixed(1));
+        boxes.push([best.x - w, best.y - h, best.x + w, best.y + h]);
+      });
+    }
+    sizeDots();
+    addEventListener('resize', sizeDots, { passive: true });
+    document.fonts?.ready.then(sizeDots);
+
+    function setReach(mi) {
+      const n = CITY.filter((c) => c.miles <= mi).length;
+      reach.style.r = `${(mi * UPM).toFixed(1)}px`;
+      dots.forEach((d) => d.classList.toggle('in', CITY.find((c) => c.name === d.dataset.city).miles <= mi));
+      $$('.rd-lbl', radar).forEach((l) => l.classList.toggle('out', CITY.find((c) => c.name === l.dataset.label).miles > mi));
+      out.textContent = `${mi} miles`;
+      range.style.setProperty('--p', `${((mi - 15) / (80 - 15) * 100).toFixed(1)}%`);
+      count.innerHTML = `<strong class="tnum font-heading text-brand-midnight">${n}</strong> of ${CITY.length} cities within ${mi} miles`;
+    }
+    let reSweep;
+    range.addEventListener('input', () => { setReach(Number(range.value)); clearTimeout(reSweep); reSweep = setTimeout(sweep, 250); });
+    setReach(Number(range.value));
+
+    function showTip(dot) {
+      const c = CITY.find((x) => x.name === dot.dataset.city);
+      const r = dot.getBoundingClientRect(), box = radar.getBoundingClientRect();
+      tip.textContent = `${c.name} · ${c.miles} mi`;
+      tip.hidden = false;
+      tip.style.left = `${r.left + r.width / 2 - box.left}px`;
+      tip.style.top = `${r.top - box.top}px`;
+    }
+    svg.addEventListener('pointerover', (e) => { const d = e.target.closest('.rd-dot'); if (d) showTip(d); });
+    svg.addEventListener('pointerout', (e) => { if (e.target.closest('.rd-dot')) tip.hidden = true; });
+    const toSvg = (cx, cy) => { const p = svg.createSVGPoint(); p.x = cx; p.y = cy; return p.matrixTransform(svg.getScreenCTM().inverse()); };
+    svg.addEventListener('click', (e) => {
+      const p = toSvg(e.clientX, e.clientY);
+      const k = VB[2] / Math.max(1, svg.clientWidth);
+      let near = null, nd = Infinity;
+      CITY.forEach((c) => { const d = Math.hypot(c.x - p.x, c.y - p.y); if (d < nd) { nd = d; near = c; } });
+      if (nd / k <= 24 || nd / UPM <= 3) {   // close to a dot on screen, or within 3 miles of a city: that city
+        showTip(dots[CITY.indexOf(near)]);
+        return select(near);
+      }
+      spot(p, Math.hypot(p.x - B.x, p.y - B.y) / UPM, near, nd / UPM);
+    });
+
+    function spot(p, miles, near, nearMi) {
+      dots.forEach((d) => d.classList.remove('sel'));
+      pulse.classList.remove('on');
+      const k = VB[2] / Math.max(1, svg.clientWidth);
+      drop.setAttribute('transform', `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${(k * 0.9).toFixed(3)})`);
+      drop.removeAttribute('hidden');   // SVG elements have no .hidden property: toggle the attribute
+      const inner = $('.rd-drop-in', drop); inner.classList.remove('on'); void inner.getBBox(); inner.classList.add('on');
+      card.innerHTML = `<div class="kfade rounded-2xl bg-white p-5 shadow-[0_12px_32px_-18px_rgba(28,31,42,.35)] ring-1 ring-brand-grey-200" data-spot>
+        <p class="font-heading text-brand-midnight">This spot is about <span class="tnum">${Math.round(miles)}</span> miles from our Clermont base.</p>
+        <p class="mt-1.5 text-sm text-brand-grey-700">Nearest city we serve: <strong class="font-heading text-brand-midnight">${esc(near.name)}</strong> (<span class="tnum">${Math.round(nearMi)}</span> miles away).</p>
+        <div class="mt-4 flex flex-wrap gap-2"><a href="${TEL}" class="btn btn-red btn-sm px-3.5"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call to check</a><button type="button" class="btn btn-outline btn-sm px-3.5" data-near>Show ${esc(near.name)}</button></div></div>`;
+      $('[data-near]', card).addEventListener('click', () => select(near));
+    }
+    function select(c) {
+      drop.setAttribute('hidden', '');
+      pulse.setAttribute('cx', c.x); pulse.setAttribute('cy', c.y);
+      pulse.classList.remove('on'); void pulse.getBBox(); pulse.classList.add('on');
+      dots.forEach((d) => d.classList.toggle('sel', d.dataset.city === c.name));
+      card.innerHTML = `<div class="kfade rounded-2xl bg-white p-5 shadow-[0_12px_32px_-18px_rgba(28,31,42,.35)] ring-1 ring-brand-grey-200">
+        <p class="flex items-center gap-2.5 font-heading text-brand-midnight"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-red-tint text-brand-red"><svg class="h-4 w-4" aria-hidden="true"><use href="#i-check"/></svg></span>Yes, we serve ${esc(c.name)}</p>
+        <p class="mt-1.5 text-sm text-brand-grey-700">About ${c.miles} miles from our Clermont base (straight line).</p>
+        <div class="mt-4 flex flex-wrap gap-2"><a href="${TEL}" class="btn btn-red btn-sm px-3.5"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call</a><a href="#quote" class="btn btn-outline btn-sm px-3.5" data-area-quote>Get a quote</a></div></div>`;
+      $('[data-area-quote]', card).addEventListener('click', () => { $('#f-city').value = c.name; prefillForm({}); });
+    }
+    function unknown(q) {
+      drop.setAttribute('hidden', '');
+      dots.forEach((d) => d.classList.remove('sel'));
+      pulse.classList.remove('on');
+      card.innerHTML = `<div class="kfade rounded-2xl bg-white p-5 ring-1 ring-brand-grey-200">
+        <p class="font-heading text-brand-midnight">${esc(q)} isn’t on our list yet</p>
+        <p class="mt-1.5 text-sm text-brand-grey-700">We often help nearby towns. Call us to check.</p>
+        <div class="mt-4"><a href="${TEL}" class="btn btn-red btn-sm px-3.5"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call <span class="tnum">${PHONE}</span></a></div></div>`;
+    }
+
+    // Search: combobox with a keyboard listbox of suggestions
+    let opts = [], active = -1;
+    const close = () => { suggest.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1; };
+    function render() {
+      const q = norm(input.value);
+      opts = q ? CITY.filter((c) => norm(c.name).startsWith(q)).concat(CITY.filter((c) => !norm(c.name).startsWith(q) && norm(c.name).includes(q))).slice(0, 6) : [];
+      active = -1;
+      if (!opts.length) return close();
+      suggest.innerHTML = opts.map((c, i) => `<li id="area-opt-${i}" role="option" aria-selected="false" class="flex min-h-[2.75rem] cursor-pointer items-center justify-between gap-3 px-4 text-[0.95rem] hover:bg-brand-grey-50" data-i="${i}"><span>${esc(c.name)}</span><span class="tnum text-xs text-brand-grey-700">${c.miles} mi</span></li>`).join('');
+      suggest.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+    }
+    function move(d) {
+      if (suggest.hidden) render();
+      if (!opts.length) return;
+      active = (active + d + opts.length) % opts.length;
+      $$('[role="option"]', suggest).forEach((o, i) => { o.setAttribute('aria-selected', String(i === active)); o.classList.toggle('bg-brand-grey-100', i === active); });
+      input.setAttribute('aria-activedescendant', `area-opt-${active}`);
+    }
+    function choose(c) { input.value = c.name; close(); select(c); }
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+      else if (e.key === 'Escape') close();
+      else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); choose(opts[active]); }
+    });
+    suggest.addEventListener('mousedown', (e) => { const o = e.target.closest('[data-i]'); if (o) { e.preventDefault(); choose(opts[Number(o.dataset.i)]); } });
+    input.addEventListener('blur', () => setTimeout(close, 120));
+    $('[data-area-form]').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) { input.focus(); return; }
+      const hit = byName.get(norm(q)) || (opts.length === 1 ? opts[0] : null);
+      close();
+      if (hit) { input.value = hit.name; select(hit); } else unknown(q);
+    });
+
+    // Full list (all 73, nearest first) doubles as the accessible alternative to the dots
+    list.innerHTML = [...CITY].sort((a, b) => a.miles - b.miles).map((c) => `<li class="break-inside-avoid"><button type="button" class="flex min-h-[2.75rem] w-full items-center justify-between gap-2 text-left hover:text-brand-red" data-city="${esc(c.name)}"><span>${esc(c.name)}</span><span class="tnum text-xs text-brand-grey-700">${c.miles} mi</span></button></li>`).join('');
+    list.addEventListener('click', (e) => { const b = e.target.closest('[data-city]'); if (b) { select(CITY.find((c) => c.name === b.dataset.city)); card.scrollIntoView({ block: 'nearest', behavior: smooth }); } });
+    toggle.addEventListener('click', () => {
+      const open = list.hidden;
+      list.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('span').textContent = open ? 'Hide the city list' : `Show all ${CITY.length} cities`;
+      toggle.querySelector('svg').classList.toggle('-rotate-90', open);
+      toggle.querySelector('svg').classList.toggle('rotate-90', !open);
+    });
+    const datalist = $('[data-area-datalist]');
+    CITY.forEach((c) => { const o = document.createElement('option'); o.value = c.name; datalist.append(o); });
+
+    // One radar rotation per action: each dot pings as the leading edge passes its bearing
+    let raf = 0;
+    function ping(i) {
+      const d = dots[i], r = pings[i];
+      d.classList.remove('ping'); r.classList.remove('on'); void r.getBBox();
+      d.classList.add('ping'); r.classList.add('on');
+    }
+    function sweep() {
+      if (reduced) return;
+      cancelAnimationFrame(raf);
+      const t0 = performance.now(), dur = 2600, done = new Set();
+      beam.setAttribute('opacity', '1');
+      radar.dataset.sweeping = 'true';
+      const tick = (now) => {
+        const t = Math.min(1, (now - t0) / dur), a = 360 * t;
+        beam.setAttribute('transform', `rotate(${a.toFixed(2)} ${B.x} ${B.y})`);
+        BEAR.forEach((b, i) => { if (!done.has(i) && b <= a) { done.add(i); ping(i); } });
+        if (t < 1) { raf = requestAnimationFrame(tick); return; }
+        beam.setAttribute('opacity', '0');
+        radar.dataset.sweeping = 'false';
+        radar.dataset.sweeps = String(Number(radar.dataset.sweeps || 0) + 1);
+        radar.dataset.pings = String(done.size);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+    if (io) new IntersectionObserver(([e], o) => { if (e.isIntersecting) { sweep(); o.disconnect(); } }, { threshold: 0.4 }).observe(radar);
+  }
+
+  /* ---------- FAQ: four questions first, the rest on request ---------- */
+  const faqExtra = $$('[data-faq-extra]');
+  const faqToggle = $('[data-faq-toggle]');
+  faqExtra.forEach((d) => { d.hidden = true; });
+  faqToggle.addEventListener('click', () => {
+    const open = faqToggle.getAttribute('aria-expanded') !== 'true';
+    faqExtra.forEach((d) => { d.hidden = !open; });
+    faqToggle.setAttribute('aria-expanded', String(open));
+    faqToggle.querySelector('span').textContent = open ? 'Show fewer questions' : 'Show more questions';
+    faqToggle.querySelector('svg').classList.toggle('-rotate-90', open);
+    faqToggle.querySelector('svg').classList.toggle('rotate-90', !open);
+    if (open) faqExtra[0].querySelector('summary').focus();
   });
 
   /* ---------- Click-to-load video: nothing is requested from YouTube until play is pressed ---------- */

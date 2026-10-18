@@ -42,6 +42,37 @@ ceiling, springs with drums and winding cones, tracks, rollers, cables and senso
   buttons cycle them.
 - On desktop the illustration has a subtle pointer parallax. All motion is off under reduced motion.
 
+## Calm layout (declutter round)
+The page has generous section spacing, leads held to about 60 characters, and one label at most per card. Eyebrow
+labels appear only on the emergency band. The Google rating shows only in the hero and in one line by the reviews.
+Each section has one main action, and the header plus the mobile bar keep Call and Quote available everywhere.
+Cities show 8 at first and the FAQ shows 4, each with "Show more". The trust bar has 4 items and the footer has
+3 columns.
+
+## Service areas: distance radar (map style C)
+The map is an inline SVG built from the shared `assets/data/service-area.js`, which this concept does not edit. It
+shows the Florida outline, dashed rings at 15/30/45/60/75 miles around the Clermont base pin (Mr. ASAP), and all 73
+cities as dots, with 8 labelled.
+- **Scale:** miles convert to map units with a scale measured from the data itself (the mean of city distance ÷ miles).
+- **Slider (15–80 mi):** a red reach circle, highlighted dots and a live count ("45 of 73 cities within 30 miles").
+- **Search:** a combobox with a keyboard listbox. Choosing a city shows a card ("Yes, we serve …, about N miles from
+  our Clermont base (straight line)", Call / Get a quote) and pulses its dot. An unknown city gets "call us to check".
+- **Dots and list:** hovering or tapping a dot shows a tooltip. "Show all 73 cities" lists every city, nearest
+  first, as buttons, which is the accessible alternative to the dots.
+- **Radar sweep:** a soft red beam turns once around the base when the map first comes into view, and again after
+  each slider change (never in a loop). Every city dot pings as the leading edge passes its bearing. Reduced motion
+  shows the dots directly, with no beam.
+- **Drop a pin:** tap or click anywhere on the map. Within 24 px of a dot, or within 3 miles of a city, it selects
+  that city. Otherwise a pin drops and the card reads "This spot is about N miles from our Clermont base. Nearest city
+  we serve: X (N miles away)", using the same units-per-mile scale. Keyboard users use the search and the city list.
+- **Base pin:** Mr. ASAP inside a small radar-dish ring. Red is kept for the beam, pings and selection; in-range dots
+  and the reach circle are charcoal.
+- **Phones:** the map is full width, minor city and ring labels are hidden at 430 px and below, and the slider thumb
+  is 44 px.
+
+## About
+A two-column layout: the client's crew-and-trucks photo, one lead paragraph, four checkpoints and one CTA.
+
 ## Section order (K1 journey)
 Top bar + header → Hero with Find my fix → Trust bar → Common problems (8 photo cards) → Know your door → About
 (real shifted-door job + before/after) → How it works → Safety + client video → Why choose us + financing →

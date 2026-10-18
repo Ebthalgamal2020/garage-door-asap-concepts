@@ -5,11 +5,11 @@ module.exports = {
   theme: {
     extend: {
       maxWidth: { wrap: '1240px' },
-      borderRadius: { tile: '1.25rem', card: '1.5rem' },
+      borderRadius: { tile: '.875rem', card: '1.125rem' },
       transitionTimingFunction: { pop: 'cubic-bezier(.34,1.56,.64,1)', soft: 'cubic-bezier(.22,1,.36,1)' },
       boxShadow: {
-        tile: '0 1px 2px rgba(28,31,42,.06), 0 14px 32px -20px rgba(28,31,42,.35)',
-        lift: '0 2px 6px rgba(28,31,42,.08), 0 28px 50px -26px rgba(28,31,42,.5)',
+        tile: '0 1px 2px rgba(28,31,42,.04), 0 8px 24px -18px rgba(28,31,42,.22)',
+        lift: '0 1px 3px rgba(28,31,42,.05), 0 24px 48px -30px rgba(28,31,42,.32)',
         sticker: '0 10px 24px -10px rgba(28,31,42,.55)',
         red: '0 16px 34px -14px rgba(219,0,0,.6)'
       },
