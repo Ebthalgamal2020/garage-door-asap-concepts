@@ -13,7 +13,12 @@
 
   const me = document.currentScript;
   const current = (me && me.dataset.concept) || '';
+  // Current round (V1–V3) first; the earlier round (tag concepts-v1) stays reachable after the divider.
   const concepts = [
+    { id: 'lift', label: 'V1', name: 'The Lift', href: '../the-lift/' },
+    { id: 'signature', label: 'V2', name: 'The Signature', href: '../v2-the-signature/' },
+    { id: 'lab', label: 'V3', name: 'The Garage Door Lab', href: '../v3-garage-door-lab/' },
+    { divider: true },
     { id: 'a', label: 'A', name: 'Classic Chic', href: '../a-classic-chic/' },
     { id: 'b', label: 'B', name: 'Modern Architectural', href: '../b-modern-architectural/' },
     { id: 'c', label: 'C', name: 'Modern Friendly', href: '../c-modern-friendly/' },
@@ -42,7 +47,7 @@
     <nav class="sw collapsed" aria-label="Design concepts">
       <button type="button" class="toggle" aria-expanded="false" title="Switch concept">Concepts</button>
       <span class="sep opt"></span>
-      ${concepts.map((c) => `<a class="opt" href="${c.href}" title="${c.label} — ${c.name}" ${c.id === current ? 'aria-current="page"' : ''}>${c.label}</a>`).join('')}
+      ${concepts.map((c) => c.divider ? '<span class="sep opt" title="Earlier round"></span>' : `<a class="opt" href="${c.href}" title="${c.label} — ${c.name}" ${c.id === current ? 'aria-current="page"' : ''}>${c.label}</a>`).join('')}
       <span class="sep opt"></span>
       <a class="opt" href="../" title="All concepts">All</a>
       <button type="button" class="opt hide" title="Hide for this session">✕</button>

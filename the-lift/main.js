@@ -121,7 +121,7 @@
     $('[data-r-tip]', result).textContent = s.tip;
     const img = $('[data-r-img]', result);
     if (img) { img.src = s.img; img.alt = s.alt; }
-    $('[data-book]', result).addEventListener('click', () => prefillForm({ service: s.service, urgency: s.urgent ? 'Emergency — today' : undefined }));
+    $('[data-book]', result).addEventListener('click', () => prefillForm({ service: s.service, urgency: s.urgent ? 'Emergency — as soon as possible' : undefined }));
   }
 
   function selectSymptom(id) {
@@ -310,14 +310,4 @@
     prefillForm({ service: $('[data-quick-service]').value, phone: quickPhone.value });
   });
 
-  /* ---------- Mobile contact bar: hide while the quote form or footer call is on screen ---------- */
-  const bar = $('[data-mobile-bar]');
-  if ('IntersectionObserver' in window) {
-    const seen = new Set();
-    const bio = new IntersectionObserver((es) => {
-      es.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
-      bar.style.transform = seen.size ? 'translateY(140%)' : '';
-    });
-    bio.observe(form);
-  }
 })();

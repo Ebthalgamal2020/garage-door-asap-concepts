@@ -32,3 +32,18 @@ These are stock images for the design concepts, not photos of Garage Door ASAP j
 | `assets/img/c-wrench.jpg` | Gabriel Alenius | https://unsplash.com/photos/ijSV5Be3P3M |
 
 Brand assets in `assets/brand/` (`mr-asap-mascot.png`, `we-finance-badge.png`) are taken from the client's live website. `emblem.svg` is a vector redraw of the emblem on the mascot's shirt.
+
+## Client photography (garagedoorasapservice.com, downloaded 18 Oct 2026)
+
+Re-encoded only (never enlarged). Used by V1–V3. The banner is the live site's own homepage background.
+`brand-shifted-door` is a real shifted-door job from the live site's service pages (the blue mark on the house is in the original).
+
+| File | Size | Source on the live site |
+|---|---|---|
+| `assets/img/brand-home-banner.jpg` (+ `-sm` 900 w) | 1500×720 | `/wp-content/uploads/2019/06/gasapbg.jpg` (homepage hero) |
+| `assets/img/brand-shifted-door.jpg` (+ `-sm` 640 w) | 960×720 | `/wp-content/uploads/2019/06/1-1.jpg` (shifted door page) |
+| `assets/img/brand-springs-stock.jpg` | 600×368 | `/wp-content/uploads/2019/06/4.jpg` (spring page) |
+| `assets/img/brand-springs-pair.jpg` | 600×378 | `/wp-content/uploads/2019/06/5.jpg` (spring page) |
+| `assets/img/brand-parts-band.jpg` | 1200×280 | `/wp-content/uploads/2019/06/bgg.jpg` (dark parts banner) |
+
+Not used on purpose: `/2019/06/03.jpg` (a technician in a manufacturer-branded glove). It looks like a manufacturer's stock image, so it shouldn't be presented as a Garage Door ASAP technician.

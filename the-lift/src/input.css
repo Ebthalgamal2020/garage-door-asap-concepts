@@ -9,6 +9,8 @@
 @layer base {
   :root { --track: clamp(48px, 8vw, 140px); }
   html { scroll-behavior: smooth; scroll-padding-top: 6rem; -webkit-text-size-adjust: 100%; }
+  /* The mobile contact bar never hides, so keep focused fields clear of it */
+  @media (max-width: 1023px) { html { scroll-padding-bottom: 6rem; } }
   body { @apply bg-white font-brand text-brand-ink antialiased; font-feature-settings: 'tnum' 0; }
   h1, h2, h3, h4 { @apply font-heading text-brand-midnight; letter-spacing: -0.02em; line-height: 1.15; }
   ::selection { @apply bg-brand-red text-white; }

@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * "The Signature" — a premium editorial business site.
+ * Shape language: sharp corners (0–2px), fine red (#DB0000) rules as the accent — under headings,
+ * as offset frames behind photos, and as the seam between hero panel and photo. No pills, no curves, no rounded cards.
+ * Rhythm: white / grey-50 / charcoal / one red band.
+ */
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 7rem; scroll-padding-bottom: 6rem; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white font-brand text-brand-ink antialiased; }
+  h1, h2, h3, h4 { @apply font-heading text-brand-midnight; letter-spacing: -0.02em; }
+  ::selection { @apply bg-brand-red text-white; }
+  :focus-visible { @apply outline outline-[3px] outline-offset-[3px] outline-brand-red; }
+  .on-dark :focus-visible, .on-red :focus-visible { @apply outline-white; }
+  [hidden] { display: none !important; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  /* The mobile contact bar is always on screen below lg: reserve room for it */
+  @media (max-width: 1023px) { body { padding-bottom: 5.25rem; } }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-5 sm:px-8 lg:px-12; }
+
+  /* Headings: light + extra-bold in one line, with a short red rule beneath */
+  .h2 { @apply text-[clamp(2rem,3.6vw,3.25rem)] font-light leading-[1.06] text-brand-midnight; letter-spacing: -0.035em; }
+  .h2 b { @apply font-display; }
+  .h2-light { @apply text-white; }
+  .h2::after { content: ''; @apply mt-6 block h-0.5 w-14 origin-left bg-brand-red; }
+  .h2.center::after { @apply mx-auto; }
+  .label { @apply mb-4 block text-[0.78rem] font-heading uppercase tracking-[0.14em] text-brand-grey-700; }
+  .lead { @apply text-[1.05rem] leading-relaxed text-brand-grey-700 sm:text-lg; }
+
+  /* Buttons: sharp */
+  .btn { @apply inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-[2px] px-7 text-[0.95rem] font-heading transition duration-300 ease-ed; }
+  .btn svg { @apply h-5 w-5 shrink-0 transition-transform duration-300 ease-ed; }
+  .btn:hover svg.nudge { transform: translateX(4px); }
+  .btn-red { @apply bg-brand-red text-white hover:bg-brand-red-deep; }
+  .btn-dark { @apply bg-brand-midnight text-white hover:bg-brand-ink; }
+  .btn-white { @apply bg-white text-brand-midnight hover:bg-brand-grey-100; }
+  .btn-line { @apply border border-brand-midnight text-brand-midnight hover:bg-brand-midnight hover:text-white; }
+  .btn-line-light { @apply border border-white/70 text-white hover:border-white hover:bg-white hover:text-brand-midnight; }
+
+  /* Text link with a red underline */
+  .tl { @apply inline-flex min-h-[2.75rem] items-center gap-2 font-heading text-brand-midnight; }
+  .tl span { @apply border-b border-brand-red pb-0.5 transition-[border-width] duration-200; }
+  .tl:hover span { @apply border-b-2; }
+  .tl svg { @apply h-4 w-4 transition-transform duration-300; }
+  .tl:hover svg { transform: translateX(3px); }
+
+  /* Photo with a fine red offset frame behind it */
+  .framed { @apply relative isolate; }
+  .framed::before { content: ''; @apply absolute inset-0 -z-10 border border-brand-red; transform: translate(16px, 16px); }
+
+  /* Service blocks */
+  .svc { @apply relative flex gap-5 border border-brand-grey-200 bg-white p-5 transition duration-300 sm:p-6; }
+  .svc::after { content: ''; @apply absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-brand-red transition-transform duration-500 ease-ed; }
+  .svc:hover, .svc:focus-within { @apply border-brand-grey-300 shadow-[0_20px_40px_-28px_rgba(28,31,42,.45)]; }
+  .svc:hover::after, .svc:focus-within::after { @apply scale-x-100; }
+  .svc-thumb { @apply h-24 w-24 shrink-0 bg-brand-grey-100 object-cover sm:h-28 sm:w-28 lg:h-24 lg:w-24 xl:h-28 xl:w-28; }
+  .svc-icon { @apply grid h-24 w-24 shrink-0 place-items-center bg-brand-midnight text-white sm:h-28 sm:w-28 lg:h-24 lg:w-24 xl:h-28 xl:w-28; }
+  .svc .sym { @apply text-sm text-brand-grey-700; }
+  .svc h3 { @apply mt-1 text-lg leading-snug; }
+  .svc p.d { @apply mt-2 text-[0.92rem] leading-relaxed text-brand-grey-700; }
+  .svc .acts { @apply mt-2 flex flex-wrap items-center gap-x-4; }
+
+  .field label, .field legend { @apply mb-1.5 block text-sm font-heading text-brand-midnight; }
+  .field .hint { @apply ml-1 font-normal text-brand-grey-700; }
+  .field input:not([type='radio']), .field textarea, .field select {
+    @apply w-full rounded-[2px] border border-brand-grey-400 bg-white px-4 py-3 text-base text-brand-ink transition placeholder:text-brand-grey-600 focus:border-brand-midnight focus:outline-none focus:ring-2 focus:ring-brand-midnight/15;
+  }
+  .field select { @apply cursor-pointer pr-10; }
+  .field [aria-invalid='true'] { @apply border-brand-red ring-2 ring-brand-red/15; }
+  .field-err { @apply mt-1 min-h-[1.15rem] text-[0.8rem] font-medium text-brand-red; }
+  .seg { @apply relative flex min-h-[2.9rem] cursor-pointer items-center justify-center rounded-[2px] border border-brand-grey-400 px-3 text-center text-sm font-medium text-brand-midnight transition hover:border-brand-midnight; }
+  .seg:has(input:checked) { @apply border-brand-midnight bg-brand-midnight text-white; }
+  .seg:has(input:focus-visible) { @apply outline outline-[3px] outline-offset-2 outline-brand-red; }
+  [data-status][data-show='false'], [data-status]:empty { display: none; }
+  [data-emergency-hint] { display: none; }
+  [data-emergency-hint][data-show='true'] { display: flex; }
+
+  .faq summary { @apply flex min-h-[3rem] cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-base font-heading text-brand-midnight sm:text-lg; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq .pm { @apply relative h-4 w-4 shrink-0; }
+  .faq .pm::before, .faq .pm::after { content: ''; @apply absolute left-0 top-1/2 h-0.5 w-4 bg-brand-red transition duration-300; }
+  .faq .pm::after { transform: rotate(90deg); }
+  .faq[open] .pm::after { transform: rotate(0); }
+  .faq[open] summary { @apply text-brand-red; }
+
+  .star { @apply h-4 w-4 fill-brand-red; }
+  .star-w { @apply h-4 w-4 fill-white; }
+}
+
+@layer utilities {
+  /* Subtle motion only: fade/slide-up reveals, red rules drawing in, slow photo parallax */
+  .js .rv { opacity: 0; transform: translateY(22px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.1,1); transition-delay: var(--d, 0ms); }
+  .js .rv.in { opacity: 1; transform: none; }
+  .js .rv.h2::after, .js .rv .h2::after { transform: scaleX(0); transition: transform 1.1s cubic-bezier(.2,.7,.1,1) calc(var(--d, 0ms) + 250ms); }
+  .js .rv.in.h2::after, .js .rv.in .h2::after { transform: none; }
+  .js .rule-y { transform: scaleY(0); transform-origin: top; animation: ruleY 1.4s cubic-bezier(.2,.7,.1,1) .3s forwards; }
+  @keyframes ruleY { to { transform: none; } }
+  .drift { will-change: transform; }
+
+  /* Steps: one thin red rule joins the four steps (desktop), drawn in on view */
+  .steps-rule { transform: scaleX(0); transform-origin: left; transition: transform 1.6s cubic-bezier(.2,.7,.1,1) .2s; }
+  .in .steps-rule, .no-js .steps-rule { transform: none; }
+
+  /* Featured review swap */
+  .q-swap { animation: qswap .6s cubic-bezier(.2,.7,.1,1); }
+  @keyframes qswap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* Parts strip: the image fades into the charcoal on wide screens */
+  .fade-x { -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
+    .js .rv { opacity: 1 !important; transform: none !important; }
+    .js .rv.h2::after, .js .rv .h2::after, .js .rule-y, .steps-rule { transform: none !important; }
+  }
+}

@@ -32,6 +32,9 @@ npm start          # zero-dependency static server → http://localhost:5173
 | Route | Concept |
 |---|---|
 | `/` | Concept hub: previews, verified facts and open questions for the client |
+| `/the-lift/` | **V1 — The Lift** (round 2) |
+| `/v2-the-signature/` | **V2 — The Signature** (round 2) |
+| `/v3-garage-door-lab/` | **V3 — The Garage Door Lab** (round 2) |
 | `/a-classic-chic/` | A — Classic |
 | `/b-modern-architectural/` | B — Modern Architectural |
 | `/c-modern-friendly/` | C — Modern Friendly |
