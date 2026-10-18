@@ -1,7 +1,24 @@
 # Garage Door ASAP Service — homepage concepts
 
 Homepage redesign concepts for [garagedoorasapservice.com](https://garagedoorasapservice.com/), built for client review.
-**Nothing here is deployed, and the live site has not been touched.**
+**These are review previews published on GitHub Pages only. They are not deployed to the client's domain, and the live site has not been touched.**
+
+## Review links
+
+Verified live on 18 October 2026 (each returns HTTP 200 and renders without errors at desktop and mobile widths):
+
+| Page | Link |
+|---|---|
+| **Concept hub (start here)** | https://ebthalgamal2020.github.io/garage-door-asap-concepts/ |
+| A — Classic Chic | https://ebthalgamal2020.github.io/garage-door-asap-concepts/a-classic-chic/ |
+| B — Modern Architectural | https://ebthalgamal2020.github.io/garage-door-asap-concepts/b-modern-architectural/ |
+| C — Modern Friendly | https://ebthalgamal2020.github.io/garage-door-asap-concepts/c-modern-friendly/ |
+| Version 4 — K1 Journey | https://ebthalgamal2020.github.io/garage-door-asap-concepts/v4-k1-journey/ |
+| Shared brand tokens (colours and font) | [assets/brand/brand-tokens.js](assets/brand/brand-tokens.js) |
+
+Add `?present` to any concept link to hide the concept switcher for a clean screen-share, for example `…/v4-k1-journey/?present`.
+
+**Opening on your own computer without a server:** double-click `index.html` in the project folder (`C:\Users\DEO\Documents\GarageDoorASAPService\index.html`). The hub opens directly. If a concept link shows a folder listing instead of the page, click `index.html` inside that folder, or use `npm start` (below).
 
 Stack: **HTML5 + Tailwind CSS 3.4 + vanilla JavaScript.** No frameworks. The only dependency is the Tailwind CLI, which is a dev dependency used to compile CSS.
 
