@@ -74,16 +74,31 @@
 
   .star { @apply h-4 w-4 fill-brand-red; }
 
+  /* Service cards: white card with a notched top tab holding the picture */
+  .svc-card { @apply relative flex flex-col items-center rounded-[1.5rem] bg-white px-5 pb-5 pt-12 text-center lg:pt-11; filter: drop-shadow(0 1px 1px rgba(28,31,42,.06)) drop-shadow(0 14px 22px rgba(28,31,42,.10)); }
+  .svc-tab { @apply absolute left-1/2 top-0 grid h-[5.25rem] w-[6.5rem] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[1.25rem] bg-white p-1.5; }
+  .svc-tab > img { @apply h-[4.5rem] w-[4.5rem]; }
+  /* concave shoulders where the tab meets the card */
+  .svc-tab::before, .svc-tab::after { content: ''; position: absolute; top: 50%; width: 1rem; height: 1rem; }
+  .svc-tab::before { right: 100%; background: radial-gradient(circle at 0 0, transparent 1rem, #fff 1.03rem); }
+  .svc-tab::after { left: 100%; background: radial-gradient(circle at 100% 0, transparent 1rem, #fff 1.03rem); }
+  .svc-go { @apply mt-auto grid h-11 w-11 place-items-center rounded-full bg-brand-grey-50 text-brand-midnight ring-1 ring-brand-grey-200 transition duration-300; }
+  .svc-card:hover .svc-go, .svc-go:focus-visible { @apply bg-brand-red text-white ring-brand-red; }
+  @media (hover: hover) { .svc-card { transition: transform .5s cubic-bezier(.22,1,.36,1); } .svc-card:hover { transform: translateY(-4px); } }
+
+  /* City autocomplete (area checker + quote form): looks like the browser's own select list */
+  .combo-list { @apply absolute inset-x-0 top-full z-30 max-h-72 overflow-y-auto overscroll-contain border border-brand-grey-600 bg-white py-0.5 text-left shadow-[0_4px_10px_rgba(0,0,0,.18)]; }
+  .combo-opt { @apply flex min-h-[2.75rem] cursor-default items-center px-4 text-base text-brand-ink lg:min-h-[2.1rem]; }
+  .combo-opt:hover, .combo-opt[aria-selected='true'] { background: Highlight; color: HighlightText; }
+  .combo-opt mark { background: transparent; color: inherit; }
+  .combo-empty { @apply px-4 py-2.5 text-sm leading-relaxed text-brand-grey-700; }
+  @media (forced-colors: active) { .combo-opt[aria-selected='true'] { forced-color-adjust: none; } }
+
   /* Service-area route map */
-  .region-chip { @apply inline-flex min-h-[2.75rem] shrink-0 items-center whitespace-nowrap rounded-full bg-brand-grey-100 px-4 text-sm font-heading text-brand-midnight transition hover:bg-brand-grey-200; }
-  .region-chip[aria-pressed='true'] { @apply bg-brand-midnight text-white; }
-  .city-btn { @apply -mx-2 inline-flex min-h-[2.75rem] items-center rounded-full px-2 text-left text-brand-ink transition hover:text-brand-red; }
   .map-land { fill: #F6F7F8; stroke: #E1E2E5; stroke-width: 3; stroke-linejoin: round; }
   [data-map] { cursor: pointer; }
   .city-dot { fill: #949596; transition: fill .3s ease, opacity .3s ease; }
   .city:hover .city-dot { fill: #2F2D2E; }
-  [data-map].has-region .city-dot { opacity: .3; }
-  [data-map] .city.in-region .city-dot { opacity: 1; fill: #2F2D2E; }
   [data-map] .city.is-on .city-dot { opacity: 1; fill: #DB0000; r: 9; }
   .map-label { font: 600 17px Poppins, system-ui, sans-serif; fill: #2F2D2E; paint-order: stroke; stroke: #fff; stroke-width: 6px; stroke-linejoin: round; pointer-events: none; }
   .map-label-sel { fill: #DB0000; }
@@ -134,32 +149,6 @@
     @keyframes bendR { from { border-top-right-radius: calc(var(--track) * .25); } to { border-top-right-radius: var(--track); } }
   }
 
-  /* Door diagram */
-  .part { transition: opacity .4s ease, stroke .4s ease, fill .4s ease; }
-  [data-diagram][data-active] .part { opacity: .35; }
-  [data-diagram][data-active] .part.on { opacity: 1; }
-  .part.on .hl { stroke: #DB0000; }
-  .part.on .hlf { fill: #DB0000; }
-  /* Labelled hotspot pill: the number sits exactly on the part, the label reads outward */
-  .hotspot { @apply absolute flex items-center gap-2 rounded-full bg-white p-1 text-xs font-heading text-brand-midnight shadow-[0_6px_20px_-6px_rgba(28,31,42,.4)] ring-1 ring-brand-grey-200 transition duration-300 sm:pr-3.5; transform: translate(-18px, -50%); }
-  .hotspot-flip { @apply flex-row-reverse sm:pl-3.5 sm:pr-1; transform: translate(calc(-100% + 18px), -50%); }
-  .hotspot .hs-n { @apply relative grid h-7 w-7 place-items-center rounded-full bg-brand-midnight text-[0.7rem] font-title text-white transition duration-300; }
-  .hotspot .hs-n::after { content: ''; @apply absolute inset-0 rounded-full border-2 border-brand-red opacity-0; }
-  .hotspot .hs-label { @apply hidden sm:inline; }
-  .hotspot:hover { @apply ring-brand-midnight; }
-  .hotspot::before { content: ''; position: absolute; inset: -6px; border-radius: 9999px; }
-  .hotspot[aria-pressed='true'] { @apply bg-brand-red text-white ring-brand-red; }
-  .hotspot[aria-pressed='true'] .hs-n { @apply bg-white text-brand-red; }
-  .hotspot[aria-pressed='true'] .hs-n::after { animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite; }
-  @keyframes ping { 0% { opacity: .8; transform: scale(1); } 100% { opacity: 0; transform: scale(1.9); } }
-  .sym-group { @apply flex items-center gap-2 px-2 pb-2 pt-1 text-[0.75rem] font-title uppercase tracking-[0.16em] text-brand-grey-700; }
-  .symptom[aria-pressed='true'] { @apply bg-brand-midnight text-white hover:bg-brand-midnight; }
-  .symptom[aria-pressed='true'] .sym-ic { @apply bg-brand-red text-white; }
-  .symptom[aria-pressed='true'] .sym-chev { @apply translate-x-0.5 text-white; }
-  .symptom:hover .sym-chev { @apply text-brand-midnight; }
-  .result-swap { animation: swap .5s cubic-bezier(.22,1,.36,1); }
-  @keyframes swap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
   /* Steps track */
   .steps-line { stroke-dasharray: var(--len); stroke-dashoffset: calc(var(--len) * (1 - var(--p, 0))); }
 
@@ -190,5 +179,8 @@
 
 @layer utilities {
   /* Reviews rail aligns its first card with the page content, then bleeds to the right edge */
-  @media (min-width: 1024px) { .rv-pad { padding-inline: max(2.5rem, calc((100vw - 1280px) / 2 + 2.5rem)); scroll-padding-inline: max(2.5rem, calc((100vw - 1280px) / 2 + 2.5rem)); } }
+  /* Reviews rail runs to the screen edge and fades out there */
+  .rv-bleed { margin-right: -1rem; padding-right: 3rem; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 4rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 4rem), transparent); }
+  @media (min-width: 640px) { .rv-bleed { margin-right: -1.5rem; } }
+  @media (min-width: 1024px) { .rv-bleed { margin-right: calc(-1 * max(2.5rem, (100vw - 1280px) / 2 + 2.5rem)); padding-right: 8rem; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 12rem), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 12rem), transparent); } }
 }

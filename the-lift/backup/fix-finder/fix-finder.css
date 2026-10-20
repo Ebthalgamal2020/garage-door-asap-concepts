@@ -1,0 +1,9 @@
+/* The Lift: fix finder styles (backed up 19 Oct 2026). Lived in src/input.css under @layer utilities. */
+  .sym-group { @apply flex items-center gap-2 px-2 pb-2 pt-1 text-[0.75rem] font-title uppercase tracking-[0.16em] text-brand-grey-700; }
+  .symptom[aria-pressed='true'] { @apply bg-brand-midnight text-white hover:bg-brand-midnight; }
+  .symptom[aria-pressed='true'] .sym-ic { @apply bg-brand-red text-white; }
+  .symptom[aria-pressed='true'] .sym-chev { @apply translate-x-0.5 text-white; }
+  .symptom:hover .sym-chev { @apply text-brand-midnight; }
+  .result-swap { animation: swap .5s cubic-bezier(.22,1,.36,1); }
+  @keyframes swap { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+

@@ -40,6 +40,9 @@
     <symbol id="i-google" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.2v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.9 14.2a6.6 6.6 0 0 1 0-4.3V7H2.2a11 11 0 0 0 0 9.9l3.7-2.8Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.1 1.6l3.1-3.1A11 11 0 0 0 2.2 7l3.7 2.9C6.8 7.3 9.2 5.4 12 5.4Z"/></symbol>
     <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3Z"/></symbol>
     <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4.5A1.5 1.5 0 0 1 4.5 3H12l9 9-9 9-9-9Z"/><circle cx="7.5" cy="7.5" r="1.5"/></g></symbol>
+    <symbol id="i-badge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2M14.5 10H18M14.5 13.5H18"/></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></g></symbol>
     <symbol id="i-quote" viewBox="0 0 32 32"><path fill="currentColor" d="M13 8C7.5 9.6 4 13.8 4 19.5 4 23 6.2 25 9 25c2.6 0 4.5-1.9 4.5-4.4 0-2.4-1.7-4.2-4-4.3.5-2.7 2.4-4.9 5.2-6L13 8Zm14 0c-5.5 1.6-9 5.8-9 11.5 0 3.5 2.2 5.5 5 5.5 2.6 0 4.5-1.9 4.5-4.4 0-2.4-1.7-4.2-4-4.3.5-2.7 2.4-4.9 5.2-6L27 8Z"/></symbol>
   </svg>
 
@@ -47,10 +50,15 @@
 
   <!-- =========================================================== 1. ANNOUNCEMENT BAR + HEADER -->
   <aside class="bg-brand-midnight text-white" aria-label="Emergency service">
-    <p class="wrap flex min-h-[2.75rem] flex-wrap items-center justify-center gap-x-3 py-2 text-center text-[0.85rem] sm:justify-between">
-      <span class="inline-flex items-center gap-2.5"><span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-red motion-reduce:hidden"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-brand-red"></span></span><span><strong class="font-heading">24/7 emergency service</strong><span class="hidden sm:inline"> · door stuck, spring snapped or car trapped?</span></span></span>
-      <a href="tel:+18777877121" class="tnum inline-flex min-h-[2.75rem] items-center font-heading underline decoration-white/40 underline-offset-4 hover:decoration-white">Call (877) 787-7121</a>
-    </p>
+    <div class="wrap flex min-h-[2.75rem] items-center justify-between gap-x-3 text-[0.85rem]">
+      <span class="inline-flex items-center gap-2.5"><span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-red motion-reduce:hidden"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-brand-red"></span></span><span><strong class="font-heading">24/7 emergency service</strong><span class="hidden sm:inline"> across Central Florida</span></span></span>
+      <span class="flex items-center">
+        <a href="mailto:info@garagedoorasapservice.com" class="inline-flex min-h-[2.75rem] min-w-[2.75rem] items-center justify-center gap-2 rounded-full px-2 text-white/90 transition hover:text-white"><svg class="h-4 w-4 shrink-0" aria-hidden="true"><use href="#i-mail"/></svg><span class="hidden underline decoration-white/30 underline-offset-4 sm:inline">info@garagedoorasapservice.com</span><span class="sr-only sm:hidden">Email info@garagedoorasapservice.com</span></a>
+        <span class="mx-1 hidden h-4 w-px bg-white/20 sm:block" aria-hidden="true"></span>
+        <a href="https://www.facebook.com/Garagedoorasapservice/" target="_blank" rel="noopener" class="grid h-11 w-11 place-items-center rounded-full text-white/90 transition hover:bg-white/10 hover:text-white"><span class="sr-only">Facebook (opens in a new tab)</span><svg class="h-4 w-4" aria-hidden="true"><use href="#i-fb"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCruZpdtFdDZq0obavLzPdyA" target="_blank" rel="noopener" class="grid h-11 w-11 place-items-center rounded-full text-white/90 transition hover:bg-white/10 hover:text-white"><span class="sr-only">YouTube (opens in a new tab)</span><svg class="h-4 w-4" aria-hidden="true"><use href="#i-yt"/></svg></a>
+      </span>
+    </div>
   </aside>
 
   <header id="top" class="sticky top-0 z-50 transition-shadow duration-300" data-header>
@@ -88,7 +96,7 @@
       <nav id="mobile-nav" aria-label="Mobile" class="border-t border-brand-grey-200 lg:hidden" hidden>
         <ul class="wrap grid gap-1 py-4 text-lg font-medium">
           <li><a class="block rounded-2xl px-3 py-3 hover:bg-brand-grey-50" href="#about">About</a></li>
-          <li><a class="block rounded-2xl px-3 py-3 hover:bg-brand-grey-50" href="#services">Services &amp; fix finder</a></li>
+          <li><a class="block rounded-2xl px-3 py-3 hover:bg-brand-grey-50" href="#services">Services</a></li>
           <li><a class="block rounded-2xl px-3 py-3 hover:bg-brand-grey-50" href="#how">How it works</a></li>
           <li><a class="block rounded-2xl px-3 py-3 hover:bg-brand-grey-50" href="#areas">Service areas</a></li>
           <li><a class="block rounded-2xl px-3 py-3 hover:bg-brand-grey-50" href="#reviews">Reviews</a></li>
@@ -145,11 +153,11 @@
 
         <!-- Arch window: the opening, with the door rolling up into it -->
         <div class="relative mx-auto w-full max-w-[30rem] lg:col-span-5 lg:max-w-none">
-          <div class="arch relative aspect-[29/34] w-full bg-brand-grey-100 shadow-[0_40px_80px_-40px_rgba(28,31,42,.45)]" data-parallax>
+          <div class="arch relative aspect-[29/34] w-[72%] bg-brand-grey-100 xl:w-[80%] shadow-[0_40px_80px_-40px_rgba(28,31,42,.45)]" data-parallax>
             <img src="img/hero-arch.jpg" srcset="img/hero-arch-sm.jpg 386w, img/hero-arch.jpg 580w" sizes="(min-width: 1024px) 34vw, 90vw" alt="A white carriage-style garage door on a grey-sided Florida home" width="580" height="680" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high">
             <div class="door pointer-events-none absolute inset-0" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
           </div>
-          <img src="../assets/brand/brand-mr-asap.png" alt="Mr. ASAP, the Garage Door ASAP mascot" width="760" height="762" class="hero-mascot absolute -bottom-10 -left-6 w-[48%] max-w-[16rem] drop-shadow-[0_24px_30px_rgba(28,31,42,.35)] sm:-left-12 lg:-left-16 xl:-left-4">
+          <img src="../assets/brand/brand-mr-asap.png" alt="Mr. ASAP, the Garage Door ASAP mascot" width="760" height="762" class="hero-mascot pointer-events-none absolute bottom-0 right-0 w-[34%] max-w-[16rem] drop-shadow-[0_24px_30px_rgba(28,31,42,.35)] lg:-right-[6%] xl:-right-[10%] xl:w-[36%]">
         </div>
       </div>
     </section>
@@ -162,7 +170,7 @@
           <p class="mt-3 text-sm text-brand-grey-400">Emergency service,<br>holidays included</p>
         </li>
         <li class="reveal lg:border-r lg:border-white/10 lg:px-8" style="--d:80ms">
-          <p class="tnum text-[clamp(2.4rem,4.5vw,3.6rem)] font-display leading-none tracking-[-0.04em]"><span data-count="30">30</span><span class="text-brand-grey-500">+</span></p>
+          <p class="tnum text-[clamp(2.4rem,4.5vw,3.6rem)] font-display leading-none tracking-[-0.04em]"><span data-count="30">30</span><span class="text-brand-red">+</span></p>
           <p class="mt-3 text-sm text-brand-grey-400">Years in the business,<br>family owned &amp; operated</p>
         </li>
         <li class="reveal pr-4 lg:border-r lg:border-white/10 lg:px-8" style="--d:160ms">
@@ -179,14 +187,14 @@
     <!-- =========================================================== 4. ABOUT -->
     <section id="about" class="pb-16 bend bend-l z-[18] bg-white" aria-labelledby="about-title" style="--prev:#2F2D2E">
       <div class="wrap grid items-start gap-12 pt-8 lg:grid-cols-12 lg:gap-16">
-        <figure class="reveal lg:col-span-7">
+        <figure class="reveal lg:col-span-6">
           <div class="arch relative aspect-[4/3] w-full max-w-[960px] bg-brand-grey-100 shadow-[0_40px_80px_-50px_rgba(28,31,42,.5)]">
-            <img src="../assets/img/brand-crew-trucks.jpg" srcset="../assets/img/brand-crew-trucks-sm.jpg 640w, ../assets/img/brand-crew-trucks.jpg 960w" sizes="(min-width: 1280px) 700px, (min-width: 1024px) 56vw, 100vw" width="960" height="720" alt="The Garage Door ASAP crew standing in front of their white service trucks" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-[50%_60%]">
+            <img src="../assets/img/brand-crew-trucks.jpg" srcset="../assets/img/brand-crew-trucks-sm.jpg 640w, ../assets/img/brand-crew-trucks.jpg 960w" sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 100vw" width="960" height="720" alt="The Garage Door ASAP crew standing in front of their white service trucks" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-[50%_60%]">
           </div>
           <figcaption class="mt-4 text-sm text-brand-grey-700">The Garage Door ASAP crew and service trucks.</figcaption>
         </figure>
-        <div class="reveal lg:col-span-5" style="--d:120ms">
-          <h2 id="about-title" class="h2">A family business, not a franchise.</h2>
+        <div class="reveal lg:col-span-6" style="--d:120ms">
+          <h2 id="about-title" class="h2 lg:text-[clamp(2.2rem,3.6vw,3.2rem)]"><span class="lg:block lg:whitespace-nowrap">A family business,</span> <span class="lg:block lg:whitespace-nowrap">not a franchise.</span></h2>
           <p class="mt-6 text-lg leading-relaxed text-brand-grey-700 sm:text-xl">We fix any garage door problem on the spot, guarantee our prices, and use American-made parts when available.</p>
           <ul class="mt-8 grid gap-4 text-[1.0625rem] text-brand-midnight">
             <li class="flex gap-3"><svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-red" aria-hidden="true"><use href="#i-check"/></svg><span>Family owned &amp; operated, 30+ years</span></li>
@@ -199,121 +207,64 @@
       </div>
     </section>
 
-    <!-- =========================================================== 5. SERVICES: DOOR DIAGRAM + FIX FINDER -->
-    <section id="services" class="pb-16 bend bend-r z-[17] bg-brand-grey-50" aria-labelledby="services-title" style="--prev:#FFFFFF">
-      <div class="wrap pt-8">
-        <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
-          <div class="reveal lg:col-span-7">
-            <p class="kicker">Services &amp; fix finder</p>
-            <h2 id="services-title" class="h2">What is your door doing?</h2>
-          </div>
-          <p class="reveal lead lg:col-span-5" style="--d:80ms">Pick a symptom to see the likely repair and how urgent it is.</p>
+    <!-- =========================================================== 5. SERVICES: CARDS (the fix finder and door diagram are backed up in backup/) -->
+    <section id="services" class="pb-16 lg:pb-12 bend bend-r z-[17] bg-brand-grey-50" aria-labelledby="services-title" style="--prev:#FFFFFF">
+      <div class="wrap pt-8 lg:pt-2">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="kicker justify-center">Our services</p>
+          <h2 id="services-title" class="h2">Every repair, done right.</h2>
+          <p class="lead mx-auto mt-4">Same-day repairs, with the price explained before we start.</p>
         </div>
-
-        <div class="mt-10 grid gap-8 lg:mt-8 lg:grid-cols-12 lg:gap-8" data-finder>
-          <!-- Symptoms -->
-          <div class="lg:col-span-4">
-            <div class="lg:sticky lg:top-28">
-              <div class="reveal lift-hover rounded-[2rem] bg-white p-3 shadow-[0_30px_60px_-45px_rgba(28,31,42,.45)] ring-1 ring-brand-grey-200">
-                <p id="sym-label" class="sr-only">Choose a symptom</p>
-                <p class="sym-group"><span class="h-2 w-2 rounded-full bg-brand-red" aria-hidden="true"></span>Urgent · call now</p>
-                <ul class="grid gap-1" aria-labelledby="sym-label" data-symptoms="urgent"></ul>
-                <p class="sym-group mt-1 border-t border-brand-grey-100 pt-3"><span class="h-2 w-2 rounded-full bg-brand-grey-500" aria-hidden="true"></span>Book a visit</p>
-                <ul class="grid gap-1" aria-label="Routine repairs" data-symptoms="routine"></ul>
-              </div>
-              <a href="tel:+18777877121" class="group mt-3 flex items-center gap-4 rounded-[2rem] bg-brand-red p-2.5 pr-6 lg:hidden text-white shadow-[0_20px_40px_-24px_rgba(219,0,0,.8)] transition hover:bg-brand-red-deep">
-                <img src="../assets/brand/brand-mr-asap-mark.png" alt="" width="160" height="160" loading="lazy" class="h-14 w-14 shrink-0 rounded-full bg-white object-cover">
-                <span class="min-w-0 leading-snug"><strong class="block font-heading">Not sure what’s wrong?</strong><span class="tnum text-sm">Call (877) 787-7121, 24/7</span></span>
-                <svg class="ml-auto h-5 w-5 shrink-0 transition group-hover:translate-x-1" aria-hidden="true"><use href="#i-arrow"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Diagram + result -->
-          <div style="--d:120ms" class="reveal content-start overflow-hidden rounded-[2rem] bg-brand-grey-100 shadow-[0_50px_90px_-60px_rgba(28,31,42,.55)] ring-1 ring-brand-grey-200 lg:col-span-8 lg:grid lg:grid-cols-2 lg:content-stretch" data-stage>
-            <div class="relative bg-gradient-to-b from-white via-white to-brand-grey-100 px-4 pb-2 pt-4 sm:px-6 sm:pt-5 lg:flex lg:flex-col lg:justify-center lg:pb-4">
-              <div class="relative mx-auto w-full max-w-[29rem]" data-diagram>
-                <svg viewBox="0 0 640 460" class="block h-auto w-full" role="img" aria-labelledby="dg-title dg-desc">
-                  <title id="dg-title">Side view of a sectional garage door</title>
-                  <desc id="dg-desc">The door panels run on rollers in a track that bends from vertical to horizontal. A torsion spring and drum sit above the opening, a lift cable runs down to the bottom of the door, the opener hangs from the ceiling, and safety sensors sit near the floor.</desc>
-                  <defs>
-                    <linearGradient id="dg-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E1E2E5"/><stop offset="1" stop-color="#E1E2E5" stop-opacity="0"/></linearGradient>
-                    <linearGradient id="dg-ceiling" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6E8EA"/><stop offset="1" stop-color="#E6E8EA" stop-opacity="0"/></linearGradient>
-                  </defs>
-                  <!-- structure -->
-                  <rect x="40" y="24" width="580" height="40" fill="url(#dg-ceiling)"/>
-                  <rect x="20" y="420" width="600" height="40" fill="url(#dg-floor)"/>
-                  <line x1="40" y1="24" x2="620" y2="24" stroke="#C0C2C6" stroke-width="2"/>
-                  <line x1="20" y1="420" x2="620" y2="420" stroke="#C0C2C6" stroke-width="2"/>
-                  <rect x="40" y="24" width="34" height="126" fill="#E6E8EA"/>
-                  <!-- track -->
-                  <g class="part" data-part="track">
-                    <path d="M104 420V190a70 70 0 0 1 70-70h426" fill="none" stroke="#E1E2E5" stroke-width="16" stroke-linecap="round"/>
-                    <path class="hl" d="M104 420V190a70 70 0 0 1 70-70h426" fill="none" stroke="#949596" stroke-width="2.5" stroke-linecap="round"/>
-                  </g>
-                  <!-- spring + drum -->
-                  <g class="part" data-part="spring">
-                    <line x1="86" y1="74" x2="300" y2="74" stroke="#949596" stroke-width="3"/>
-                    <path class="hl" d="M122 74c4-14 8-14 12 0s8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0" fill="none" stroke="#3C3F49" stroke-width="3"/>
-                    <circle class="hlf" cx="92" cy="74" r="14" fill="#3C3F49"/>
-                    <circle cx="92" cy="74" r="5" fill="#fff"/>
-                  </g>
-                  <!-- cable -->
-                  <g class="part" data-part="cables">
-                    <path class="hl" d="M80 80V414h18" fill="none" stroke="#5D6068" stroke-width="2.5" stroke-dasharray="6 5"/>
-                  </g>
-                  <!-- opener -->
-                  <g class="part" data-part="opener">
-                    <line class="hl" x1="190" y1="56" x2="474" y2="56" stroke="#7F8188" stroke-width="5" stroke-linecap="round"/>
-                    <line x1="520" y1="24" x2="520" y2="38" stroke="#7F8188" stroke-width="3"/>
-                    <rect class="hlf" x="470" y="36" width="104" height="42" rx="12" fill="#2F2D2E"/>
-                    <circle cx="556" cy="57" r="5" fill="#DB0000"/>
-                    <rect x="222" y="50" width="26" height="14" rx="4" fill="#3C3F49" data-trolley/>
-                    <line x1="235" y1="62" x2="104" y2="160" stroke="#3C3F49" stroke-width="4" stroke-linecap="round" data-arm/>
-                  </g>
-                  <!-- sensors -->
-                  <g class="part" data-part="sensors">
-                    <rect class="hlf" x="112" y="398" width="16" height="14" rx="3" fill="#3C3F49"/>
-                    <path class="hl" d="M132 405h40" stroke="#DB0000" stroke-width="2" stroke-dasharray="3 4"/>
-                  </g>
-                  <!-- car, for scale -->
-                  <g aria-hidden="true" transform="translate(145 105) scale(.75)">
-                    <path d="M318 404v-26c0-9 6-15 15-17l52-8 40-30c7-5 15-8 24-8h70c10 0 18 3 25 10l30 30 18 4c9 2 14 9 14 18v27z" fill="#E6E8EA"/>
-                    <path d="M434 334h40v26h-68zM484 334h22c6 0 11 2 15 6l20 20h-57z" fill="#fff" opacity=".9"/>
-                    <circle cx="370" cy="404" r="17" fill="#3C3F49"/><circle cx="370" cy="404" r="7" fill="#C0C2C6"/>
-                    <circle cx="545" cy="404" r="17" fill="#3C3F49"/><circle cx="545" cy="404" r="7" fill="#C0C2C6"/>
-                  </g>
-                  <!-- door panels (positioned along the track by main.js) -->
-                  <g class="part" data-part="door">
-                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
-                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
-                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
-                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
-                  </g>
-                  <path d="M104 420V190a70 70 0 0 1 70-70h426" fill="none" stroke="none" data-track/>
-                </svg>
-                <!-- Hotspots (keyboard accessible) -->
-                <button type="button" class="hotspot" style="left:30%;top:6%" data-hotspot="spring" aria-pressed="false"><span class="hs-n" aria-hidden="true">1</span><span class="hs-label" aria-hidden="true">Spring</span><span class="sr-only">Torsion spring</span></button>
-                <button type="button" class="hotspot" style="left:12.5%;top:60%" data-hotspot="cables" aria-pressed="false"><span class="hs-n" aria-hidden="true">2</span><span class="hs-label" aria-hidden="true">Cable</span><span class="sr-only">Lift cable</span></button>
-                <button type="button" class="hotspot hotspot-flip" style="left:82%;top:22%" data-hotspot="opener" aria-pressed="false"><span class="hs-n" aria-hidden="true">3</span><span class="hs-label" aria-hidden="true">Opener</span><span class="sr-only">Opener</span></button>
-                <button type="button" class="hotspot" style="left:47%;top:26%" data-hotspot="track" aria-pressed="false"><span class="hs-n" aria-hidden="true">4</span><span class="hs-label" aria-hidden="true">Track</span><span class="sr-only">Track</span></button>
-                <button type="button" class="hotspot" style="left:20%;top:31%" data-hotspot="rollers" aria-pressed="false"><span class="hs-n" aria-hidden="true">5</span><span class="hs-label" aria-hidden="true">Rollers</span><span class="sr-only">Rollers</span></button>
-                <button type="button" class="hotspot" style="left:21%;top:88%" data-hotspot="sensors" aria-pressed="false"><span class="hs-n" aria-hidden="true">6</span><span class="hs-label" aria-hidden="true">Sensors</span><span class="sr-only">Safety sensors</span></button>
-              </div>
-              <div class="mt-1 flex items-center justify-between gap-3">
-                <p class="hidden text-xs text-brand-grey-700 sm:block">A guide only: your technician confirms the cause on site.</p>
-                <button type="button" class="ml-auto inline-flex min-h-[2.75rem] items-center gap-2 whitespace-nowrap rounded-full bg-white px-5 text-sm font-heading text-brand-midnight shadow-sm ring-1 ring-brand-grey-300 transition hover:ring-brand-midnight" data-run-door aria-pressed="false">
-                  <svg class="h-4 w-4 -rotate-90" aria-hidden="true"><use href="#i-arrow"/></svg><span data-run-label>Open the door</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Result -->
-            <div class="relative flex flex-col justify-center rounded-tr-[3.5rem] bg-brand-midnight px-5 py-5 text-white sm:px-7 sm:py-6 lg:rounded-tr-none lg:rounded-tl-[3rem]" aria-live="polite" data-result>
-              <p class="text-sm text-brand-grey-400">Choose a symptom to see the likely fix.</p>
-            </div>
-          </div>
-        </div>
+        <ul class="mt-16 grid gap-x-5 gap-y-14 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-y-16">
+          <li class="svc-card reveal" style="--d:0ms">
+            <span class="svc-tab"><img src="../assets/img/brand-svc-spring-broken.jpg" alt="A broken torsion spring" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl object-cover"></span>
+            <h3 class="text-lg">Spring Replacement</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">Snapped springs replaced safely, and the door rebalanced.</p>
+            <a href="#quote" class="svc-go" data-book="Spring Replacement"><span class="sr-only">Book Spring Replacement</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:60ms">
+            <span class="svc-tab"><img src="img/svc-cable-drums.jpg" alt="A pair of garage door cable drums" width="288" height="288" loading="lazy" decoding="async" class="h-full w-full rounded-xl object-cover"></span>
+            <h3 class="text-lg">Cable Replacement</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">Snapped or frayed cables replaced, drums checked.</p>
+            <a href="#quote" class="svc-go" data-book="Cable Replacement"><span class="sr-only">Book Cable Replacement</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:120ms">
+            <span class="svc-tab"><img src="../assets/img/brand-shifted-door-sm.jpg" alt="A door that has shifted off its track" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl object-cover"></span>
+            <h3 class="text-lg">Shifted Door Repair</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">Realigned, with the cables, rollers and tracks corrected.</p>
+            <a href="#quote" class="svc-go" data-book="Shifted Door Repair"><span class="sr-only">Book Shifted Door Repair</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:180ms">
+            <span class="svc-tab"><img src="../assets/img/brand-svc-opener.jpg" alt="A garage door opener on the ceiling" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl object-cover"></span>
+            <h3 class="text-lg">Opener Repair</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">Motor, controls and safety sensors repaired on the spot.</p>
+            <a href="#quote" class="svc-go" data-book="Opener Repair"><span class="sr-only">Book Opener Repair</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:240ms">
+            <span class="svc-tab"><img src="../assets/img/brand-svc-opener-new.jpg" alt="A new garage door opener" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl bg-white object-contain p-1"></span>
+            <h3 class="text-lg">Opener Replacement</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">A new opener supplied, installed, programmed and tested.</p>
+            <a href="#quote" class="svc-go" data-book="Opener Replacement"><span class="sr-only">Book Opener Replacement</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:300ms">
+            <span class="svc-tab"><img src="../assets/img/brand-svc-rollers.jpg" alt="A set of garage door rollers" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl object-cover"></span>
+            <h3 class="text-lg">Roller Replacement</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">New rollers bring back smooth, quiet travel.</p>
+            <a href="#quote" class="svc-go" data-book="Roller Replacement"><span class="sr-only">Book Roller Replacement</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:300ms">
+            <span class="svc-tab"><img src="../assets/img/brand-svc-maintenance.jpg" alt="A technician servicing door hardware" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl object-cover"></span>
+            <h3 class="text-lg">General Maintenance</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">Parts tightened and lubricated, balance checked.</p>
+            <a href="#quote" class="svc-go" data-book="General Maintenance"><span class="sr-only">Book General Maintenance</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+          <li class="svc-card reveal" style="--d:300ms">
+            <span class="svc-tab"><img src="../assets/brand/brand-mr-asap-mark.png" alt="Mr. ASAP" width="72" height="72" loading="lazy" decoding="async" class="h-full w-full rounded-xl bg-white object-cover"></span>
+            <h3 class="text-lg">Not sure what’s wrong?</h3>
+            <p class="mx-auto mb-5 mt-2 max-w-[27ch] text-sm leading-relaxed text-brand-grey-700">Call and describe it. We’ll tell you the likely fix.</p>
+            <a href="tel:+18777877121" class="svc-go"><span class="sr-only">Call (877) 787-7121</span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -358,43 +309,55 @@
 
     <!-- =========================================================== 7. WHY CHOOSE US -->
     <section id="why" class="pb-16 bend bend-r z-[15] bg-brand-midnight text-white" aria-labelledby="why-title" style="--prev:#FFFFFF">
-      <div class="wrap grid gap-16 pt-8 lg:grid-cols-12">
-        <div class="lg:col-span-5">
-          <h2 id="why-title" class="reveal h2 text-white">Fine workmanship. Honest prices. A promise we keep.</h2>
-          <p class="reveal mt-7 max-w-md leading-relaxed text-brand-grey-400 sm:text-lg">We depend on word of mouth, so every visit counts.</p>
+      <div class="wrap grid gap-10 pt-8 lg:grid-cols-12 lg:items-center lg:gap-16">
+        <div class="text-center lg:col-span-5">
+          <h2 id="why-title" class="reveal h2 text-white lg:text-[clamp(2.2rem,3.3vw,2.9rem)]"><span class="block">Fine workmanship.</span> <span class="block">Honest prices.</span> <span class="block">A promise we keep.</span></h2>
+          <p class="reveal mx-auto mt-6 max-w-md leading-relaxed text-brand-grey-400 sm:text-lg">We depend on word of mouth, so every visit counts.</p>
         </div>
-        <ul class="grid gap-x-12 gap-y-12 sm:grid-cols-2 lg:col-span-7 lg:pt-3">
-          <li class="reveal" style="--d:0ms"><h3 class="text-lg text-white">Same-day &amp; 24/7</h3><p class="mt-2 leading-relaxed text-brand-grey-400">Repairs around the clock, holidays included.</p></li>
-          <li class="reveal" style="--d:80ms"><h3 class="text-lg text-white">Best prices guaranteed</h3><p class="mt-2 leading-relaxed text-brand-grey-400">Free measure and quote, honest pricing.</p></li>
-          <li class="reveal" style="--d:160ms"><h3 class="text-lg text-white">Lifetime parts warranty</h3><p class="mt-2 leading-relaxed text-brand-grey-400">Plus a 100% satisfaction guarantee.</p></li>
-          <li class="reveal" style="--d:240ms"><h3 class="text-lg text-white">Licensed, bonded &amp; insured</h3><p class="mt-2 leading-relaxed text-brand-grey-400">A trained, experienced team.</p></li>
+        <ul class="grid divide-y divide-white/10 border-y border-white/10 sm:grid-cols-2 sm:gap-x-10 sm:divide-y-0 sm:[&>li:nth-child(n+3)]:border-t sm:[&>li:nth-child(n+3)]:border-white/10 lg:col-span-7">
+          <li class="reveal flex gap-4 py-6" style="--d:0ms">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/[.06] text-white ring-1 ring-white/15"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-clock"/></svg></span>
+            <div><h3 class="text-lg text-white">Same-day &amp; 24/7</h3><p class="mt-1 leading-relaxed text-brand-grey-400">Repairs around the clock, holidays included.</p></div>
+          </li>
+          <li class="reveal flex gap-4 py-6" style="--d:80ms">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/[.06] text-white ring-1 ring-white/15"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-tag"/></svg></span>
+            <div><h3 class="text-lg text-white">Best prices guaranteed</h3><p class="mt-1 leading-relaxed text-brand-grey-400">Free measure and quote, honest pricing.</p></div>
+          </li>
+          <li class="reveal flex gap-4 py-6" style="--d:160ms">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/[.06] text-white ring-1 ring-white/15"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-shield"/></svg></span>
+            <div><h3 class="text-lg text-white">Lifetime parts warranty</h3><p class="mt-1 leading-relaxed text-brand-grey-400">Plus a 100% satisfaction guarantee.</p></div>
+          </li>
+          <li class="reveal flex gap-4 py-6" style="--d:240ms">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/[.06] text-white ring-1 ring-white/15"><svg class="h-5 w-5" aria-hidden="true"><use href="#i-badge"/></svg></span>
+            <div><h3 class="text-lg text-white">Licensed, bonded &amp; insured</h3><p class="mt-1 leading-relaxed text-brand-grey-400">A trained, experienced team.</p></div>
+          </li>
         </ul>
       </div>
     </section>
 
     <!-- =========================================================== 8. SERVICE AREAS: ROUTE MAP -->
     <section id="areas" class="pb-16 bend bend-l z-[14] bg-white" aria-labelledby="areas-title" style="--prev:#2F2D2E">
-      <div class="wrap grid gap-10 pt-8 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-6">
-        <div class="min-w-0 lg:col-span-6 lg:col-start-1 lg:row-start-1">
+      <div class="wrap grid items-center gap-10 pt-8 lg:grid-cols-12 lg:gap-x-16">
+        <div class="min-w-0 lg:col-span-6">
           <h2 id="areas-title" class="reveal h2">Clermont, Orlando &amp; all of Central Florida.</h2>
-          <p class="reveal lead mt-5">From our base on US-27 in Clermont we serve 73 cities. Find yours to see the route.</p>
-          <form class="reveal mt-6" data-area-form novalidate role="search" aria-label="Check a city">
-            <label for="area-city" class="text-sm font-heading text-brand-midnight">Do you serve my city?</label>
-            <div class="mt-2 flex items-center gap-1.5 rounded-full bg-brand-grey-50 p-1.5 ring-1 ring-brand-grey-200 focus-within:ring-2 focus-within:ring-brand-midnight/30">
-              <input id="area-city" name="area" list="area-list" autocomplete="off" placeholder="Type a city, e.g. Winter Garden" class="min-w-0 flex-1 rounded-full border-0 bg-transparent px-4 py-3 text-base focus:ring-0">
-              <button class="btn btn-dark min-h-[2.9rem] shrink-0 px-6 text-sm" type="submit">Check</button>
+          <p class="reveal lead mt-5">From our base on US-27 in Clermont we serve <span class="tnum" data-area-count>73</span> cities.</p>
+          <form class="reveal mt-8" data-area-form novalidate role="search" aria-label="Check a city">
+            <label for="area-city" id="area-city-label" class="text-sm font-heading text-brand-midnight">Do you serve my city?</label>
+            <div class="relative mt-2" data-combo>
+              <div class="flex items-center gap-1.5 rounded-full bg-brand-grey-50 p-1.5 ring-1 ring-brand-grey-200 focus-within:ring-[3px] focus-within:ring-brand-midnight">
+                <svg class="ml-3 h-5 w-5 shrink-0 text-brand-grey-600" aria-hidden="true"><use href="#i-search"/></svg>
+                <input id="area-city" name="area" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="area-city-list" autocomplete="off" spellcheck="false" placeholder="Start typing, e.g. Winter Garden" class="min-w-0 flex-1 rounded-full border-0 bg-transparent px-2 py-3 text-base focus:ring-0 focus-visible:outline-none" data-combo-input>
+                <button class="btn btn-dark min-h-[2.9rem] shrink-0 px-6 text-sm" type="submit">Check</button>
+              </div>
+              <ul id="area-city-list" role="listbox" aria-labelledby="area-city-label" class="combo-list" hidden data-combo-list></ul>
             </div>
-            <datalist id="area-list" data-area-datalist></datalist>
           </form>
-          <div class="reveal scrollbar-none -mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0" role="group" aria-label="Show cities by area" data-regions>
-            <button type="button" class="region-chip" aria-pressed="false" data-region="orlando">Around Orlando</button>
-            <button type="button" class="region-chip" aria-pressed="false" data-region="lake">Lake &amp; north</button>
-            <button type="button" class="region-chip" aria-pressed="false" data-region="coast">The coast &amp; DeLand</button>
-            <button type="button" class="region-chip" aria-pressed="false" data-region="south">Kissimmee &amp; south</button>
+          <div class="mt-5 rounded-[1.75rem] bg-brand-grey-50 p-5 ring-1 ring-brand-grey-200" role="status" aria-live="polite" data-area-result>
+            <p class="text-base leading-relaxed text-brand-grey-700">Type your city, or tap a dot on the map.</p>
           </div>
         </div>
 
-        <figure class="reveal min-w-0 lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:w-full lg:max-w-[27rem] lg:justify-self-end" style="--d:120ms">
+        <figure class="reveal min-w-0 lg:col-span-6 lg:w-full lg:max-w-[29rem] lg:justify-self-center" style="--d:120ms">
           <div class="relative -mx-4 overflow-hidden border-y border-brand-grey-200 bg-white sm:mx-0 sm:rounded-[2rem] sm:border-0 sm:shadow-[0_40px_80px_-56px_rgba(28,31,42,.5)] sm:ring-1 sm:ring-brand-grey-200">
             <svg viewBox="60 70 870 920" class="block h-auto w-full" role="img" aria-labelledby="map-title map-desc" data-map>
               <title id="map-title">Map of the Garage Door ASAP service area</title>
@@ -405,20 +368,6 @@
           </div>
           <figcaption class="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 px-2 text-xs text-brand-grey-700"><span class="inline-flex items-center gap-1.5"><span class="h-2 w-2 rounded-full bg-brand-grey-500" aria-hidden="true"></span>A city we serve</span><span class="inline-flex items-center gap-1.5"><span class="h-3 w-3 rounded-full border-2 border-brand-red bg-white" aria-hidden="true"></span>Our Clermont base</span><span>Distances are straight-line estimates.</span></figcaption>
         </figure>
-
-        <div class="min-w-0 lg:col-span-6 lg:col-start-1 lg:row-start-2">
-          <div class="rounded-[1.75rem] bg-brand-grey-50 p-5 ring-1 ring-brand-grey-200" role="status" aria-live="polite" data-area-result>
-            <p class="text-base leading-relaxed text-brand-grey-700">Search for your city, tap the map, or choose an area.</p>
-          </div>
-        </div>
-        <div class="border-t border-brand-grey-200 pt-5 lg:col-span-12 lg:row-start-3">
-          <div class="flex items-center justify-between gap-4">
-            <h3 class="text-lg">Cities we serve</h3>
-            <span class="ml-auto hidden text-sm text-brand-grey-700 sm:inline"><span class="tnum" data-area-count>73</span> cities</span>
-            <button type="button" class="inline-flex min-h-[2.75rem] items-center gap-2 rounded-full bg-brand-grey-100 px-5 py-2.5 text-sm font-heading text-brand-midnight transition hover:bg-brand-grey-200" aria-expanded="false" data-area-toggle><span>Show all 73 cities</span><svg class="h-4 w-4 rotate-90 transition" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          </div>
-          <ul class="mt-2 columns-2 gap-x-6 text-[0.95rem] sm:columns-3 lg:columns-5 [&>li]:mb-1 [&>li]:break-inside-avoid" data-area-list></ul>
-        </div>
       </div>
     </section>
 
@@ -428,9 +377,10 @@
         <div class="reveal lg:col-span-4 lg:flex lg:flex-col">
           <p class="kicker">Google reviews</p>
           <h2 id="reviews-title" class="h2">Homeowners ask for our technicians by name.</h2>
+          <p class="mt-8 inline-flex items-center gap-3 self-start rounded-full bg-white py-2 pl-2 pr-5 shadow-[0_1px_2px_rgba(28,31,42,.06),0_14px_32px_-20px_rgba(28,31,42,.35)]"><span class="grid h-10 w-10 place-items-center rounded-full bg-white ring-1 ring-brand-grey-200"><svg class="h-6 w-6" aria-hidden="true"><use href="#i-google"/></svg></span><span class="text-[0.95rem] font-heading text-brand-midnight">Reviews from Google</span></p>
         </div>
         <div class="reveal min-w-0 lg:col-span-8" style="--d:120ms">
-          <ul class="scrollbar-none flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 pt-1 [&.dragging]:cursor-grabbing [&.dragging]:snap-none" tabindex="0" aria-label="Google reviews, use the arrow keys to scroll" data-reviews>
+          <ul class="rv-bleed scrollbar-none flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 pt-1 [&.dragging]:cursor-grabbing [&.dragging]:snap-none" tabindex="0" aria-label="Google reviews, use the arrow keys to scroll" data-reviews>
             <!-- Quoted as written on Google (read 18 Oct 2026). Names shortened; long reviews excerpted with "…". -->
             <li class="w-[86%] shrink-0 snap-start sm:w-[22rem]"><figure class="flex h-full flex-col rounded-[1.5rem] bg-white p-6 shadow-[0_1px_2px_rgba(28,31,42,.06),0_14px_32px_-20px_rgba(28,31,42,.35)]"><div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div><blockquote class="mt-4 flex-1 leading-relaxed text-brand-ink">Andy was able to make it out within 45 minutes of my call and changed out my tension springs and other hardware on my garage in just under an hour. Pricing was reasonable and the parts carry a warranty too…</blockquote><figcaption class="mt-5 flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-full bg-brand-midnight font-title text-white" aria-hidden="true">J</span><span><strong class="block font-title text-brand-midnight">Jean T.</strong><span class="text-sm text-brand-grey-700">Tension springs · 5 months ago</span></span></figcaption></figure></li>
             <li class="w-[86%] shrink-0 snap-start sm:w-[22rem]"><figure class="flex h-full flex-col rounded-[1.5rem] bg-white p-6 shadow-[0_1px_2px_rgba(28,31,42,.06),0_14px_32px_-20px_rgba(28,31,42,.35)]"><div class="flex items-center justify-between"><span class="flex gap-0.5" role="img" aria-label="5 out of 5 stars"><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg></span><svg class="h-5 w-5" aria-hidden="true"><use href="#i-google"/></svg></div><blockquote class="mt-4 flex-1 leading-relaxed text-brand-ink">Andy and Sam did an outstanding job replacing my garage door springs. They were professional, knowledgeable, and worked efficiently. They kept everything clean throughout the job and made sure everything was working perfectly before they left.</blockquote><figcaption class="mt-5 flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-full bg-brand-red font-title text-white" aria-hidden="true">M</span><span><strong class="block font-title text-brand-midnight">Mike Z.</strong><span class="text-sm text-brand-grey-700">Spring replacement · 2 months ago</span></span></figcaption></figure></li>
@@ -454,25 +404,15 @@
     <!-- =========================================================== 10. EMERGENCY -->
     <section id="emergency" class="bend bend-l z-[12] overflow-hidden bg-brand-red text-white" aria-labelledby="emergency-title" style="--prev:#F6F7F8">
       <svg class="pointer-events-none absolute -right-40 -top-10 h-[130%] text-white/10" viewBox="0 0 600 700" fill="none" aria-hidden="true"><path d="M40 700V300a260 260 0 0 1 260-260h300" stroke="currentColor" stroke-width="2"/><path d="M90 700V300a210 210 0 0 1 210-210h300" stroke="currentColor" stroke-width="2"/></svg>
-      <div class="wrap relative grid items-end gap-8 lg:grid-cols-12">
-        <div class="pb-28 pt-8 lg:col-span-7 lg:pb-40">
+      <div class="wrap relative grid gap-8 lg:grid-cols-12">
+        <div class="pb-20 pt-8 lg:col-span-7 lg:self-center lg:pb-10">
           <p class="reveal kicker kicker-light">Emergency service · 24/7</p>
           <h2 id="emergency-title" class="reveal h2 text-white" style="--d:60ms">Door stuck at midnight? We never close.</h2>
-          <p class="reveal mt-7 max-w-lg text-lg leading-relaxed text-white" style="--d:120ms">Any hour, any day, holidays included.</p>
-          <ul class="reveal mt-8 grid gap-x-8 gap-y-3 text-white sm:grid-cols-2" style="--d:160ms">
-            <li class="flex gap-3"><svg class="mt-0.5 h-5 w-5 shrink-0"><use href="#i-check"/></svg>Door stuck open overnight</li>
-            <li class="flex gap-3"><svg class="mt-0.5 h-5 w-5 shrink-0"><use href="#i-check"/></svg>Snapped spring, loud bang</li>
-            <li class="flex gap-3"><svg class="mt-0.5 h-5 w-5 shrink-0"><use href="#i-check"/></svg>Car trapped in the garage</li>
-            <li class="flex gap-3"><svg class="mt-0.5 h-5 w-5 shrink-0"><use href="#i-check"/></svg>Door off track or hanging</li>
-          </ul>
-          <div class="reveal mt-10 flex flex-col gap-3 sm:flex-row" style="--d:200ms">
-            <a href="tel:+18777877121" class="btn btn-white min-h-[3.75rem] gap-3 pl-2.5 pr-7 text-lg"><span class="grid h-11 w-11 place-items-center rounded-full bg-brand-red text-white"><svg><use href="#i-phone"/></svg></span><span class="tnum">(877) 787-7121</span></a>
-          </div>
-          <p class="reveal mt-7 flex max-w-xl gap-3 text-sm text-white" style="--d:240ms"><svg class="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true"><use href="#i-alert"/></svg><span><strong class="font-heading">Safety first:</strong> springs and cables are under extreme tension. Keep clear of the door and don’t try to adjust them yourself.</span></p>
+          <p class="reveal mt-7 flex max-w-md gap-3 rounded-2xl bg-white/10 px-4 py-3.5 text-sm leading-relaxed text-white ring-1 ring-white/15" style="--d:120ms"><svg class="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true"><use href="#i-alert"/></svg><span><strong class="font-heading">Safety first:</strong> springs and cables are under extreme tension. Keep clear of the door and don’t try to adjust them yourself.</span></p>
         </div>
         <div class="relative hidden self-end lg:col-span-5 lg:block">
           <div class="absolute inset-x-6 bottom-0 top-24 bg-brand-red-deep" style="border-radius:50% 50% 0 0 / 30% 30% 0 0" aria-hidden="true"></div>
-          <img src="../assets/brand/brand-mr-asap.png" alt="Mr. ASAP, ready to help" width="760" height="762" loading="lazy" class="float relative mx-auto block w-full max-w-[26rem] drop-shadow-[0_30px_40px_rgba(0,0,0,.35)]">
+          <img src="../assets/brand/brand-mr-asap.png" alt="Mr. ASAP, ready to help" width="760" height="762" loading="lazy" class="float relative mx-auto block w-full max-w-[19rem] drop-shadow-[0_30px_40px_rgba(0,0,0,.35)]">
         </div>
       </div>
     </section>
@@ -495,7 +435,7 @@
           </details>
           <details class="faq border-b border-brand-grey-200">
             <summary>Is it the spring or the opener?<span class="pm" aria-hidden="true"></span></summary>
-            <p class="max-w-2xl pb-7 pr-12 leading-relaxed text-brand-grey-700">A loud bang, a visible gap in the spring above the door, or a door that suddenly feels very heavy usually means a broken spring. If the motor hums but the door won’t move, it can be either. Try the <a class="font-heading text-brand-red" href="#services">fix finder</a> above, and your technician will confirm the cause on site.</p>
+            <p class="max-w-2xl pb-7 pr-12 leading-relaxed text-brand-grey-700">A loud bang, a visible gap in the spring above the door, or a door that suddenly feels very heavy usually means a broken spring. If the motor hums but the door won’t move, it can be either. See our <a class="font-heading text-brand-red" href="#services">services</a> above, or call and describe it: your technician will confirm the cause on site.</p>
           </details>
           <details class="faq border-b border-brand-grey-200">
             <summary>What affects the price of a repair?<span class="pm" aria-hidden="true"></span></summary>
@@ -538,7 +478,12 @@
             <div class="mt-5 grid gap-x-5 gap-y-0 sm:grid-cols-2">
               <div class="field"><label for="f-name">Name <span class="text-brand-red">*</span></label><input id="f-name" name="name" autocomplete="name" required aria-describedby="f-name-err"><p id="f-name-err" class="field-err" aria-live="polite"></p></div>
               <div class="field"><label for="f-phone">Phone <span class="text-brand-red">*</span></label><input id="f-phone" class="tnum" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(407) 555-0123" required aria-describedby="f-phone-hint f-phone-err"><p id="f-phone-hint" class="mt-1.5 text-[0.8rem] text-brand-grey-700">So we can call you back.</p><p id="f-phone-err" class="field-err !mt-0.5" aria-live="polite"></p></div>
-              <div class="field"><label for="f-city">City <span class="text-brand-red">*</span></label><input id="f-city" name="city" list="area-list" autocomplete="address-level2" required aria-describedby="f-city-err"><p id="f-city-err" class="field-err" aria-live="polite"></p></div>
+              <div class="field"><label for="f-city" id="f-city-label">City <span class="text-brand-red">*</span></label>
+                <div class="relative" data-combo>
+                  <input id="f-city" name="city" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="f-city-list" autocomplete="off" spellcheck="false" placeholder="Start typing" required aria-describedby="f-city-err" data-combo-input>
+                  <ul id="f-city-list" role="listbox" aria-labelledby="f-city-label" class="combo-list" hidden data-combo-list></ul>
+                </div>
+                <p id="f-city-err" class="field-err" aria-live="polite"></p></div>
               <div class="field"><label for="f-problem">Problem <span class="text-brand-red">*</span></label>
                 <select id="f-problem" name="problem" required data-service-select aria-describedby="f-problem-err">
                   <option value="">Choose one</option>

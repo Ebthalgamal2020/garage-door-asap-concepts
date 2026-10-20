@@ -1,0 +1,79 @@
+<!-- The Lift: animated door diagram (backed up 19 Oct 2026, removed from the services section).
+     It sat inside <div data-stage>, before the <!-- Result --> panel. -->
+            <div class="relative bg-gradient-to-b from-white via-white to-brand-grey-100 px-4 pb-2 pt-4 sm:px-6 sm:pt-5 lg:flex lg:flex-col lg:justify-center lg:pb-4">
+              <div class="relative mx-auto w-full max-w-[29rem]" data-diagram>
+                <svg viewBox="0 0 640 460" class="block h-auto w-full" role="img" aria-labelledby="dg-title dg-desc">
+                  <title id="dg-title">Side view of a sectional garage door</title>
+                  <desc id="dg-desc">The door panels run on rollers in a track that bends from vertical to horizontal. A torsion spring and drum sit above the opening, a lift cable runs down to the bottom of the door, the opener hangs from the ceiling, and safety sensors sit near the floor.</desc>
+                  <defs>
+                    <linearGradient id="dg-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E1E2E5"/><stop offset="1" stop-color="#E1E2E5" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="dg-ceiling" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6E8EA"/><stop offset="1" stop-color="#E6E8EA" stop-opacity="0"/></linearGradient>
+                  </defs>
+                  <!-- structure -->
+                  <rect x="40" y="24" width="580" height="40" fill="url(#dg-ceiling)"/>
+                  <rect x="20" y="420" width="600" height="40" fill="url(#dg-floor)"/>
+                  <line x1="40" y1="24" x2="620" y2="24" stroke="#C0C2C6" stroke-width="2"/>
+                  <line x1="20" y1="420" x2="620" y2="420" stroke="#C0C2C6" stroke-width="2"/>
+                  <rect x="40" y="24" width="34" height="126" fill="#E6E8EA"/>
+                  <!-- track -->
+                  <g class="part" data-part="track">
+                    <path d="M104 420V190a70 70 0 0 1 70-70h426" fill="none" stroke="#E1E2E5" stroke-width="16" stroke-linecap="round"/>
+                    <path class="hl" d="M104 420V190a70 70 0 0 1 70-70h426" fill="none" stroke="#949596" stroke-width="2.5" stroke-linecap="round"/>
+                  </g>
+                  <!-- spring + drum -->
+                  <g class="part" data-part="spring">
+                    <line x1="86" y1="74" x2="300" y2="74" stroke="#949596" stroke-width="3"/>
+                    <path class="hl" d="M122 74c4-14 8-14 12 0s8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0 8-14 12 0 8 14 12 0" fill="none" stroke="#3C3F49" stroke-width="3"/>
+                    <circle class="hlf" cx="92" cy="74" r="14" fill="#3C3F49"/>
+                    <circle cx="92" cy="74" r="5" fill="#fff"/>
+                  </g>
+                  <!-- cable -->
+                  <g class="part" data-part="cables">
+                    <path class="hl" d="M80 80V414h18" fill="none" stroke="#5D6068" stroke-width="2.5" stroke-dasharray="6 5"/>
+                  </g>
+                  <!-- opener -->
+                  <g class="part" data-part="opener">
+                    <line class="hl" x1="190" y1="56" x2="474" y2="56" stroke="#7F8188" stroke-width="5" stroke-linecap="round"/>
+                    <line x1="520" y1="24" x2="520" y2="38" stroke="#7F8188" stroke-width="3"/>
+                    <rect class="hlf" x="470" y="36" width="104" height="42" rx="12" fill="#2F2D2E"/>
+                    <circle cx="556" cy="57" r="5" fill="#DB0000"/>
+                    <rect x="222" y="50" width="26" height="14" rx="4" fill="#3C3F49" data-trolley/>
+                    <line x1="235" y1="62" x2="104" y2="160" stroke="#3C3F49" stroke-width="4" stroke-linecap="round" data-arm/>
+                  </g>
+                  <!-- sensors -->
+                  <g class="part" data-part="sensors">
+                    <rect class="hlf" x="112" y="398" width="16" height="14" rx="3" fill="#3C3F49"/>
+                    <path class="hl" d="M132 405h40" stroke="#DB0000" stroke-width="2" stroke-dasharray="3 4"/>
+                  </g>
+                  <!-- car, for scale -->
+                  <g aria-hidden="true" transform="translate(145 105) scale(.75)">
+                    <path d="M318 404v-26c0-9 6-15 15-17l52-8 40-30c7-5 15-8 24-8h70c10 0 18 3 25 10l30 30 18 4c9 2 14 9 14 18v27z" fill="#E6E8EA"/>
+                    <path d="M434 334h40v26h-68zM484 334h22c6 0 11 2 15 6l20 20h-57z" fill="#fff" opacity=".9"/>
+                    <circle cx="370" cy="404" r="17" fill="#3C3F49"/><circle cx="370" cy="404" r="7" fill="#C0C2C6"/>
+                    <circle cx="545" cy="404" r="17" fill="#3C3F49"/><circle cx="545" cy="404" r="7" fill="#C0C2C6"/>
+                  </g>
+                  <!-- door panels (positioned along the track by main.js) -->
+                  <g class="part" data-part="door">
+                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
+                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
+                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
+                    <g data-panel><rect class="hl" x="-8" y="-31" width="16" height="62" rx="3" fill="#F6F7F8" stroke="#7F8188" stroke-width="2"/><g class="part" data-part="rollers"><circle class="hlf" cx="0" cy="-24" r="5" fill="#3C3F49"/><circle class="hlf" cx="0" cy="24" r="5" fill="#3C3F49"/></g></g>
+                  </g>
+                  <path d="M104 420V190a70 70 0 0 1 70-70h426" fill="none" stroke="none" data-track/>
+                </svg>
+                <!-- Hotspots (keyboard accessible) -->
+                <button type="button" class="hotspot" style="left:30%;top:6%" data-hotspot="spring" aria-pressed="false"><span class="hs-n" aria-hidden="true">1</span><span class="hs-label" aria-hidden="true">Spring</span><span class="sr-only">Torsion spring</span></button>
+                <button type="button" class="hotspot" style="left:12.5%;top:60%" data-hotspot="cables" aria-pressed="false"><span class="hs-n" aria-hidden="true">2</span><span class="hs-label" aria-hidden="true">Cable</span><span class="sr-only">Lift cable</span></button>
+                <button type="button" class="hotspot hotspot-flip" style="left:82%;top:22%" data-hotspot="opener" aria-pressed="false"><span class="hs-n" aria-hidden="true">3</span><span class="hs-label" aria-hidden="true">Opener</span><span class="sr-only">Opener</span></button>
+                <button type="button" class="hotspot" style="left:47%;top:26%" data-hotspot="track" aria-pressed="false"><span class="hs-n" aria-hidden="true">4</span><span class="hs-label" aria-hidden="true">Track</span><span class="sr-only">Track</span></button>
+                <button type="button" class="hotspot" style="left:20%;top:31%" data-hotspot="rollers" aria-pressed="false"><span class="hs-n" aria-hidden="true">5</span><span class="hs-label" aria-hidden="true">Rollers</span><span class="sr-only">Rollers</span></button>
+                <button type="button" class="hotspot" style="left:21%;top:88%" data-hotspot="sensors" aria-pressed="false"><span class="hs-n" aria-hidden="true">6</span><span class="hs-label" aria-hidden="true">Sensors</span><span class="sr-only">Safety sensors</span></button>
+              </div>
+              <div class="mt-1 flex items-center justify-between gap-3">
+                <p class="hidden text-xs text-brand-grey-700 sm:block">A guide only: your technician confirms the cause on site.</p>
+                <button type="button" class="ml-auto inline-flex min-h-[2.75rem] items-center gap-2 whitespace-nowrap rounded-full bg-white px-5 text-sm font-heading text-brand-midnight shadow-sm ring-1 ring-brand-grey-300 transition hover:ring-brand-midnight" data-run-door aria-pressed="false">
+                  <svg class="h-4 w-4 -rotate-90" aria-hidden="true"><use href="#i-arrow"/></svg><span data-run-label>Open the door</span>
+                </button>
+              </div>
+            </div>
+
