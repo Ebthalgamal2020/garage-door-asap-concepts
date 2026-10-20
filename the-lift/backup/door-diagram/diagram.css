@@ -1,0 +1,20 @@
+/* The Lift: door diagram styles (backed up 19 Oct 2026). Lived in src/input.css under @layer utilities.
+   Uses the existing @keyframes ping from the same file. */
+  /* Door diagram */
+  .part { transition: opacity .4s ease, stroke .4s ease, fill .4s ease; }
+  [data-diagram][data-active] .part { opacity: .35; }
+  [data-diagram][data-active] .part.on { opacity: 1; }
+  .part.on .hl { stroke: #DB0000; }
+  .part.on .hlf { fill: #DB0000; }
+  /* Labelled hotspot pill: the number sits exactly on the part, the label reads outward */
+  .hotspot { @apply absolute flex items-center gap-2 rounded-full bg-white p-1 text-xs font-heading text-brand-midnight shadow-[0_6px_20px_-6px_rgba(28,31,42,.4)] ring-1 ring-brand-grey-200 transition duration-300 sm:pr-3.5; transform: translate(-18px, -50%); }
+  .hotspot-flip { @apply flex-row-reverse sm:pl-3.5 sm:pr-1; transform: translate(calc(-100% + 18px), -50%); }
+  .hotspot .hs-n { @apply relative grid h-7 w-7 place-items-center rounded-full bg-brand-midnight text-[0.7rem] font-title text-white transition duration-300; }
+  .hotspot .hs-n::after { content: ''; @apply absolute inset-0 rounded-full border-2 border-brand-red opacity-0; }
+  .hotspot .hs-label { @apply hidden sm:inline; }
+  .hotspot:hover { @apply ring-brand-midnight; }
+  .hotspot::before { content: ''; position: absolute; inset: -6px; border-radius: 9999px; }
+  .hotspot[aria-pressed='true'] { @apply bg-brand-red text-white ring-brand-red; }
+  .hotspot[aria-pressed='true'] .hs-n { @apply bg-white text-brand-red; }
+  .hotspot[aria-pressed='true'] .hs-n::after { animation: ping 1.6s cubic-bezier(0,0,.2,1) infinite; }
+  @keyframes ping { 0% { opacity: .8; transform: scale(1); } 100% { opacity: 0; transform: scale(1.9); } }
