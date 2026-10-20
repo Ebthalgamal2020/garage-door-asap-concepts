@@ -27,39 +27,16 @@
     : null;
   $$('.reveal').forEach((el) => (io ? io.observe(el) : el.classList.add('in')));
 
-  /* ---------- Quote form: two steps (step 2 is first in the source; CSS order shows step 1 first) ---------- */
+  /* ---------- Quote form: single step ---------- */
   const form = $('[data-form]');
-  const step1 = $('[data-step="1"]', form);
-  const step2 = $('[data-step="2"]', form);
   const problem = $('[name="problem"]', form);
-  function showStep(n, focus) {
-    step1.hidden = n !== 1;
-    step2.hidden = n !== 2;
-    $('[data-step-text]', form).textContent = `Step ${n} of 2`;
-    $('[data-dot="2"]', form).classList.toggle('bg-brand-red', n === 2);
-    $('[data-dot="2"]', form).classList.toggle('bg-brand-grey-300', n !== 2);
-    if (focus) (n === 1 ? problem : $('[name="name"]', form)).focus({ preventScroll: true });
-  }
-  showStep(1);
-  $('[data-next]', form).addEventListener('click', () => {
-    if (window.GDAForm && !GDAForm.validateField(problem)) { problem.focus(); return; }
-    showStep(2, true);
-  });
-  $('[data-back]', form).addEventListener('click', () => showStep(1, true));
-  // Before the shared validator runs: reveal the step that holds the first problem
-  form.addEventListener('submit', () => {
-    const detailsBad = ['name', 'phone', 'city'].some((n) => window.GDAForm && !GDAForm.validateField($(`[name="${n}"]`, form)));
-    if (detailsBad) showStep(2);
-    else if (!problem.value) showStep(1);
-  }, true);
   if (window.GDAForm) GDAForm.init(form, { primaryClass: 'btn btn-red', secondaryClass: 'btn btn-ghost', titleClass: 'text-lg font-title text-brand-midnight' });
 
   function startQuote({ service, urgency, details } = {}) {
     if (window.GDAForm) GDAForm.prefill(form, { service, urgency, message: details });
     if (service) problem.removeAttribute('aria-invalid');
-    showStep(service ? 2 : 1);
     $('#quote').scrollIntoView({ behavior: smooth, block: 'start' });
-    setTimeout(() => (service ? $('[name="name"]', form) : problem).focus({ preventScroll: true }), reduced ? 0 : 700);
+    setTimeout(() => (service ? $('[name="name"]', form) : problem).focus({ preventScroll: true }), reduced ? 0 : 500);
   }
   document.addEventListener('click', (e) => {
     const a = e.target.closest('[data-book], [data-chip], [data-details]');
@@ -80,14 +57,16 @@
       img: '../assets/img/brand-svc-shifted.jpg', w: 300, h: 280, alt: 'A garage door that has shifted out of its track' },
     { id: 'cable', icon: 'cable', label: 'Cable snapped or hanging', service: 'Cable Replacement', urgent: true,
       text: 'Lift cables raise the door evenly. A frayed or snapped cable can leave the door crooked or stuck, so we replace it and check the drums and springs.',
-      tip: 'Keep clear: cables are under high tension. Don’t run the door until it’s been checked.' },
+      tip: 'Keep clear: cables are under high tension. Don’t run the door until it’s been checked.',
+      img: '../assets/img/brand-job-spring-b.jpg', w: 1600, h: 1200, alt: 'A garage door spring and cable assembly from a Garage Door ASAP job' },
     { id: 'hum', icon: 'opener', label: 'Opener hums or won’t respond', service: 'Opener Repair', urgent: false,
       text: 'Opener humming, not responding to the remote or wall button, or stopping halfway? We diagnose the motor, controls and settings and repair them on the spot.',
       tip: 'Check the opener has power. If the motor hums but the door won’t move, stop: the spring may have broken.',
       img: '../assets/img/brand-svc-opener.jpg', w: 400, h: 300, alt: 'A garage door opener mounted on the ceiling' },
     { id: 'reverse', icon: 'alert', label: 'Door reverses or won’t close', service: 'Opener Repair', urgent: false,
       text: 'A door that reverses before it closes is often the safety sensors near the floor: misaligned, dirty or damaged. We realign or replace them and test the safety reverse.',
-      tip: 'Make sure nothing blocks the beam between the two sensors near the floor, and that the lenses are clean.' },
+      tip: 'Make sure nothing blocks the beam between the two sensors near the floor, and that the lenses are clean.',
+      img: '../assets/img/tech-ladder.jpg', w: 1600, h: 1067, alt: 'A Garage Door ASAP technician on a ladder working on a garage door' },
     { id: 'noisy', icon: 'noise', label: 'Grinding, squeaking or shaking', service: 'Roller Replacement', urgent: false,
       text: 'Worn or noisy rollers make a door shudder and grind. New rollers restore smooth, quiet travel along the track.',
       tip: 'Book a visit before small wear becomes a bigger repair.',
@@ -196,19 +175,6 @@
     tipEl.classList.remove('tip-swap'); void tipEl.offsetWidth; if (!reduced) tipEl.classList.add('tip-swap');
   }));
 
-  /* ---------- Spring life estimator (verified cycle figures) ---------- */
-  const uses = $('[data-uses]');
-  const yrs = (cycles) => (cycles / (Number(uses.value) * 365)).toFixed(1);
-  function estimate() {
-    $('[data-uses-out]').textContent = `${uses.value}× a day`;
-    $('[data-yrs="10000"]').textContent = `≈ ${yrs(10000)} yrs`;
-    $('[data-yrs="10000-20000"]').textContent = `≈ ${yrs(10000)}–${yrs(20000)} yrs`;
-    $('[data-yrs="50000"]').textContent = `≈ ${yrs(50000)} yrs`;
-    uses.style.background = `linear-gradient(90deg, #DB0000 ${((uses.value - 1) / 9) * 100}%, rgba(255,255,255,.15) 0)`;
-  }
-  uses.addEventListener('input', estimate);
-  estimate();
-
   /* ---------- Reviews carousel (no autoplay) ---------- */
   const rv = $('[data-reviews]');
   const stepW = () => (rv.querySelector('li')?.getBoundingClientRect().width || 320) + 16;
@@ -272,12 +238,10 @@
   // Dots and labels
   const dotsG = $('[data-dots]', svg), labelsG = $('[data-labels]', svg);
   const byName = new Map();
-  const areaList = $('[data-area-list]');
   const card = $('[data-area-card]');
-  const PREVIEW_CITIES = 8;
   $('[data-area-count]').textContent = CITIES.length;
   const dl = $('[data-city-datalist]');
-  CITIES.forEach((c, i) => {
+  CITIES.forEach((c) => {
     const g = el('g', { class: 'city', 'data-city': c.name });
     const halo = el('circle', { cx: c.x, cy: c.y, r: 6, class: 'halo' });
     const dot = el('circle', { cx: c.x, cy: c.y, r: 4.5, class: 'dot' });
@@ -290,24 +254,8 @@
     label.textContent = c.name;
     labelsG.append(label);
     hit.addEventListener('click', () => selectCity(c, { zoom: true }));
-
-    const li = document.createElement('li');
-    li.innerHTML = '<button type="button" class="city-row" aria-pressed="false"><span data-n></span><span class="tnum text-xs text-brand-grey-700" data-m></span></button>';
-    $('[data-n]', li).textContent = c.name;
-    $('[data-m]', li).textContent = `${c.miles} mi`;
-    if (i >= PREVIEW_CITIES) li.hidden = true;
-    const btn = $('button', li);
-    btn.addEventListener('click', () => selectCity(c, { zoom: true }));
-    areaList.append(li);
-    byName.set(norm(c.name), { city: c, btn, g, label, li });
+    byName.set(norm(c.name), { city: c, g, label });
     const o = document.createElement('option'); o.value = c.name; dl.append(o);
-  });
-  const areaToggle = $('[data-area-toggle]');
-  areaToggle.addEventListener('click', () => {
-    const open = areaToggle.getAttribute('aria-expanded') !== 'true';
-    $$('li', areaList).forEach((li, i) => { if (i >= PREVIEW_CITIES) li.hidden = !open && li.querySelector('[aria-pressed="true"]') === null; });
-    areaToggle.setAttribute('aria-expanded', String(open));
-    areaToggle.textContent = open ? 'Show fewer cities' : `Show all ${CITIES.length} cities`;
   });
 
   // Gentle viewBox animation (instant under reduced motion)
@@ -332,8 +280,7 @@
   }
   const resetBtn = $('[data-map-reset]');
   function clearActive() {
-    byName.forEach(({ btn, g, label, city }) => {
-      btn.setAttribute('aria-pressed', 'false');
+    byName.forEach(({ g, label, city }) => {
       g.classList.remove('active');
       label.classList.toggle('map-label-hidden', !(LABELLED.includes(city.name) && city.name !== 'Clermont'));
       label.classList.remove('map-label-active');
@@ -344,8 +291,6 @@
   function selectCity(c, { zoom = false } = {}) {
     const entry = byName.get(norm(c.name));
     clearActive();
-    entry.btn.setAttribute('aria-pressed', 'true');
-    entry.li.hidden = false;
     entry.g.classList.remove('active'); void entry.g.getBBox(); entry.g.classList.add('active');
     entry.label.classList.remove('map-label-hidden'); entry.label.classList.add('map-label-active');
     dotsG.append(entry.g);

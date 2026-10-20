@@ -49,10 +49,12 @@
 
 
   /* Areas: minimal drawn map + city list. --k = current zoom, so dots and labels keep their on-screen size */
+  [data-mapwrap] { @apply overflow-hidden rounded-[22px] border border-brand-grey-200 bg-white shadow-lift; min-height: 26rem; }
+  @media (min-width: 1024px) { [data-mapwrap] { min-height: 32rem; } }
   [data-svgmap] { --k: 1; }
-  .sea { fill: #FFFFFF; }
-  .land { fill: #F3F4F5; stroke: #D9DBDE; stroke-width: 1.2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-  .coverage circle { fill: #DB0000; opacity: .06; }
+  .sea { fill: transparent; }
+  .land { fill: #F7F2EF; stroke: #E6DED8; stroke-width: 1.4; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 1px 2px rgba(28,31,42,.05)); }
+  .coverage circle { fill: #DB0000; opacity: .09; }
   .city .dot { fill: #DB0000; stroke: #FFFFFF; stroke-width: 1.5; vector-effect: non-scaling-stroke; r: calc(4.5px * var(--k)); transition: opacity .3s ease; }
   .city .halo { fill: #DB0000; opacity: 0; r: calc(6px * var(--k)); }
   .city .hit { fill: transparent; cursor: pointer; r: calc(14px * var(--k)); }
@@ -86,12 +88,12 @@
   .prob .dot::after { content: ''; @apply h-2.5 w-2.5 scale-0 rounded-full bg-brand-red transition duration-200; }
   .prob .pic { @apply grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-grey-50 text-brand-grey-700 transition; }
   .prob .pic svg { @apply h-5 w-5; }
-  .prob[aria-checked='true'] { @apply border-brand-red bg-brand-red-tint; }
+  .prob[aria-checked='true'] { @apply border-brand-midnight bg-white; box-shadow: inset 3px 0 0 0 #DB0000; }
   .prob[aria-checked='true'] .dot { @apply border-brand-red; }
   .prob[aria-checked='true'] .dot::after { @apply scale-100; }
-  .prob[aria-checked='true'] .pic { @apply bg-white text-brand-red; }
-  .fix-photo { @apply flex h-56 items-center justify-center overflow-hidden rounded-xl bg-brand-grey-50; }
-  .fix-photo img { @apply h-auto max-h-full w-auto max-w-full rounded-xl; }
+  .prob[aria-checked='true'] .pic { @apply bg-brand-red-tint text-brand-red; }
+  .fix-photo { @apply flex h-56 items-center justify-center overflow-hidden rounded-xl bg-brand-grey-50 ring-1 ring-brand-grey-200; }
+  .fix-photo img { @apply h-full w-full rounded-xl object-cover; }
   .tag { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-title; }
   .tag-urgent { @apply bg-brand-red-deep text-white; }
   .tag-routine { @apply bg-brand-grey-100 text-brand-grey-800; }
